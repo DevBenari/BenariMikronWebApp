@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Tambah Lokasi Departemen";
+    Layout = "~/Views/Shared/_TopNavbarHealthManagementDoctor.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.HealthManagement.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model CreateDoctorDepartmentLocationViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="DoctorDepartmentLocation" asp-action="CreateDoctorDepartmentLocation" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeLokasi">Kode Lokasi</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeLokasi" class="form-control form-control-border border-width-2" id="" placeholder="Kode Lokasi" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NamaLokasi">Nama Lokasi (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NamaLokasi" class="form-control form-control-border border-width-2" id="" placeholder="Nama Lokasi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Keterangan">Keterangan</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="Keterangan" class="form-control form-control-border border-width-2" id="" placeholder="Keterangan">
+                        </div>
+                    </div>
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="DoctorDepartmentLocation">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

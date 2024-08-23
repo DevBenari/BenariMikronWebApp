@@ -1,0 +1,86 @@
+﻿@model BenariMikronWebApp.Core.ViewModels.UbahPenggunaViewModel
+
+@{
+    ViewBag.Title = "Ubah Pengguna";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12 bg-white">
+                <div class="card-header bg-orange">
+                    <h3 class="card-title fw-bold" style="color:#ffffff">Ubah Pengguna</h3>
+                </div>
+
+                @using (Html.BeginForm("OnPost", "User"))
+                {
+                    @Html.HiddenFor(h => Model.User.Id)
+                    ;
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="@Model.User.NamaDepan">Nama Depan</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder="Nama Depan" asp-for="@Model.User.NamaDepan">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="@Model.User.NamaBelakang">Nama Belakang</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder="Nama Belakang" asp-for="@Model.User.NamaBelakang">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="@Model.User.Email">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder="Email" asp-for="@Model.User.Email">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- start data role -->
+                    <div class="card card-orange">
+                        <div class="card-header">
+                            <h3 class="card-title fw-bold" style="color:#ffffff">Role Pengguna</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+
+                                @for (int i = 0; i < Model.Roles.Count(); i++)
+                                {
+                                    <div class="custom-control custom-checkbox col-sm-9">
+                                        @Html.CheckBoxFor(c => Model.Roles[i].Selected, new {@class="custom-control-input"})
+                                        @Html.HiddenFor(h => Model.Roles[i].Value)
+
+                                        @Html.LabelFor(l => Model.Roles[i].Selected, Model.Roles[i].Text, new {@class="custom-control-label"})
+                                        @Html.HiddenFor(h => Model.Roles[i].Text)
+                                    </div>
+                                }
+
+                                @*@foreach (var role in Model.Roles)
+                            {
+                            <div class="custom-control custom-checkbox col-sm-9">
+                            <input class="custom-control-input" type="checkbox" id="@role.Value" checked="@role.Selected">
+                            <label for="@role.Value" class="custom-control-label">@role.Text</label>
+                            </div>
+                            }*@
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.end data role -->
+                    <!-- start button footer -->
+                    <div class="card card-orange">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary float-left">Simpan</button>
+                            <a class="btn btn-default" asp-action="Index" asp-controller="User">Batal</a>
+                        </div>
+                    </div>
+                    <!-- /.end button footer -->
+                }
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

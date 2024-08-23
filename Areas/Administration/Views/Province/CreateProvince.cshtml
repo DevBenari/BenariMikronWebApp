@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Tambah Provinsi";
+    Layout = "~/Views/Shared/_TopNavbarAdministration.cshtml";
+}
+
+@model CreateProvinceViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-action="CreateProvince" asp-controller="Province" asp-area="Administration" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" asp-for="KodeProvinsi">Kode Provinsi</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="KodeProvinsi" class="form-control form-control-border border-width-2" placeholder="Masukan Kode Provinsi" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" asp-for="NamaProvinsi">Nama Provinsi</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="NamaProvinsi" class="form-control form-control-border border-width-2" placeholder="Masukan Nama Provinsi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CountryId" class="col-sm-2 col-form-label">Nama Negara</label>
+                        <div class="col-sm-10">
+                            <select class="form-control select2bs4" style="width: 100%;" asp-for="CountryId" asp-items="@ViewBag.Country">
+                                <option value="" hidden disabled selected>--Pilih Negara--</option>
+                            </select>
+                            <span asp-validation-for="CountryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data identitas -->
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="Province" asp-area="Administration">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

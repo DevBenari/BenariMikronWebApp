@@ -1,0 +1,726 @@
+﻿@{
+    ViewData["Title"] = "Detail Dokter";
+    Layout = "~/Views/Shared/_TopNavbarHealthManagementDoctor.cshtml";
+    var photoPath = "~/FotoDokter/" + (Model.DoctorPhotoPath ?? "doctor.jpg");
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.HealthManagement.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model DetailDoctorViewModel
+
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="~/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+z
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="Doctor" asp-action="DetailDoctor" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <input hidden asp-for="DoctorId" />
+                    <input hidden asp-for="DoctorPhotoPath" />
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeDokter">Kode Dokter (*)</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeDokter" class="form-control form-control-border border-width-2" placeholder="Kode Dokter" readonly id="kodedokter" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DoctorTypeId">
+                            Tipe Dokter (*) <small class="badge bg-orange" id="toolTipeDokter"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Data : Manajemen Kesehatan > Master Data > Dokter > Tipe Dokter"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DoctorTypeId" asp-items="@ViewBag.DoctorType" class="form-control select2bs4" style="width: 100%;" id="tipedokter" disabled>
+                                <option value="" hidden disabled selected>--Pilih Tipe Dokter--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NamaLengkap">Nama Lengkap (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NamaLengkap" class="form-control form-control-border border-width-2" placeholder="Nama Lengkap" id="namalengkap" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NamaMarga">Nama Marga</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NamaMarga" class="form-control form-control-border border-width-2" placeholder="Nama Marga" id="namamarga" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorKtpDokter">Nomor Ktp Dokter (*)</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                            </div>
+                            <input asp-for="NomorKtpDokter" type="text" class="form-control form-control-border border-width-2" autofocus autocomplete="off" placeholder="Nomor Ktp Dokter" data-inputmask='"mask": "9999999999999999"' data-mask-ktp-dokter id="nomorktp" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TempatLahir">Tempat Lahir</label>                        
+                        <div class="col-sm-9">
+                            <select asp-for="TempatLahir" asp-items="@ViewBag.City" class="form-control select2bs4" style="width: 100%;" id="tempatlahir" disabled>
+                                <option value="" hidden disabled selected>--Pilih Kota--</option>
+                            </select>
+                            <span asp-validation-for="TempatLahir" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TanggalLahir">Tanggal Lahir</label>
+                        <div class="col-sm-9 input-group date" id="tanggallahirdokter" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#tanggallahirdokter" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input asp-for="TanggalLahir" type="text" class="form-control datetimepicker-input" data-target="#tanggallahirdokter" placeholder="Tanggal Lahir" id="tanggallahir" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="JenisKelamin">Jenis Kelamin (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="JenisKelamin" class="form-control select2bs4" style="width: 100%;" id="jeniskelamin" disabled>
+                                <option value="" hidden disabled selected>--Pilih Jenis Kelamin--</option>
+                                <option value="Laki-Laki">Laki-Laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Kewarganegaraan" class="col-sm-3 col-form-label">
+                            Kewarganegaraan (*) <small class="badge bg-orange" id="toolKewarganegaraan"
+                                                       data-toggle="tooltip"
+                                                       data-placement="top"
+                                                       title="Data : Administrasi > Master Data > Kelengk. Alamat > Negara"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="Kewarganegaraan" asp-items="@ViewBag.Country" class="form-control select2bs4" style="width: 100%;" id="kewarganegaraan" disabled>
+                                <option value="" hidden disabled selected>--Pilih Kewarganegaraan--</option>
+                            </select>
+                            <span asp-validation-for="Kewarganegaraan" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="LastEducationId">
+                            Pendidikan Terakhir (*) <small class="badge bg-orange" id="toolPendidikanTerakhir"
+                                                           data-toggle="tooltip"
+                                                           data-placement="top"
+                                                           title="Data : Administrasi > Master Data > Pendidikan Terakhir"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="LastEducationId" asp-items="@ViewBag.LastEducation" class="form-control select2bs4" style="width: 100%;" id="pendidikanterakhir" disabled>
+                                <option value="" hidden disabled selected>--Pilih Pendidikan Terakhir--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="ReligionId">
+                            Agama (*) <small class="badge bg-orange" id="toolAgama"
+                                             data-toggle="tooltip"
+                                             data-placement="top"
+                                             title="Data : Administrasi > Master Data > Agama"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="ReligionId" asp-items="@ViewBag.Religion" class="form-control select2bs4" style="width: 100%;" id="agama" disabled>
+                                <option value="" hidden disabled selected>--Pilih Agama--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="WorkingId">
+                            Pekerjaan (*) <small class="badge bg-orange" id="toolPekerjaan"
+                                                 data-toggle="tooltip"
+                                                 data-placement="top"
+                                                 title="Data : Administrasi > Master Data > Pekerjaan"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="WorkingId" asp-items="@ViewBag.Working" class="form-control select2bs4" style="width: 100%;" id="pekerjaan" disabled>
+                                <option value="" hidden disabled selected>--Pilih Pekerjaan--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DoctorQueueTypeId">
+                            Tipe Antrian (*) <small class="badge bg-orange" id="toolTipeAntrianDokter"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="Data : Manajemen Kesehatan > Master Data > Dokter > Tipe Antrian Dokter"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DoctorQueueTypeId" asp-items="@ViewBag.DoctorQueueType" class="form-control select2bs4" style="width: 100%;" id="tipeantrian" disabled>
+                                <option value="" hidden disabled selected>--Pilih Tipe Antrian--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="BankId">
+                            Bank (*) <small class="badge bg-orange" id="toolBank"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Data : Akunting & Keuangan > Master Data > Akun Bank > Bank"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="BankId" asp-items="@ViewBag.Bank" class="form-control select2bs4" style="width: 100%;" id="bank" disabled>
+                                <option value="" hidden disabled selected>--Pilih Bank--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="BankCabangId">
+                            Bank Cabang (*) <small class="badge bg-orange" id="toolBankCabang"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Data : Akunting & Keuangan > Master Data > Akun Bank > Bank Cabang"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="BankCabangId" asp-items="@ViewBag.BankCabang" class="form-control select2bs4" style="width: 100%;" id="bankcabang" disabled>
+                                <option value="" hidden disabled selected>--Pilih Bank Cabang--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="BankAtasNama">Bank Atas Nama (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="BankAtasNama" class="form-control form-control-border border-width-2" placeholder="Bank Atas Nama" id="bankatasnama" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="BankNomorRekening">Bank Nomor Rekening (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="BankNomorRekening" class="form-control form-control-border border-width-2" placeholder="Bank Nomor Rekening" id="banknomorrekening" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Npwp">Npwp (*)</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
+                            </div>
+                            <input asp-for="Npwp" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "99.999.999.9-999.999"' data-mask-npwp id="npwp" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="AlamatRumahLengkap">Alamat Rumah Lengkap (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="AlamatRumahLengkap" class="form-control form-control-border border-width-2" placeholder="Alamat Rumah Lengkap" id="alamatrumahlengkap" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CountryId" class="col-sm-3 col-form-label">
+                            Negara (*) <small class="badge bg-orange" id="toolNegara"
+                                              data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="Data : Administrasi > Master Data > Kelengk. Alamat > Negara"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="CountryId" asp-items="@ViewBag.Country" class="form-control select2bs4" style="width: 100%;" id="negara" disabled>
+                                <option value="" hidden disabled selected>--Pilih Negara--</option>
+                            </select>
+                            <span asp-validation-for="CountryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ProvinceId" class="col-sm-3 col-form-label">
+                            Provinsi (*) <small class="badge bg-orange" id="toolProvinsi"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                title="Data : Administrasi > Master Data > Kelengk. Alamat > Provinsi"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="ProvinceId" asp-items="@ViewBag.Province" class="form-control select2bs4" style="width: 100%;" id="provinsi" disabled>
+                                <option value="" hidden disabled selected>--Pilih Provinsi--</option>
+                            </select>
+                            <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CityId" class="col-sm-3 col-form-label">
+                            Kota (*) <small class="badge bg-orange" id="toolKota"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Data : Administrasi > Master Data > Kelengk. Alamat > Kota"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="CityId" asp-items="@ViewBag.City" class="form-control select2bs4" style="width: 100%;" id="kota" disabled>
+                                <option value="" hidden disabled selected>--Pilih Kota--</option>
+                            </select>
+                            <span asp-validation-for="CityId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="DistrictId" class="col-sm-3 col-form-label">
+                            Kecamatan (*) <small class="badge bg-orange" id="toolKecamatan"
+                                                 data-toggle="tooltip"
+                                                 data-placement="top"
+                                                 title="Data : Administrasi > Master Data > Kelengk. Alamat > Kecamatan"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DistrictId" asp-items="@ViewBag.District" class="form-control select2bs4" style="width: 100%;" id="kecamatan" disabled>
+                                <option value="" hidden disabled selected>--Pilih Kecamatan--</option>
+                            </select>
+                            <span asp-validation-for="DistrictId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="SubDistrictId" class="col-sm-3 col-form-label">
+                            Kelurahan (*) <small class="badge bg-orange" id="toolKelurahan"
+                                                 data-toggle="tooltip"
+                                                 data-placement="top"
+                                                 title="Data : Administrasi > Master Data > Kelengk. Alamat > Kelurahan"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="SubDistrictId" asp-items="@ViewBag.SubDistrict" class="form-control select2bs4" style="width: 100%;" id="kelurahan" disabled>
+                                <option value="" hidden disabled selected>--Pilih Kelurahan--</option>
+                            </select>
+                            <span asp-validation-for="SubDistrictId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodePos">Kode Pos</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="KodePos" class="form-control form-control-border border-width-2" placeholder="Kode Pos" id="kodepos" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorTelepon">No. Telepon</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <input asp-for="NomorTelepon" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(999) - 99999999"' data-mask-telepon id="nomortelepon" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorHandphone">No Handphone</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <input asp-for="NomorHandphone" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(9999) - 9999-9999-9"' data-mask-hp id="nomorhandphone" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="AlamatKantorLengkap">Alamat Kantor Lengkap (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="AlamatKantorLengkap" class="form-control form-control-border border-width-2" placeholder="Alamat Kantor Lengkap" id="alamatkantorlengkap" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorTeleponKantor">No. Telepon Kantor</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <input asp-for="NomorTeleponKantor" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(999) - 99999999"' data-mask-telepon-kantor id="nomorteleponkantor" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorIdDokter">No Id Dokter (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NomorIdDokter" class="form-control form-control-border border-width-2" placeholder="No Id Dokter" id="nomoriddokter" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DoctorTitleId">
+                            Gelar Dokter (*) <small class="badge bg-orange" id="toolGelarDokter"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="Data : Manajemen Kesehatan > Master Data > Dokter > Gelar Dokter"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DoctorTitleId" asp-items="@ViewBag.DoctorTitle" class="form-control select2bs4" style="width: 100%;" id="namagelar" disabled>
+                                <option value="" hidden disabled selected>--Pilih Gelar--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="JenisKontrak">Jenis Kontrak</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="JenisKontrak" class="form-control form-control-border border-width-2" placeholder="Jenis Kontrak" id="jeniskontrak" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TanggalAwalKontrak">Tanggal Awal Kontrak</label>
+                        <div class="col-sm-9 input-group date" id="tanggalAwalKontrak" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#tanggalAwalKontrak" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input asp-for="TanggalAwalKontrak" type="text" class="form-control datetimepicker-input" data-target="#tanggalAwalKontrak" placeholder="Tanggal Awal Kontrak" id="tanggalawalkontrak" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TanggalAkhirKontrak">Tanggal Akhir Kontrak</label>
+                        <div class="col-sm-9 input-group date" id="tanggalAkhirKontrak" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#tanggalAkhirKontrak" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input asp-for="TanggalAkhirKontrak" type="text" class="form-control datetimepicker-input" data-target="#tanggalAkhirKontrak" placeholder="Tanggal Akhir Kontrak" id="tanggalakhirkontrak" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TanggalKeluar">Tanggal Keluar</label>
+                        <div class="col-sm-9 input-group date" id="tanggalKeluar" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#tanggalKeluar" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input asp-for="TanggalKeluar" type="text" class="form-control datetimepicker-input" data-target="#tanggalKeluar" placeholder="Tanggal Keluar" id="tanggalkeluar" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="GuaranteeFee">Guarantee Fee</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="GuaranteeFee" class="form-control form-control-border border-width-2" placeholder="Guarantee Fee" id="guarantee" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DokterMitra">Dokter Mitra (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="DokterMitra" class="form-control select2bs4" style="width: 100%;" id="doktermitra" disabled>
+                                <option value="" hidden disabled selected>--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DokterSpesialis">Dokter Spesialis (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="DokterSpesialis" class="form-control select2bs4" style="width: 100%;" id="dokterspesialis" disabled>
+                                <option value="" hidden disabled selected>--Pilih--</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DepartmentList">
+                            Departemen (*) <small class="badge bg-orange" id="toolDepartemen"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="Data : Manajemen Kesehatan > Master Data > Dokter > Departemen Dokter"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DepartmentId" asp-items="Model.DepartmentList" multiple="multiple" data-placeholder="--Pilih Departemen--" class="form-control select2bs4" style="width: 100%;" id="department" disabled>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Foto">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="col-sm-9">
+                                <img src="@photoPath" asp-append-version="true" width="300" height="300" />
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="custom-file">
+                                    <input asp-for="Foto" class="form-control custom-file-input" id="foto" disabled>
+                                    <label class="custom-file-label">Ganti Foto...</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold" id="btnsimpan"><div style="color:#ffffff">Simpan</div></button>&nbsp;
+                        <a class="btn btn-info" id="btnubah">Ubah</a>
+                        <a class="btn btn-info" id="btnbatalubah">Batal Ubah</a>
+                        <a class="btn btn-danger" asp-action="DeleteDoctor" asp-controller="Doctor" asp-area="HealthManagement" asp-route-id="@Model.DoctorId" id="btnhapus">Hapus</a>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="Doctor" asp-area="HealthManagement" id="btnbatal">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                            $('#toolTipeDokter').tooltip({ animation: true });
+                            $('#toolPendidikanTerakhir').tooltip({ animation: true });
+                            $('#toolAgama').tooltip({ animation: true });
+                            $('#toolPekerjaan').tooltip({ animation: true });
+                            $('#toolTipeAntrianDokter').tooltip({ animation: true });
+                            $('#toolBank').tooltip({ animation: true });
+                            $('#toolBankCabang').tooltip({ animation: true });
+                            $('#toolNegara').tooltip({ animation: true });
+                            $('#toolProvinsi').tooltip({ animation: true });
+                            $('#toolKota').tooltip({ animation: true });
+                            $('#toolKecamatan').tooltip({ animation: true });
+                            $('#toolKelurahan').tooltip({ animation: true });
+                            $('#toolGelarDokter').tooltip({ animation: true });
+                            $('#toolDepartemen').tooltip({ animation: true });
+                            $('#toolKewarganegaraan').tooltip({ animation: true });
+                        })                        
+                    </script>
+                    
+                    <script>
+                        $(function () {
+                            $("#btnsimpan").hide();
+                            $("#btnbatalubah").hide();
+
+                            $("#btnubah").click(function() {
+                                $("#btnubah").hide();
+                                $("#btnhapus").hide();
+                                $("#btnbatal").hide();
+                                $("#btnsimpan").show();
+                                $("#btnbatalubah").show();
+
+                                document.getElementById("tipedokter").disabled = false;
+                                document.getElementById("kodedokter").disabled = false;
+                                document.getElementById("namalengkap").disabled = false;
+                                document.getElementById("namamarga").disabled = false;
+                                document.getElementById("nomorktp").disabled = false;
+                                document.getElementById("tempatlahir").disabled = false;
+                                document.getElementById("tanggallahir").disabled = false;
+                                document.getElementById("jeniskelamin").disabled = false;
+                                document.getElementById("kewarganegaraan").disabled = false;
+                                document.getElementById("pendidikanterakhir").disabled = false;
+                                document.getElementById("agama").disabled = false;
+                                document.getElementById("pekerjaan").disabled = false;
+                                document.getElementById("tipeantrian").disabled = false;
+                                document.getElementById("bank").disabled = false;
+                                document.getElementById("bankcabang").disabled = false;
+                                document.getElementById("bankatasnama").disabled = false;
+                                document.getElementById("banknomorrekening").disabled = false;
+                                document.getElementById("npwp").disabled = false;
+                                document.getElementById("alamatrumahlengkap").disabled = false;
+                                document.getElementById("negara").disabled = false;
+                                document.getElementById("provinsi").disabled = false;
+                                document.getElementById("kota").disabled = false;
+                                document.getElementById("kecamatan").disabled = false;
+                                document.getElementById("kelurahan").disabled = false;
+                                document.getElementById("kodepos").disabled = false;
+                                document.getElementById("nomortelepon").disabled = false;
+                                document.getElementById("alamatkantorlengkap").disabled = false;
+                                document.getElementById("nomorteleponkantor").disabled = false;
+                                document.getElementById("nomoriddokter").disabled = false;
+                                document.getElementById("namagelar").disabled = false;
+                                document.getElementById("jeniskontrak").disabled = false;
+                                document.getElementById("tanggalawalkontrak").disabled = false;
+                                document.getElementById("tanggalakhirkontrak").disabled = false;
+                                document.getElementById("tanggalkeluar").disabled = false;
+                                document.getElementById("guarantee").disabled = false;
+                                document.getElementById("doktermitra").disabled = false;
+                                document.getElementById("dokterspesialis").disabled = false;
+                                document.getElementById("department").disabled = false;
+                                document.getElementById("foto").disabled = false;                                
+                            })
+
+                            $("#btnbatalubah").click(function () {
+                                $("#btnubah").show();
+                                $("#btnhapus").show();
+                                $("#btnbatal").show();
+                                $("#btnsimpan").hide();
+                                $("#btnbatalubah").hide();
+
+                                document.getElementById("tipedokter").disabled = true;
+                                document.getElementById("kodedokter").disabled = true;
+                                document.getElementById("namalengkap").disabled = true;
+                                document.getElementById("namamarga").disabled = true;
+                                document.getElementById("nomorktp").disabled = true;
+                                document.getElementById("tempatlahir").disabled = true;
+                                document.getElementById("tanggallahir").disabled = true;
+                                document.getElementById("jeniskelamin").disabled = true;
+                                document.getElementById("kewarganegaraan").disabled = true;
+                                document.getElementById("pendidikanterakhir").disabled = true;
+                                document.getElementById("agama").disabled = true;
+                                document.getElementById("pekerjaan").disabled = true;
+                                document.getElementById("tipeantrian").disabled = true;
+                                document.getElementById("bank").disabled = true;
+                                document.getElementById("bankcabang").disabled = true;
+                                document.getElementById("bankatasnama").disabled = true;
+                                document.getElementById("banknomorrekening").disabled = true;
+                                document.getElementById("npwp").disabled = true;
+                                document.getElementById("alamatrumahlengkap").disabled = true;
+                                document.getElementById("negara").disabled = true;
+                                document.getElementById("provinsi").disabled = true;
+                                document.getElementById("kota").disabled = true;
+                                document.getElementById("kecamatan").disabled = true;
+                                document.getElementById("kelurahan").disabled = true;
+                                document.getElementById("kodepos").disabled = true;
+                                document.getElementById("nomortelepon").disabled = true;
+                                document.getElementById("alamatkantorlengkap").disabled = true;
+                                document.getElementById("nomorteleponkantor").disabled = true;
+                                document.getElementById("nomoriddokter").disabled = true;
+                                document.getElementById("namagelar").disabled = true;
+                                document.getElementById("jeniskontrak").disabled = true;
+                                document.getElementById("tanggalawalkontrak").disabled = true;
+                                document.getElementById("tanggalakhirkontrak").disabled = true;
+                                document.getElementById("tanggalkeluar").disabled = true;
+                                document.getElementById("guarantee").disabled = true;
+                                document.getElementById("doktermitra").disabled = true;
+                                document.getElementById("dokterspesialis").disabled = true;
+                                document.getElementById("department").disabled = true;
+                                document.getElementById("foto").disabled = true;
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('.custom-file-input').on("change", function () {
+                                var fileName = $(this).val().split("\\").pop();
+                                $(this).next('.custom-file-label').html(fileName);
+                            });
+                        });
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {                           
+                            $("#negara").change(function () {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadProvince")',
+                                    dataType: 'json',
+                                    data: { id: $("#negara").val() },
+                                    success: function (provinces) {
+                                        $("#provinsi").append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                                        $.each(provinces, function (i, province) {
+                                            $("#provinsi").append('<option value = "' + province.value + '">' + province.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data provinsi' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#provinsi").change(function () {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadCity")',
+                                    dataType: 'json',
+                                    data: { id: $("#provinsi").val() },
+                                    success: function (cities) {
+                                        $("#kota").append('<option value="' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                        $.each(cities, function (i, city) {
+                                            $("#kota").append('<option value="' + city.value + '">' + city.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kota' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#kota").change(function () {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadDistrict")',
+                                    dataType: 'json',
+                                    data: { id: $("#kota").val() },
+                                    success: function (districts) {
+                                        $("#kecamatan").append('<option value="' + -1 + '">' + "--Pilih Kecamatan--" + '</option>');
+                                        $.each(districts, function (i, district) {
+                                            $("#kecamatan").append('<option value="' + district.value + '">' + district.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kecamatan' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#kecamatan").change(function () {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadSubDistrict")',
+                                    dataType: 'json',
+                                    data: { id: $("#kecamatan").val() },
+                                    success: function (subdistricts) {
+                                        $("#kelurahan").append('<option value="' + -1 + '">' + "--Pilih Kelurahan--" + '</option>');
+                                        $.each(subdistricts, function (i, subdistrict) {
+                                            $("#kelurahan").append('<option value="' + subdistrict.value + '">' + subdistrict.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kelurahan' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#bank").change(function () {
+                                $("#bankcabang").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadBankCabang")',
+                                    dataType: 'json',
+                                    data: { id: $("#bank").val() },
+                                    success: function (cabangs) {
+                                        $("#bankcabang").append('<option value = "' + -1 + '">' + "--Pilih Bank Cabang--" + '</option>');
+                                        $.each(cabangs, function (i, bcb) {
+                                            $("#bankcabang").append('<option value = "' + bcb.value + '">' + bcb.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data Bank Cabang' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $(function () {
+                            //Date picker
+                            $('#tanggallahirdokter').datetimepicker({
+                                format: 'L'
+                            })
+
+                            //Data-Mask-Ktp-Dokter
+                            $('[data-mask-ktp-dokter]').inputmask()
+
+                            //Data-Mask-Npwp
+                            $('[data-mask-npwp]').inputmask()
+
+                            //Data-Mask-Hp
+                            $('[data-mask-hp]').inputmask()
+
+                            //Data-Mask-Telepon
+                            $('[data-mask-telepon]').inputmask()
+
+                            //Data-Mask-Telepon-Kantor
+                            $('[data-mask-telepon-kantor]').inputmask()
+
+                            //Tanggal Awal Kontrak
+                            $('#tanggalAwalKontrak').datetimepicker({
+                                format: 'L'
+                            })
+
+                            //Tanggal Akhir Kontrak
+                            $('#tanggalAkhirKontrak').datetimepicker({
+                                format: 'L'
+                            })
+
+                            //Tanggal Keluar
+                            $('#tanggalKeluar').datetimepicker({
+                                format: 'L'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

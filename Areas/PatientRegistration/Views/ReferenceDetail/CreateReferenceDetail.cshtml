@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Tambah Detail Rujukan";
+    Layout = "~/Views/Shared/_TopNavbarPatientRegistration.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.PatientRegistration.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model CreateReferenceDetailViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="ReferenceDetail" asp-action="CreateReferenceDetail" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeDetailRujukan">Kode Detail Rujukan</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeDetailRujukan" class="form-control form-control-border border-width-2" id="" placeholder="Kode Detail Rujukan" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ReferenceTypeId" class="col-sm-3 col-form-label">Tipe Rujukan</label>
+                        <div class="col-sm-9">
+                            <select id="tiperujukan" class="form-control select2bs4" style="width: 100%;" asp-for="ReferenceTypeId" asp-items="@ViewBag.ReferenceType">
+                                <option value="" hidden disabled selected>--Pilih Tipe Rujukan--</option>
+                            </select>
+                            <span asp-validation-for="ReferenceTypeId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="grupdokter">
+                        <label asp-for="NamaDetailRujukan" class="col-sm-3 col-form-label">Nama Dokter</label>
+                        <div class="col-sm-9">
+                            <select id="namadokter" data-placeholder="--Pilih Dokter--" class="form-control select2bs4" style="width: 100%;" asp-for="NamaDetailRujukan" asp-items="@ViewBag.Doctor">
+                                <option value="" hidden disabled selected>--Pilih Doctor--</option>
+                            </select>
+                            <span asp-validation-for="NamaDetailRujukan" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NamaDetailRujukan">Nama Detail Rujukan (*)</label>
+                        <div class="col-sm-9">
+                            <input itemid="namadetail" maxlength="100" type="text" asp-for="NamaDetailRujukan" class="form-control form-control-border border-width-2" id="" placeholder="Nama Detail Rujukan">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorTelepon">Nomor Telepon (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NomorTelepon" class="form-control form-control-border border-width-2" id="" placeholder="Nomor Telepon">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Alamat">Alamat</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="Alamat" class="form-control form-control-border border-width-2" id="" placeholder="Alamat">
+                        </div>
+                    </div>                    
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="ReferenceDetail">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $("#grupdokter").hide();
+
+                        $("#tiperujukan").change(function () {
+                            var tipe = $("#tiperujukan option:selected").text();
+                            if (tipe == "Dr/Drg Rumah Sakit") {
+                                $("#grupdokter").show();
+                            }
+                            else {
+                                $("#grupdokter").hide();
+                            }
+
+                            if ($(this).val() != "31368da5-f408-408f-f18a-08dc84b2e040") {
+                                $('#namadokter').select2('val', 'selectedIndex', 0);
+                                $("#namadokter").data('placeholder');
+                            }
+                        });
+
+                        $("#namadokter").change(function () {
+                            var test = $("#namadokter option:selected").text();
+                            if ($(this).val() == "31368da5-f408-408f-f18a-08dc84b2e040") {
+                                $("#grupdokter").show();
+                            }
+                            else {
+                                $("#grupdokter").hide();
+                            }
+
+                            if ($(this).val() != "31368da5-f408-408f-f18a-08dc84b2e040") {
+                                $('#namadokter').select2('val', 'selectedIndex', 0);
+                                $("#namadokter").data('placeholder');
+                            }
+
+                            $.ajax({
+                                type: 'GET',
+                                url: '@Url.Action("LoadCity")',
+                                dataType: 'json',
+                                data: { id: $("#namadokter").val() },
+                                success: function (cities) {
+                                    $("#CityList").append('<option value="' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                    $.each(cities, function (i, city) {
+                                        $("#CityList").append('<option value="' + city.value + '">' + city.text + '</option>');
+                                    });
+                                },
+                                error: function (ex) {
+                                    alert('Gagal ambil data kota' + ex);
+                                }
+                            });
+                            return false;
+                        });
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

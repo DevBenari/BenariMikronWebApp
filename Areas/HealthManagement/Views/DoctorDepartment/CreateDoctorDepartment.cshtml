@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Tambah Departemen";
+    Layout = "~/Views/Shared/_TopNavbarHealthManagementDoctor.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.HealthManagement.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model CreateDoctorDepartmentViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="DoctorDepartment" asp-action="CreateDoctorDepartment" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeDepartemen">Kode Departemen (*)</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeDepartemen" class="form-control form-control-border border-width-2" id="" placeholder="Kode Departemen" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NamaDepartemen">Nama Departemen (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NamaDepartemen" class="form-control form-control-border border-width-2" id="" placeholder="Nama Departemen">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="LocationId">Lokasi (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="LocationId" asp-items="@ViewBag.Lokasi" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Lokasi--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Telepon">Telepon</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="Telepon" class="form-control form-control-border border-width-2" id="" placeholder="Telepon">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Jam Kerja (*)</label>                        
+                        <div class="input-group date col-sm-4" id="mulaijamkerja" data-target-input="nearest">
+                            <label asp-for="MulaiJamKerja" class="col-sm-2 col-form-label">Mulai</label>
+                            <div class="input-group-append" data-target="#mulaijamkerja" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                            <input asp-for="MulaiJamKerja" type="text" class="form-control datetimepicker-input" data-target="#mulaijamkerja" />                            
+                        </div>
+                        <div class="input-group date col-sm-4" id="selesaijamkerja" data-target-input="nearest">
+                            <label asp-for="SelesaiJamKerja" class="col-sm-2 col-form-label">Selesai</label>
+                            <div class="input-group-append" data-target="#selesaijamkerja" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                            <input asp-for="SelesaiJamKerja" type="text" class="form-control datetimepicker-input" data-target="#selesaijamkerja" />                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Keterangan">Keterangan</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="Keterangan" class="form-control form-control-border border-width-2" id="" placeholder="Keterangan">
+                        </div>
+                    </div>
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="DoctorDepartment">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $(function () {
+
+                            //Set Mulai Jam Kerja
+                            $('#mulaijamkerja').datetimepicker({
+                                format: 'LT'
+                            })
+
+                            //Set Selesai Jam Kerja
+                            $('#selesaijamkerja').datetimepicker({
+                                format: 'LT'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

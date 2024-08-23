@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Tambah Tipe Dokter";
+    Layout = "~/Views/Shared/_TopNavbarHealthManagementDoctor.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.HealthManagement.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model CreateDoctorTypeViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="DoctorType" asp-action="CreateDoctorType" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeTipeDokter">Kode Tipe Dokter</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeTipeDokter" class="form-control form-control-border border-width-2" id="" placeholder="Kode Tipe Dokter" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TipeDokter">Tipe Dokter (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="TipeDokter" class="form-control form-control-border border-width-2" id="" placeholder="Tipe Dokter">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Persentase">Persentase (%)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="Persentase" class="form-control form-control-border border-width-2" id="" placeholder="Persentase">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Status">Status (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="Status" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Status--</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="DoctorType">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

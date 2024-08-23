@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <section class="content">
+        <nav class="navbar navbar-expand-lg navbar-orange navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-orange" style="color:#ffffff" asp-action="Index" asp-controller="Dashboard" asp-area="HealthManagement">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-orange dropdown-toggle" style="color:#ffffff" data-bs-toggle="dropdown" aria-expanded="false">
+                                Master Data
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="subdokter" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Akun Bank</a>
+                                    <ul aria-labelledby="subdokter" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="Bank" asp-area="AccountingAndFinancial">Bank</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="BankCabang" asp-area="AccountingAndFinancial">Bank Cabang</a>
+                                        </li>                                        
+                                    </ul>
+                                </li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12">
+                <div class="callout callout-info">
+                    <h5 class="fw-bold"><i class="fas fas fa-chart-line"></i> Dashboard Akunting dan Keuangan</h5>
+                    Benari Mikron memiliki banyak module di dalamnya, setiap module memiliki fungsi yang berbeda-beda. Silahkan pilih menu sesuai kebutuhan.
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        @RenderBody()
+    </section>
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true)
+    }
+</body>
+</html>

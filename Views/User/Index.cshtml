@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Master Role Pengguna";
+}
+@model ICollection<BenariMikronWebApp.Areas.Identity.Data.ApplicationUser>
+
+<!-- Main content -->
+<section class="content">
+    <div class="card card-orange">
+        <div class="card-header">
+            <h3 class="card-title" style="color:#ffffff">Master Role Pengguna</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        @*<a class="btn bg-orange" asp-action="AddPasienBaru" asp-controller="Pendaftaran">
+                            <div style="color:#ffffff">Tambah Data</div>
+                        </a>*@
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <div class="col-md-4">
+                    @*<div class="form-group">
+                        <a class="btn bg-orange" asp-action="DataPasienLuar" asp-controller="Administrator">
+                            <div style="color:#ffffff">Pasien Luar</div>
+                        </a>
+                        <a class="btn bg-orange" asp-action="DataPasienBayi" asp-controller="Administrator">
+                            <div style="color:#ffffff">Pasien Bayi</div>
+                        </a>
+                    </div>*@
+                <!-- /.form-group -->
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="search" class="form-control" placeholder="Pagination">
+                        </div>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        @*<label>Tanggal Awal</label>*@
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        @*<label>Tanggal Akhir</label>*@
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <div class="form-group col-md-2">
+                    @*<label>Date range button:</label>*@
+                    <div class="input-group">
+                        <button type="button" class="btn btn-default float-right" id="daterange-btn">
+                            <i class="far fa-calendar-alt"></i> Date range picker
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <select class="form-control select2" style="width: 100%;">
+                            <option selected="selected">Kode</option>
+                            <option>Lokasi</option>
+                            <option>Ruangan</option>
+                            <option>Suhu</option>
+                            <option>Status Ruangan</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="search" class="form-control" placeholder="Cari data dan enter ....">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.form-group -->
+                    <!-- /.form-group -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            @if (Model != null && @Model.Any())
+            {
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            @*<th>Id</th>*@
+                            <th>Nama Depan</th>
+                            <th>Nama Belakang</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                @*<th scope="row">@user.Id</th>*@
+                                <td>@user.NamaDepan</td>
+                                <td>@user.NamaBelakang</td>
+                                <td>@user.Email</td>
+                                <td>
+                                    <a asp-controller="User" asp-action="UbahPengguna" asp-route-id="@user.Id">Ubah</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            @*<th>Id</th>*@
+                            <th>Nama Depan</th>
+                            <th>Nama Belakang</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->

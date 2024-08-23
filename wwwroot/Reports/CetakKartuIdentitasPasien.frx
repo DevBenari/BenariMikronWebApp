@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/29/2024 13:45:24" ReportInfo.Modified="02/29/2024 16:46:31" ReportInfo.CreatorVersion="2023.1.12.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqGCgiDglzYkeDnnIBok3ESB9mNK+9rs5wIh5oJerocnviMKiQoAm+sRo5RiFAf7b2MWXhP2dCUZQZteG8PJHep/0gWT/rOUvGYAqAANlQyz9HPi/9X867POQ3fKdIESFP8mRYIak4R8EPVC9Bpte22ymbFHyvFJdozcp5Bw5yiXH0Xb9LChd01/T3I+RrpEtkOziUZhD2SiO+Ox1rVsoAJiWdr6+/ydnGQEi1l+OsRxKDHLmwXk23czgvLAfQDFU1">
+      <TableDataSource Name="AdmPasienBaru" DataType="System.Int32" Enabled="true" TableName="AdmPasienBaru" SelectCommand="exec GetPasienBaruById @IdPasienBaru">
+        <Column Name="Id" DataType="System.Int32"/>
+        <Column Name="KodePasien" DataType="System.String"/>
+        <Column Name="NomorRekamMedisBaru" DataType="System.String"/>
+        <Column Name="NomorRekamMedisLama" DataType="System.String"/>
+        <Column Name="Perusahaan" DataType="System.String"/>
+        <Column Name="NomorPolisPenjamin" DataType="System.String"/>
+        <Column Name="NamaPegawaiPenjamin" DataType="System.String"/>
+        <Column Name="BagianPenjamin" DataType="System.String"/>
+        <Column Name="GrupPenjamin" DataType="System.String"/>
+        <Column Name="HubunganPenjamin" DataType="System.String"/>
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="NomorIdentitasPasien" DataType="System.String"/>
+        <Column Name="TempatKelahiranPasien" DataType="System.String"/>
+        <Column Name="TanggalKelahiranPasien" DataType="System.String"/>
+        <Column Name="JenisKelaminPasien" DataType="System.String"/>
+        <Column Name="PasienPrioritas" DataType="System.String"/>
+        <Column Name="StatusPasien" DataType="System.String"/>
+        <Column Name="AgamaPasien" DataType="System.String"/>
+        <Column Name="SukuPasien" DataType="System.String"/>
+        <Column Name="KewarganegaraanPasien" DataType="System.String"/>
+        <Column Name="PendidikanTerakhirPasien" DataType="System.String"/>
+        <Column Name="AlamatDomisiliPasien" DataType="System.String"/>
+        <Column Name="InformasiAlamatPasien" DataType="System.String"/>
+        <Column Name="NomorTeleponPasien" DataType="System.String"/>
+        <Column Name="EmailAktifPasien" DataType="System.String"/>
+        <Column Name="PekerjaanPasien" DataType="System.String"/>
+        <Column Name="NamaKantorPasien" DataType="System.String"/>
+        <Column Name="AlamatKantorPasien" DataType="System.String"/>
+        <Column Name="NomorTeleponKantorPasien" DataType="System.String"/>
+        <Column Name="GolonganDarahPasien" DataType="System.String"/>
+        <Column Name="AlergiPasien" DataType="System.String"/>
+        <Column Name="NamaKeluargaTerdekatPasien" DataType="System.String"/>
+        <Column Name="HubunganKeluargaPasien" DataType="System.String"/>
+        <Column Name="KaryawanRumahSakit" DataType="System.String"/>
+        <Column Name="AlamatKeluargaPasien" DataType="System.String"/>
+        <Column Name="NomorTeleponKeluargaPasien" DataType="System.String"/>
+        <Column Name="NamaAyahPasien" DataType="System.String"/>
+        <Column Name="PekerjaanAyahPasien" DataType="System.String"/>
+        <Column Name="NamaIbuPasien" DataType="System.String"/>
+        <Column Name="PekerjaanIbuPasien" DataType="System.String"/>
+        <Column Name="NamaSutriPasien" DataType="System.String"/>
+        <Column Name="PekerjaanSutriPasien" DataType="System.String"/>
+        <Column Name="NomorIdentitasSutriPasien" DataType="System.String"/>
+        <Column Name="CreateBy" DataType="System.String"/>
+        <Column Name="CreateDate" DataType="System.DateTimeOffset"/>
+        <Column Name="GenerateQrCode" DataType="System.String"/>
+        <Column Name="ModifyBy" DataType="System.String"/>
+        <Column Name="ModifyDate" DataType="System.DateTimeOffset"/>
+        <Column Name="PenjaminId" DataType="System.Int32"/>
+        <Column Name="NamaLengkapPasien" DataType="System.String"/>
+        <CommandParameter Name="IdPasienBaru" DataType="22" Expression="[IdPasienBaru]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="IdPasienBaru" DataType="System.String" AsString=""/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="899.9982" PaperHeight="550.0116" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="3401.99" Height="387.45">
+      <PictureObject Name="Picture2" Left="132.3" Top="18.9" Width="378" Height="311.85" ImageLocation="D:\Working\Logo Benari\New Logo\WhatsApp_Image_2023-10-25_at_2.31.34_PM__1_-removebg-preview.png" ImageFormat="Png"/>
+      <TextObject Name="Text8" Left="529.2" Top="18.9" Width="2797.2" Height="132.3" Text="RS. BENARI SOLUSINDO SEJAHTERA" VertAlign="Center" Font="Arial, 80pt, style=Bold"/>
+      <TextObject Name="Text9" Left="529.2" Top="160.65" Width="2797.2" Height="160.65" Text="Jl. Kemang Amarilis Raya Blok.AC-2 RT.75 RW.100 Kel. Bahagia Kec. Selamat Sentosa Kota Bekasi, Jawa Barat, Indonesia" VertAlign="Center" Font="Arial, 50pt, style=Bold"/>
+      <ShapeObject Name="Shape2" Top="359.1" Width="3420.9" Height="28.35" Border.Color="Orange" Border.Width="5" Fill.Color="Orange"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="400.25" Width="3401.99" Height="1237.95" DataSource="AdmPasienBaru">
+      <PictureObject Name="Picture1" Left="-113.4" Top="170.1" Width="1152.9" Height="1067.85" SizeMode="StretchImage"/>
+      <TextObject Name="Text2" Left="963.9" Top="633.15" Width="1039.5" Height="103.95" Text="No. Identitas Pasien" VertAlign="Center" Font="Arial, 75pt, style=Bold"/>
+      <TextObject Name="Text3" Left="963.9" Top="784.35" Width="1039.5" Height="113.4" Text="Nama Pasien" VertAlign="Center" Font="Arial, 75pt, style=Bold"/>
+      <TextObject Name="Text4" Left="2012.85" Top="633.15" Width="1597.05" Height="103.95" Text=": [AdmPasienBaru.NomorIdentitasPasien]" VertAlign="Center" Font="Arial, 75pt, style=Bold"/>
+      <TextObject Name="Text5" Left="2012.85" Top="784.35" Width="1011.15" Height="113.4" Text=": [AdmPasienBaru.NamaLengkapPasien]" VertAlign="Center" Font="Arial, 75pt, style=Bold"/>
+      <ShapeObject Name="Shape1" Left="935.55" Top="406.35" Width="2371.95" Height="179.55" Fill.Color="Orange" Shape="RoundRectangle"/>
+      <TextObject Name="Text6" Left="963.9" Top="444.15" Width="1039.5" Height="103.95" Text="No. Rekam Medis" VertAlign="Center" Font="Arial, 75pt, style=Bold"/>
+      <TextObject Name="Text7" Left="2012.85" Top="444.15" Width="1011.15" Height="103.95" Text=": [AdmPasienBaru.NomorRekamMedisBaru]" VertAlign="Center" Font="Arial, 75pt, style=Bold"/>
+      <TextObject Name="Text1" Top="75.6" Width="3402" Height="217.35" Text="KARTU IDENTITAS PASIEN" HorzAlign="Center" VertAlign="Center" Font="Arial, 100pt, style=Bold"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="1651" Width="3401.99" Height="274.05">
+      <ShapeObject Name="Shape3" Width="3430.35" Height="274.05" Border.Color="Orange" Border.Width="5" Fill.Color="Orange"/>
+      <TextObject Name="Text10" Left="103.95" Top="28.35" Width="3194.1" Height="217.35" Text="KARTU HARAP DI BAWA SAAT BEROBAT" HorzAlign="Center" VertAlign="Center" Font="Arial, 50pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

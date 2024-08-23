@@ -1,0 +1,282 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="callout callout-info">
+                    <h5 class="fw-bold"><i class="fas fa-hospital"></i> Dashboard</h5>
+                    Benari Mikron memiliki banyak module di dalamnya, setiap module memiliki fungsi yang berbeda-beda. Silahkan pilih menu sesuai kebutuhan.
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row mb-2">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="PatientRegistration" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Pendaftaran Pasien</h4>
+                            <p style="color:#ffffff">Pendaftaran Pasien</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-wheelchair"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="HealtManagement" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Manajemen Kesehatan</h4>
+                            <p style="color:#ffffff">Manajemen Kesehatan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="Pharmacy" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Farmasi</h4>
+                            <p style="color:#ffffff">Farmasi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-first-aid"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="MandiriInHealth" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Mandiri In Healt</h4>
+                            <p style="color:#ffffff">Mandiri In Healt</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="AccountingAndFinancial" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Akunting & Keuangan</h4>
+                            <p style="color:#ffffff">Akunting & Keuangan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Administration" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Sumber Daya Manusia</h4>
+                            <p style="color:#ffffff">Sumber Daya Manusia</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="CustomerRelationshipManagement" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Hubungan Pelanggan</h4>
+                            <p style="color:#ffffff">Hubungan Pelanggan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="Purchasing" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Purchasing</h4>
+                            <p style="color:#ffffff">Purchasing</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="TaxAndLegal" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Pajak & Legalitas</h4>
+                            <p style="color:#ffffff">Pajak & Legalitas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-balance-scale-left"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="WarehouseManagement" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Manajemen Gudang</h4>
+                            <p style="color:#ffffff">Manajemen Gudang</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-dolly"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="InformationTechnology" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Support IT</h4>
+                            <p style="color:#ffffff">Support IT</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="UserManagement" asp-action="Index">
+                    <div class="small-box bg-orange">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Kelola Pengguna</h4>
+                            <p style="color:#ffffff">Kelola Pengguna</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="BenariLinkMedIntegration" asp-action="Index">
+                    <div class="small-box bg-indigo">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Integrasi Benari Link Med</h4>
+                            <p style="color:#ffffff">Integrasi Benari Link Med</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+
+                <a asp-controller="Dashboard" asp-area="BenariNurseViewIntegration" asp-action="Index">
+                    <div class="small-box bg-purple">
+                        @*change color in adminlte.min.cs*@
+                        <div class="inner">
+                            <h4 class="fw-bold" style="color:#ffffff">Integrasi Benari Nurse View</h4>
+                            <p style="color:#ffffff">Integrasi Benari Nurse View</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </a>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+    </div><!--/. container-fluid -->
+</section>
+<!-- /.content -->

@@ -1,0 +1,658 @@
+﻿@{
+    ViewData["Title"] = "Tambah Pasien Baru";
+    Layout = "~/Views/Shared/_TopNavbarPatientRegistration.cshtml";
+}
+
+@model CreateNewPatientViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="NewPatient" asp-action="CreateNewPatient" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodePasien">Kode Pasien</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodePasien" class="form-control form-control-border border-width-2" placeholder="Nomor Pasien Baru" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorRekamMedisBaru">No. Rekam Medis Baru</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="NomorRekamMedisBaru" class="form-control form-control-border border-width-2" placeholder="Nomor Rekam Medis Baru" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorRekamMedisLama">No. Rekam Medis Sebelumnya</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" autofocus autocomplete="off" asp-for="NomorRekamMedisLama" type="text" class="form-control form-control-border border-width-2" placeholder="Nomor Rekam Medis Sebelumnya">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TipePasien">Tipe Pasien (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="TipePasien" id="MenuTipePasien" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Tipe Pasien--</option>
+                                <option value="Umum">Umum</option>
+                                <option value="Asuransi">Asuransi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- data penjamin elements -->
+                <div class="card card-orange" id="GrupAsuransi">
+                    <div class="card-header">
+                        <h3 class="card-title fw-bold" style="color:#ffffff">Asuransi</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label asp-for="InsuranceId" class="col-sm-3 col-form-label">
+                                Nama Asuransi <small class="badge bg-orange" id="toolAsuransi"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Data : Administrasi > Master Data > Asuransi"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select id="listAsuransi" data-placeholder="--Pilih Asuransi--" asp-for="InsuranceId" asp-items="@ViewBag.Insurance" class="form-control select2bs4" style="width: 100%;">
+                                    <option value=""></option>
+                                </select>
+                                <span asp-validation-for="InsuranceId" class="text-danger"></span>
+                            </div>
+                        </div>                        
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorPolis">Nomor Polis</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" type="text" asp-for="NomorPolis" class="form-control form-control-border border-width-2" id="" placeholder="Nomor Polis">
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <!-- /.end data penjamin -->
+                <!-- data identitas elements -->
+                <div class="card card-orange">
+                    <div class="card-header">
+                        <h3 class="card-title fw-bold" style="color:#ffffff">Data Identitas Pasien</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Title">Title (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="Title" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Title--</option>
+                                    <option value="Tn.">Tn.</option>
+                                    <option value="Ny.">Ny.</option>
+                                    <option value="Nn.">Nn.</option>
+                                    <option value="An.">An.</option>
+                                    <option value="By.">By.</option>
+                                    <option value="Sdr.">Sdr.</option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Miss.">Miss.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaLengkapPasien">Nama Lengkap Sesuai Identitas (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" type="text" asp-for="NamaLengkapPasien" class="form-control form-control-border border-width-2" id="" placeholder="Nama Lengkap Sesuai Identitas">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorIdentitasPasien">No. KTP / SIM / Passport / KITAS (*)</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                                </div>
+                                <input asp-for="NomorIdentitasPasien" type="text" class="form-control form-control-border border-width-2" autofocus autocomplete="off" placeholder="No. KTP / SIM / Passport / KITAS" data-inputmask='"mask": "9999999999999999"' data-mask-ktp>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="TempatLahir">
+                                Tempat Lahir <small class="badge bg-orange" id="toolTempatLahir"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="Data : Administrasi > Master Data > Kelengk. Alamat > Kota"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select asp-for="TempatLahir" asp-items="@ViewBag.City" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kota--</option>
+                                </select>
+                                <span asp-validation-for="TempatLahir" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="TanggalLahir">Tanggal Lahir</label>
+                            <div class="col-sm-9 input-group date" id="tanggallahir" data-target-input="nearest">
+                                <div class="input-group-append" data-target="#tanggallahir" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <input asp-for="TanggalLahir" type="text" class="form-control datetimepicker-input" data-target="#tanggallahirdokter" placeholder="Tanggal Lahir" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="JenisKelamin">Jenis Kelamin (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="JenisKelamin" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Jenis Kelamin--</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="PasienPrioritas">Pasien Prioritas? (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="PasienPrioritas" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pasien Prioritas?--</option>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="StatusPasien">Status (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="StatusPasien" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Status--</option>
+                                    <option value="Belum Nikah">Belum Nikah</option>
+                                    <option value="Nikah">Nikah</option>
+                                    <option value="Janda">Janda</option>
+                                    <option value="Duda">Duda</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="ReligionId">
+                                Agama (*) <small class="badge bg-orange" id="toolAgama"
+                                                 data-toggle="tooltip"
+                                                 data-placement="top"
+                                                 title="Data : Administrasi > Master Data > Agama"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select asp-for="ReligionId" asp-items="@ViewBag.Religion" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Agama--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Kewarganegaraan" class="col-sm-3 col-form-label">
+                                Kewarganegaraan (*) <small class="badge bg-orange" id="toolKewarganegaraan"
+                                                           data-toggle="tooltip"
+                                                           data-placement="top"
+                                                           title="Data : Administrasi > Master Data > Kelengk. Alamat > Negara"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select asp-for="Kewarganegaraan" asp-items="@ViewBag.Country" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kewarganegaraan--</option>
+                                </select>
+                                <span asp-validation-for="Kewarganegaraan" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="LastEducationId">
+                                Pendidikan Terakhir (*) <small class="badge bg-orange" id="toolPendidikanTerakhir"
+                                                               data-toggle="tooltip"
+                                                               data-placement="top"
+                                                               title="Data : Administrasi > Master Data > Pendidikan Terakhir"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select asp-for="LastEducationId" asp-items="@ViewBag.LastEducation" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Pendidikan Terakhir--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="AlamatLengkap">Alamat Lengkap (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="255" autofocus autocomplete="off" asp-for="AlamatLengkap" type="text" class="form-control form-control-border border-width-2" placeholder="Alamat Lengkap">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="CountryId" class="col-sm-3 col-form-label">
+                                Negara (*) <small class="badge bg-orange" id="toolNegara"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="Data : Administrasi > Master Data > Kelengk. Alamat > Negara"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select id="CountryList" asp-for="CountryId" asp-items="@ViewBag.Country" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Negara--</option>
+                                </select>
+                                <span asp-validation-for="CountryId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="ProvinceId" class="col-sm-3 col-form-label">
+                                Provinsi (*) <small class="badge bg-orange" id="toolProvinsi"
+                                                    data-toggle="tooltip"
+                                                    data-placement="top"
+                                                    title="Data : Administrasi > Master Data > Kelengk. Alamat > Provinsi"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select id="ProvinceList" asp-for="ProvinceId" asp-items="@ViewBag.Province" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Provinsi--</option>
+                                </select>
+                                <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="CityId" class="col-sm-3 col-form-label">
+                                Kota (*) <small class="badge bg-orange" id="toolKota"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                title="Data : Administrasi > Master Data > Kelengk. Alamat > Kota"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select id="CityList" asp-for="CityId" asp-items="@ViewBag.City" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kota--</option>
+                                </select>
+                                <span asp-validation-for="CityId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="DistrictId" class="col-sm-3 col-form-label">
+                                Kecamatan (*) <small class="badge bg-orange" id="toolKecamatan"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Data : Administrasi > Master Data > Kelengk. Alamat > Kecamatan"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select id="DistrictList" asp-for="DistrictId" asp-items="@ViewBag.District" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kecamatan--</option>
+                                </select>
+                                <span asp-validation-for="DistrictId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="SubDistrictId" class="col-sm-3 col-form-label">
+                                Kelurahan (*) <small class="badge bg-orange" id="toolKelurahan"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Data : Administrasi > Master Data > Kelengk. Alamat > Kelurahan"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select id="SubDistrictList" asp-for="SubDistrictId" asp-items="@ViewBag.SubDistrict" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kelurahan--</option>
+                                </select>
+                                <span asp-validation-for="SubDistrictId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="KodePos">Kode Pos</label>
+                            <div class="col-sm-9">
+                                <input maxlength="20" autofocus autocomplete="off" asp-for="KodePos" type="text" class="form-control form-control-border border-width-2" placeholder="Kode Pos">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorTelepon1">No. Telepon 1 (*)</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input asp-for="NomorTelepon1" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(9999) - 9999-9999-9"' data-mask-telepon1>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorTelepon2">No. Telepon 2 (*)</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input asp-for="NomorTelepon2" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(9999) - 9999-9999-9"' data-mask-telepon2>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Email">Email Aktif (*)</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="Email" type="email" class="form-control form-control-border border-width-2" placeholder="Email Aktif">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Pekerjaan">Pekerjaan</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="Pekerjaan" type="text" class="form-control form-control-border border-width-2" placeholder="Pekerjaan">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaKantor">Nama Kantor</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="NamaKantor" type="text" class="form-control form-control-border border-width-2" placeholder="Nama Kantor">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="AlamatKantor">Alamat Kantor</label>
+                            <div class="col-sm-9">
+                                <input maxlength="255" autofocus autocomplete="off" asp-for="AlamatKantor" type="text" class="form-control form-control-border border-width-2" placeholder="Alamat Kantor">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorTeleponKantor">No. Telepon Kantor</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input asp-for="NomorTeleponKantor" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(999) - 99999999"' data-mask-telepon-kantor>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data identitas -->
+                <!-- data keterangan kesehatan elements -->
+                <div class="card card-orange">
+                    <div class="card-header">
+                        <h3 class="card-title fw-bold" style="color:#ffffff">Keterangan Kesehatan</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label asp-for="BloodTypeId" class="col-sm-3 col-form-label">
+                                Golongan Darah (*) <small class="badge bg-orange" id="toolGolonganDarah"
+                                                          data-toggle="tooltip"
+                                                          data-placement="top"
+                                                          title="Data : Manajemen Kesehatan > Master Data > Lain-Lain > Golongan Darah"><i class="fas fa-info-circle" style="color:white"></i></small>
+                            </label>
+                            <div class="col-sm-9">
+                                <select asp-for="BloodTypeId" asp-items="@ViewBag.BloodType" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Golongan Darah--</option>
+                                </select>
+                                <span asp-validation-for="BloodTypeId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Alergi">Alergi (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="255" autofocus autocomplete="off" asp-for="Alergi" type="text" class="form-control form-control-border border-width-2" placeholder="Alergi">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data keterangan kesehatan -->
+                <!-- data keterangan keluarga elements -->
+                <div class="card card-orange">
+                    <div class="card-header">
+                        <h3 class="card-title fw-bold" style="color:#ffffff">Keterangan Keluarga</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaKeluargaTerdekat">Nama Keluarga Terdekat (*)</label>
+                            <div class="col-sm-6">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="NamaKeluargaTerdekat" type="text" class="form-control form-control-border border-width-2" placeholder="Nama Keluarga Terdekat">
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-form-label text-danger">Yang dapat dihubungi</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="HubunganKeluarga">Hubungan Keluarga (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="HubunganKeluarga" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Hubungan Keluarga--</option>
+                                    <option value="Suami">Suami</option>
+                                    <option value="Istri">Istri</option>
+                                    <option value="Ayah">Ayah</option>
+                                    <option value="Ibu">Ibu</option>
+                                    <option value="Anak">Anak</option>
+                                    <option value="Anak Pertama">Anak Pertama</option>
+                                    <option value="Anak Kedua">Anak Kedua</option>
+                                    <option value="Anak Ketiga">Anak Ketiga</option>
+                                    <option value="Saudara Kandung Laki-Laki">Saudara Kandung Laki-Laki</option>
+                                    <option value="Saudara Kandung Perempuan">Saudara Kandung Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="KaryawanRumahSakit">Karyawan Rumah Sakit? (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="KaryawanRumahSakit" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Karyawan RS--</option>
+                                    <option value="Iya">Iya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="AlamatKeluargaPasien">Alamat Keluarga / Domisili Sekarang (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="255" autofocus autocomplete="off" asp-for="AlamatKeluargaPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Alamat Keluarga / Domisili Sekarang">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorTeleponKeluargaPasien">No. Telepon Keluarga (*)</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input asp-for="NomorTeleponKeluargaPasien" type="text" class="form-control form-control-border border-width-2" data-inputmask='"mask": "(9999) - 9999-9999-9"' data-mask-telepon-keluarga>
+                            </div>
+                        </div>                        
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaAyahPasien">Nama Ayah Pasien (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="NamaAyahPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Nama Ayah Pasien">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="PekerjaanAyahPasien">Pekerjaan Ayah</label>
+                            <div class="col-sm-9">
+                                <input autofocus autocomplete="off" asp-for="PekerjaanAyahPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Pekerjaan Ayah">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaIbuPasien">Nama Ibu Pasien (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="NamaIbuPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Nama Ibu Pasien">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="PekerjaanIbuPasien">Pekerjaan Ibu</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="PekerjaanIbuPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Pekerjaan Ibu">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaSutriPasien">Nama Suami/Istri</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="NamaSutriPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Nama Sutri">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="PekerjaanSutriPasien">Pekerjaan Suami/Istri</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="PekerjaanSutriPasien" type="text" class="form-control form-control-border border-width-2" placeholder="Pekerjaan Sutri">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorIdentitasSutriPasien">No. KTP / Passport Suami/Istri</label>
+                            <div class="col-sm-9 input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                                </div>
+                                <input asp-for="NomorIdentitasSutriPasien" type="text" class="form-control form-control-border border-width-2" autofocus autocomplete="off" placeholder="No. KTP / Passport Sutri" data-inputmask='"mask": "9999999999999999"' data-mask-ktp-pasutri>
+                            </div>
+                        </div>                        
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data keterangan keluarga -->
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="NewPatient" asp-area="PatientRegistration">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                            $('#toolAsuransi').tooltip({ animation: true });
+                            $('#toolTempatLahir').tooltip({ animation: true });
+                            $('#toolAgama').tooltip({ animation: true });
+                            $('#toolPendidikanTerakhir').tooltip({ animation: true });
+                            $('#toolKewarganegaraan').tooltip({ animation: true });
+                            $('#toolGolonganDarah').tooltip({ animation: true });
+                            $('#toolNegara').tooltip({ animation: true });
+                            $('#toolProvinsi').tooltip({ animation: true });
+                            $('#toolKota').tooltip({ animation: true });
+                            $('#toolKecamatan').tooltip({ animation: true });
+                            $('#toolKelurahan').tooltip({ animation: true });
+                        })
+                    </script>
+
+                    <script>
+                        $("#GrupAsuransi").hide();
+
+                        $("#MenuTipePasien").change(function () {
+                            if ($(this).val() == "Asuransi") {
+                                $("#GrupAsuransi").show();
+                            }
+                            else {
+                                $("#GrupAsuransi").hide();
+                            }
+
+                            if ($(this).val() == "Umum") {
+                                $('#listAsuransi').select2('val', 'selectedIndex', 0);
+                                $("#listAsuransi").data('placeholder');
+                            }
+                        });
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#ProvinceList").empty().append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                            $("#CityList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                            $("#DistrictList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kecamatan--" + '</option>');
+                            $("#SubDistrictList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kelurahan--" + '</option>');
+
+                            $("#CountryList").change(function () {
+                                $("#ProvinceList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadProvince")',
+                                    dataType: 'json',
+                                    data: { id: $("#CountryList").val() },
+                                    success: function (provinces) {
+                                        $("#ProvinceList").append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                                        $.each(provinces, function (i, province) {
+                                            $("#ProvinceList").append('<option value = "' + province.value + '">' + province.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data provinsi' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#ProvinceList").change(function () {
+                                $("#CityList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadCity")',
+                                    dataType: 'json',
+                                    data: { id: $("#ProvinceList").val() },
+                                    success: function (cities) {
+                                        $("#CityList").append('<option value="' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                        $.each(cities, function (i, city) {
+                                            $("#CityList").append('<option value="' + city.value + '">' + city.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kota' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#CityList").change(function () {
+                                $("#DistrictList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadDistrict")',
+                                    dataType: 'json',
+                                    data: { id: $("#CityList").val() },
+                                    success: function (districts) {
+                                        $("#DistrictList").append('<option value="' + -1 + '">' + "--Pilih Kecamatan--" + '</option>');
+                                        $.each(districts, function (i, district) {
+                                            $("#DistrictList").append('<option value="' + district.value + '">' + district.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kecamatan' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#DistrictList").change(function () {
+                                $("#SubDistrictList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadSubDistrict")',
+                                    dataType: 'json',
+                                    data: { id: $("#DistrictList").val() },
+                                    success: function (subdistricts) {
+                                        $("#SubDistrictList").append('<option value="' + -1 + '">' + "--Pilih Kelurahan--" + '</option>');
+                                        $.each(subdistricts, function (i, subdistrict) {
+                                            $("#SubDistrictList").append('<option value="' + subdistrict.value + '">' + subdistrict.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kelurahan' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $(function () {
+                            //Date picker
+                            $('#tanggallahir').datetimepicker({
+                                format: 'L'
+                            })
+
+                            //Data-Mask-Ktp
+                            $('[data-mask-ktp]').inputmask()
+
+                            //Data-Mask-Ktp-Pasutri
+                            $('[data-mask-ktp-pasutri]').inputmask()
+
+                            //Data-Mask-Telepon1
+                            $('[data-mask-telepon1]').inputmask()
+
+                            //Data-Mask-Telepon2
+                            $('[data-mask-telepon2]').inputmask()
+
+                            //Data-Mask-Telepon-Kantor
+                            $('[data-mask-telepon-kantor]').inputmask()
+
+                            //Data-Mask-Telepon-Keluarga
+                            $('[data-mask-telepon-keluarga]').inputmask()
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+        <!--/.col (left) -->
+    </div>
+</section>
+<!-- /.content -->

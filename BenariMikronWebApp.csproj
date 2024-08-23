@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastReport.Compat" Version="2023.1.8" />
+    <PackageReference Include="FastReport.OpenSource" Version="2023.1.13" />
+    <PackageReference Include="FastReport.OpenSource.Data.MsSql" Version="2021.4.0" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2023.1.13" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2023.1.13" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.27" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.27" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Features" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Scripting.Common" Version="4.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.27">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="6.0.16" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.2" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\AccountingAndFinancial\Data\" />
+    <Folder Include="Areas\AccountingAndFinancial\Models\" />
+    <Folder Include="Areas\BenariLinkMedIntegration\Data\" />
+    <Folder Include="Areas\BenariLinkMedIntegration\Models\" />
+    <Folder Include="Areas\BenariNurseViewIntegration\Data\" />
+    <Folder Include="Areas\BenariNurseViewIntegration\Models\" />
+    <Folder Include="Areas\CustomerRelationshipManagement\Data\" />
+    <Folder Include="Areas\CustomerRelationshipManagement\Models\" />
+    <Folder Include="Areas\HealthManagement\Data\" />
+    <Folder Include="Areas\HumanResourceDevelopment\Data\" />
+    <Folder Include="Areas\HumanResourceDevelopment\Models\" />
+    <Folder Include="Areas\InformationTechnology\Data\" />
+    <Folder Include="Areas\InformationTechnology\Models\" />
+    <Folder Include="Areas\MandiriInHealth\Data\" />
+    <Folder Include="Areas\MandiriInHealth\Models\" />
+    <Folder Include="Areas\PatientRegistration\Scripts\" />
+    <Folder Include="Areas\Pharmacy\Data\" />
+    <Folder Include="Areas\Pharmacy\Models\" />
+    <Folder Include="Areas\Purchasing\Data\" />
+    <Folder Include="Areas\Purchasing\Models\" />
+    <Folder Include="Areas\TaxAndLegal\Data\" />
+    <Folder Include="Areas\TaxAndLegal\Models\" />
+    <Folder Include="Areas\UserManagement\Models\" />
+    <Folder Include="Areas\WarehouseManagement\Data\" />
+    <Folder Include="Areas\WarehouseManagement\Models\" />
+    <Folder Include="wwwroot\DesainKartuPasienLuarLaboratorium\" />
+    <Folder Include="wwwroot\FotoDokter\" />
+  </ItemGroup>
+
+</Project>

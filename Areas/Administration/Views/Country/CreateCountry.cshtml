@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Tambah Negara";
+    Layout = "~/Views/Shared/_TopNavbarAdministration.cshtml";
+}
+
+@model CreateCountryViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-action="CreateCountry" asp-controller="CountryCascade" asp-area="Administration" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" asp-for="KodeNegara">Kode Negara</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="KodeNegara" class="form-control form-control-border border-width-2" placeholder="Masukan Kode Negara" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" asp-for="NamaNegara">Nama Negara</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="NamaNegara" class="form-control form-control-border border-width-2" placeholder="Masukan Nama Negara">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data identitas -->
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="Country" asp-area="Administration">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

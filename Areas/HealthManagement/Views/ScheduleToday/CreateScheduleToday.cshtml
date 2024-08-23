@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Tambah Jadwal Dokter";
+    Layout = "~/Views/Shared/_TopNavbarHealthManagementDoctor.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.HealthManagement.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model CreateScheduleTodayViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="ScheduleToday" asp-action="CreateScheduleToday" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeJadwal">Kode Jadwal</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeJadwal" class="form-control form-control-border border-width-2" id="" placeholder="Kode Jadwal" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DoctorId">
+                            Nama Dokter (*) <small class="badge bg-orange" id="toolDokter"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Data : Manajemen Kesehatan > Master Data > Dokter > Dokter"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DoctorId" asp-items="@ViewBag.Doctor" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Dokter--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DepartmentId">
+                            Departemen (*) <small class="badge bg-orange" id="toolDepartment"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Data : Manajemen Kesehatan > Master Data > Dokter > Departemen Dokter"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DepartmentId" asp-items="@ViewBag.Department" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Departemen--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="DayId">
+                            Hari (*) <small class="badge bg-orange" id="toolday"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Data : Manajemen Kesehatan > Master Data > Lain-Lain > Hari"><i class="fas fa-info-circle" style="color:white"></i></small>
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="DayId" asp-items="@ViewBag.Day" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Hari--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TanggalPraktek">Tanggal Praktek (*)</label>
+                        <div class="col-sm-9 input-group date" id="tanggalpraktek" data-target-input="nearest">
+                            <div class="input-group-append" data-target="#tanggalpraktek" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                            <input asp-for="TanggalPraktek" type="text" class="form-control datetimepicker-input" placeholder="Tanggal Praktek" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Jam Praktek (*)</label>
+                        <div class="input-group date col-sm-4" id="jammulai" data-target-input="nearest">
+                            <label asp-for="JamMulai" class="col-sm-3 col-form-label">Jam Mulai</label>
+                            <div class="input-group-append" data-target="#jammulai" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                            <input asp-for="JamMulai" type="text" class="form-control datetimepicker-input" data-target="#jammulai" placeholder="Jam Mulai" />
+                        </div>
+                        <div class="input-group date col-sm-5" id="jamselesai" data-target-input="nearest">
+                            <label asp-for="JamSelesai" class="col-sm-3 col-form-label">Jam Selesai</label>
+                            <div class="input-group-append" data-target="#jamselesai" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                            </div>
+                            <input asp-for="JamSelesai" type="text" class="form-control datetimepicker-input" data-target="#jamselesai" placeholder="Jam Selesai" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="LamaPeriksaPerPasien">Lama Periksa Per Pasien</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="LamaPeriksaPerPasien" class="form-control form-control-border border-width-2" id="" placeholder="Lama Periksa Per Pasien">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="PagiSore">Pagi/Sore</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="PagiSore" class="form-control form-control-border border-width-2" id="" placeholder="Pagi/Sore">
+                        </div>
+                    </div>                    
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="Ruangan">Ruangan</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="Ruangan" class="form-control form-control-border border-width-2" id="" placeholder="Ruangan">
+                        </div>
+                    </div>
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="ScheduleToday">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                            $('#toolDokter').tooltip({ animation: true });
+                        })
+                    </script>
+
+                    <script>
+                        $(function () {
+                            $('#tanggalpraktek').datetimepicker({
+                                format: 'DD/MM/yyyy'
+                            })
+
+                            //Set Mulai Jam Kerja
+                            $('#jammulai').datetimepicker({
+                                format: 'LT'
+                            })
+
+                            //Set Selesai Jam Kerja
+                            $('#jamselesai').datetimepicker({
+                                format: 'LT'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

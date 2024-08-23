@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Tambah Tipe Rujukan";
+    Layout = "~/Views/Shared/_TopNavbarPatientRegistration.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.PatientRegistration.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model CreateReferenceTypeViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="ReferenceType" asp-action="CreateReferenceType" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodeTipeRujukan">Kode Tipe Rujukan</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodeTipeRujukan" class="form-control form-control-border border-width-2" id="" placeholder="Kode Tipe Rujukan" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NamaTipeRujukan">Nama Tipe Rujukan (*)</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" type="text" asp-for="NamaTipeRujukan" class="form-control form-control-border border-width-2" id="" placeholder="Nama Tipe Rujukan">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ReferenceId" class="col-sm-3 col-form-label">Rujukan</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2bs4" style="width: 100%;" asp-for="ReferenceId" asp-items="@ViewBag.Reference">
+                                <option value="" hidden disabled selected>--Pilih Rujukan--</option>
+                            </select>
+                            <span asp-validation-for="ReferenceId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="ReferenceType">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

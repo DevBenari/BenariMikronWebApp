@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Tambah Kecamatan";
+    Layout = "~/Views/Shared/_TopNavbarAdministration.cshtml";
+}
+
+@model CreateDistrictViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-action="CreateDistrict" asp-controller="District" asp-area="Administration" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" asp-for="KodeKecamatan">Kode Kecamatan</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="KodeKecamatan" class="form-control form-control-border border-width-2" placeholder="Masukan Kode Kecamatan" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" asp-for="NamaKecamatan">Nama Kecamatan</label>
+                        <div class="col-sm-10">
+                            <input type="text" asp-for="NamaKecamatan" class="form-control form-control-border border-width-2" placeholder="Masukan Nama Kecamatan">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CountryId" class="col-sm-2 col-form-label">Nama Negara</label>
+                        <div class="col-sm-10">
+                            <select id="CountryList" class="form-control select2bs4" style="width: 100%;" asp-for="CountryId" asp-items="@ViewBag.Country">
+                                <option value="" hidden disabled selected>--Pilih Negara--</option>
+                            </select>
+                            <span asp-validation-for="CountryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ProvinceId" class="col-sm-2 col-form-label">Nama Provinsi</label>
+                        <div class="col-sm-10">
+                            <select id="ProvinceList" class="form-control select2bs4" style="width: 100%;" asp-for="ProvinceId" asp-items="@ViewBag.Province">
+                                <option value="" hidden disabled selected>--Pilih Provinsi--</option>
+                            </select>
+                            <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CityId" class="col-sm-2 col-form-label">Nama Kota</label>
+                        <div class="col-sm-10">
+                            <select id="CityList" class="form-control select2bs4" style="width: 100%;" asp-for="CityId" asp-items="@ViewBag.City">
+                                <option value="" hidden disabled selected>--Pilih Kota--</option>
+                            </select>
+                            <span asp-validation-for="CityId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data identitas -->
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="City" asp-area="Administration">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#ProvinceList").empty().append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                            $("#CityList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kota--" + '</option>');
+
+                            $("#CountryList").change(function () {
+                                $("#ProvinceList").empty();
+                                $("#CityList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadProvince")',
+                                    dataType: 'json',
+                                    data: { id: $("#CountryList").val() },
+                                    success: function (provinces) {
+                                        $("#ProvinceList").append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                                        $.each(provinces, function (i, province) {
+                                            $("#ProvinceList").append('<option value = "' + province.value + '">' + province.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data provinsi' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#ProvinceList").change(function () {
+                                $("#CityList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadCity")',
+                                    dataType: 'json',
+                                    data: { id: $("#ProvinceList").val() },
+                                    success: function (cities) {
+                                        $("#CityList").append('<option value="' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                        $.each(cities, function (i, city) {
+                                            $("#CityList").append('<option value="' + city.value + '">' + city.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kota' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

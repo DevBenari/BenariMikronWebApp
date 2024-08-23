@@ -1,0 +1,162 @@
+﻿@{
+    ViewData["Title"] = "Daftar Negara, Provinsi, Kota, Kecamatan, Kelurahan";
+    Layout = "~/Views/Shared/_TopNavbarAdministration.cshtml";
+}
+
+@using BenariMikronWebApp.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@using BenariMikronWebApp.Areas.Administration.Models;
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
+@model IEnumerable<Country>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-orange">
+                <div class="card-header">
+                    <h3 class="card-title" style="color:#ffffff">@ViewBag.Title</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    @*<div class="row">
+                    <div class="col-md-4">
+                    <div class="form-group">
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("TambahPasienBaru"))
+                    {
+                    <a class="btn bg-orange" asp-action="CreateNewPatient" asp-controller="NewPatient" asp-area="PatientRegistration">
+                    <div style="color:#ffffff">Tambah Data</div>
+                    </a>
+                    }
+                    </div>
+                    </div>
+                    </div>*@
+
+                    <div class="row">
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+
+                            <a asp-action="CreateCountry" asp-controller="MasterData" asp-area="Administration">
+                                <div class="small-box bg-orange">
+                                    @*change color in adminlte.min.cs*@
+                                    <div class="inner">
+                                        @*<h4 class="fw-bold" style="color:#ffffff">Tambah Negara</h4>*@
+                                        <p style="color:#ffffff">Tambah Negara</p>
+                                    </div>                                    
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-6">
+                            <!-- small box -->
+
+                            <a asp-action="CreateProvince" asp-controller="MasterData" asp-area="Administration">
+                                <div class="small-box bg-orange">
+                                    @*change color in adminlte.min.cs*@
+                                    <div class="inner">
+                                        @*<h4 class="fw-bold" style="color:#ffffff">Pasien Perjanjian</h4>*@
+                                        <p style="color:#ffffff">Tambah Provinsi</p>
+                                    </div>                                    
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-6">
+                            <!-- small box -->
+
+                            <a asp-action="CreateCity" asp-controller="MasterData" asp-area="Administration">
+                                <div class="small-box bg-orange">
+                                    @*change color in adminlte.min.cs*@
+                                    <div class="inner">
+                                        @*<h4 class="fw-bold" style="color:#ffffff">Antrian Pendaftaran</h4>*@
+                                        <p style="color:#ffffff">Tambah Kota</p>
+                                    </div>                                    
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-6">
+                            <!-- small box -->
+
+                            <a asp-action="CreateDistrict" asp-controller="MasterData" asp-area="Administration">
+                                <div class="small-box bg-orange">
+                                    @*change color in adminlte.min.cs*@
+                                    <div class="inner">
+                                        @*<h4 class="fw-bold" style="color:#ffffff">Booking Bed</h4>*@
+                                        <p style="color:#ffffff">Tambah Kecamatan</p>
+                                    </div>                                    
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-6">
+                            <!-- small box -->
+
+                            <a asp-action="CreateSubDistrict" asp-controller="MasterData" asp-area="Administration">
+                                <div class="small-box bg-orange">
+                                    @*change color in adminlte.min.cs*@
+                                    <div class="inner">
+                                        @*<h4 class="fw-bold" style="color:#ffffff">Membership</h4>*@
+                                        <p style="color:#ffffff">Tambah Kelurahan</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                    </div>
+
+                    <div class="card-body table-responsive p-0">
+                        <table id="tblPendaftaranPasienBaru" class="table table-hover table-head-fixed text-nowrap">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <th>No</th>
+                                    <th>Negara</th>
+                                    <th>Provinsi</th>
+                                    <th>Kota</th>                                    
+                                    <th>Kecamatan</th>
+                                    <th>Kelurahan</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody style="text-align:center;">
+                                @*@foreach (var pasien in Model)
+                                {
+                                    var imagePath = "/NewQRCodePasien/" + pasien.GenerateQrCode;
+
+                                    <tr>
+                                        <td style="vertical-align:middle"></td>
+                                        <td style="vertical-align:middle"><img src="@imagePath" height="50px;" width="50px;" /></td>
+                                        <td style="vertical-align:middle">@pasien.CreateDateTime.ToString("dd MMMM yyyy")</td>
+                                        <td style="vertical-align:middle">@pasien.NomorRekamMedisBaru</td>
+                                        <td style="vertical-align:middle">@pasien.MasterInsurance.NamaPerusahaan</td>
+                                        <td style="vertical-align:middle">@pasien.NamaLengkapPasien</td>
+                                        <td style="vertical-align:middle">@pasien.NomorIdentitasPasien</td>
+                                        <td style="vertical-align:middle">
+                                            <a asp-action="CetakQRPasien" asp-controller="NewPatient" asp-area="PatientRegistration" asp-route-id="@pasien.PatientRegistrationId" class="btn bg-orange"><i class="ion-archive" style="color:white"></i></a>
+                                            <a asp-action="DetailPasien" asp-controller="Pendaftaran" asp-route-id="@pasien.PatientRegistrationId" class="btn bg-orange"><i class="ion-eye" style="color:white"></i></a>
+                                            <a asp-action="UbahPasien" asp-controller="Pendaftaran" asp-route-id="@pasien.PatientRegistrationId" class="btn bg-orange"><i class="ion-edit" style="color:white"></i></a>
+                                            <a asp-action="HapusPasien" asp-controller="Pendaftaran" asp-route-id="@pasien.PatientRegistrationId" class="btn bg-orange"><i class="ion-trash-b" style="color:white"></i></a>
+                                        </td>
+                                    </tr>
+                                }*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            swal("Berhasil", '@TempData["SuccessMessage"]', "success");
+                        };
+                    </script>
+                }
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+@section Scripts{
+    <script src="~/js/serverpendaftaran.js"></script>
+
+
+}

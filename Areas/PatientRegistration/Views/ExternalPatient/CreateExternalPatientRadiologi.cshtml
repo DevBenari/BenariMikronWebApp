@@ -1,0 +1,453 @@
+﻿@{
+    ViewData["Title"] = "Tambah Pasien Radiologi";
+    Layout = "~/Views/Shared/_TopNavbarPatientRegistration.cshtml";
+}
+
+@model CreateExternalPatientRadiologiViewModel
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12 bg-white">
+            <div class="card-header bg-orange">
+                <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
+            </div>
+
+            <form enctype="multipart/form-data" asp-controller="ExternalPatient" asp-action="CreateExternalPatientRadiologi" method="post" class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="KodePasien">Kode Pasien</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="KodePasien" class="form-control form-control-border border-width-2" placeholder="Nomor Pasien Baru" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorRekamMedisBaru">No. Rekam Medis Baru</label>
+                        <div class="col-sm-9">
+                            <input type="text" asp-for="NomorRekamMedisBaru" class="form-control form-control-border border-width-2" placeholder="Nomor Rekam Medis Baru" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="NomorRekamMedisLama">No. Rekam Medis Sebelumnya</label>
+                        <div class="col-sm-9">
+                            <input maxlength="100" autofocus autocomplete="off" asp-for="NomorRekamMedisLama" type="text" class="form-control form-control-border border-width-2" placeholder="Nomor Rekam Medis Sebelumnya">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="TipePasien">Tipe Pasien (*)</label>
+                        <div class="col-sm-9">
+                            <select asp-for="TipePasien" id="MenuTipePasien" class="form-control select2bs4" style="width: 100%;">
+                                <option value="" hidden disabled selected>--Pilih Tipe Pasien--</option>
+                                <option value="Umum">Umum</option>
+                                <option value="Asuransi">Asuransi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- data penjamin elements -->
+                <div class="card card-orange" id="GrupAsuransi">
+                    <div class="card-header">
+                        <h3 class="card-title fw-bold" style="color:#ffffff">Asuransi</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label asp-for="InsuranceId" class="col-sm-3 col-form-label">Nama Asuransi</label>
+                            <div class="col-sm-9">
+                                <select id="listAsuransi" data-placeholder="--Pilih Asuransi--" asp-for="InsuranceId" asp-items="@ViewBag.Insurance" class="form-control select2bs4" style="width: 100%;">
+                                    <option value=""></option>
+                                </select>
+                                <span asp-validation-for="InsuranceId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorPolis">Nomor Polis</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" type="text" asp-for="NomorPolis" class="form-control form-control-border border-width-2" id="" placeholder="Nomor Polis Penjamin">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data penjamin -->
+                <!-- data identitas elements -->
+                <div class="card card-orange">
+                    <div class="card-header">
+                        <h3 class="card-title fw-bold" style="color:#ffffff">Data Identitas Pasien</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Title">Title (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="Title" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Title--</option>
+                                    <option value="Tn.">Tn.</option>
+                                    <option value="Ny.">Ny.</option>
+                                    <option value="Nn.">Nn.</option>
+                                    <option value="An.">An.</option>
+                                    <option value="By.">By.</option>
+                                    <option value="Sdr.">Sdr.</option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Miss.">Miss.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NamaPasien">Nama Pasien Sesuai Identitas (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" type="text" asp-for="NamaPasien" class="form-control form-control-border border-width-2" id="" placeholder="Nama Pasien Sesuai Identitas">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorIdentitasPasien">No. KTP / SIM / Passport / KITAS (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" type="text" asp-for="NomorIdentitasPasien" class="form-control form-control-border border-width-2" id="" placeholder="Nomor Identitas Pasien">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="TempatLahir">Tempat Lahir (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" type="text" asp-for="TempatLahir" class="form-control form-control-border border-width-2" id="" placeholder="Tempat Lahir">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="TanggalLahir">Tanggal Lahir (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" type="date" asp-for="TanggalLahir" class="form-control form-control-border border-width-2" id="" placeholder="Tanggal Lahir">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="JenisKelamin">Jenis Kelamin (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="JenisKelamin" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Jenis Kelamin--</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="AlamatLengkap">Alamat Lengkap (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="255" autofocus autocomplete="off" asp-for="AlamatLengkap" type="text" class="form-control form-control-border border-width-2" placeholder="Alamat Lengkap">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="CountryId" class="col-sm-3 col-form-label">Negara (*)</label>
+                            <div class="col-sm-9">
+                                <select id="CountryList" asp-for="CountryId" asp-items="@ViewBag.Country" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Negara--</option>
+                                </select>
+                                <span asp-validation-for="CountryId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="ProvinceId" class="col-sm-3 col-form-label">Provinsi (*)</label>
+                            <div class="col-sm-9">
+                                <select id="ProvinceList" asp-for="ProvinceId" asp-items="@ViewBag.Province" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Provinsi--</option>
+                                </select>
+                                <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="CityId" class="col-sm-3 col-form-label">Kota (*)</label>
+                            <div class="col-sm-9">
+                                <select id="CityList" asp-for="CityId" asp-items="@ViewBag.City" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kota--</option>
+                                </select>
+                                <span asp-validation-for="CityId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="DistrictId" class="col-sm-3 col-form-label">Kecamatan (*)</label>
+                            <div class="col-sm-9">
+                                <select id="DistrictList" asp-for="DistrictId" asp-items="@ViewBag.District" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kecamatan--</option>
+                                </select>
+                                <span asp-validation-for="DistrictId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="SubDistrictId" class="col-sm-3 col-form-label">Kelurahan (*)</label>
+                            <div class="col-sm-9">
+                                <select id="SubDistrictList" asp-for="SubDistrictId" asp-items="@ViewBag.SubDistrict" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Kelurahan--</option>
+                                </select>
+                                <span asp-validation-for="SubDistrictId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="KodePos">Kode Pos</label>
+                            <div class="col-sm-9">
+                                <input maxlength="20" autofocus autocomplete="off" asp-for="KodePos" type="text" class="form-control form-control-border border-width-2" placeholder="Kode Pos">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="NomorTelepon">No. Telepon (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="NomorTelepon" type="text" class="form-control form-control-border border-width-2" placeholder="Nomor Telepon">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="EmailAktif">Email Aktif (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="EmailAktif" type="text" class="form-control form-control-border border-width-2" placeholder="Email Aktif">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="TipeRujukan">Tipe Rujukan (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="TipeRujukan" id="MenuTipeRujukan" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Tipe Rujukan--</option>
+                                    <option value="Konsul">Konsul</option>
+                                    <option value="Luar Rs">Luar Rs</option>
+                                    <option value="Atas Permintaan Sendiri">Atas Permintaan Sendiri</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="GrupDeskripsiRujukan">
+                            <label class="col-sm-3 col-form-label" asp-for="DeskripsiRujukan">Deskripsi Rujukan (*)</label>
+                            <div class="col-sm-9" id="MenuKonsul">
+                                <select asp-for="DeskripsiRujukan" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Nama Dokter--</option>
+                                    <option value="Dr. Steven Frainch">Dr. Steven Frainch</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-9" id="MenuLuarRs">
+                                <select asp-for="DeskripsiRujukan" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Rujukan Dari--</option>
+                                    <option value="RSU/RSK/RB">RSU/RSK/RB</option>
+                                    <option value="Puskesmas">Puskesmas</option>
+                                    <option value="Paramedik">Paramedik</option>
+                                    <option value="Dukun Terlatih">Dukun Terlatih</option>
+                                    <option value="Kasus Polisi">Kasus Polisi</option>
+                                    <option value="Keluarga">Keluarga</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-9" id="MenuAps">
+                                <select asp-for="DeskripsiRujukan" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="Atas Permintaan Sendiri">Atas Permintaan Sendiri</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Promo">Promo (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="Promo" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Promo--</option>
+                                    <option value="Tidak Ada">Tidak Ada</option>
+                                    <option value="RS MMC Dokter">RS MMC Dokter</option>
+                                    <option value="RS MMC Tunai (10%)">RS MMC Tunai (10%)</option>
+                                    <option value="VIP BKM Tanpa Up">VIP BKM Tanpa Up</option>
+                                </select>
+                            </div>
+                        </div>                       
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="SuratRujukan">Surat Rujukan (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="SuratRujukan" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Surat Rujukan--</option>
+                                    <option value="Ada">Ada</option>
+                                    <option value="Tidak Ada">Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="DiagnosaAwal">Diagnosa Awal (*)</label>
+                            <div class="col-sm-9">
+                                <input maxlength="250" autofocus autocomplete="off" asp-for="DiagnosaAwal" type="text" class="form-control form-control-border border-width-2" placeholder="Diagnosa Awal">
+                            </div>
+                        </div>                      
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="DetailTindakan">Detail Tindakan</label>
+                            <div class="col-sm-9">
+                                <input maxlength="100" autofocus autocomplete="off" asp-for="DetailTindakan" type="text" class="form-control form-control-border border-width-2" placeholder="Detail Tindakan">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="DokterPemeriksa">Dokter Pemeriksa (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="DokterPemeriksa" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Dokter Pemeriksa--</option>
+                                    <option value="Tidak Ada">Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" asp-for="Pemeriksaan">Pemeriksaan (*)</label>
+                            <div class="col-sm-9">
+                                <select asp-for="Pemeriksaan" class="form-control select2bs4" style="width: 100%;">
+                                    <option value="" hidden disabled selected>--Pilih Pemeriksaan--</option>
+                                    <option value="Cito">Cito</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.end data identitas -->
+                <!-- start button footer -->
+                <div class="card card-orange">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-primary bg-orange float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
+                        <a class="btn btn-default" asp-action="PatientRadiologi" asp-controller="ExternalPatient" asp-area="PatientRegistration">Batal</a>
+                    </div>
+                </div>
+                <!-- /.end button footer -->
+                @section Scripts {
+                    <script>
+                        $(function () {
+                            //Initialize Select2 Elements
+                            $('.select2bs4').select2({
+                                theme: 'bootstrap4'
+                            })
+                        })
+                    </script>
+
+                    <script>
+                        $("#GrupAsuransi").hide();
+
+                        $("#MenuTipePasien").change(function () {
+                            if ($(this).val() == "Asuransi") {
+                                $("#GrupAsuransi").show();
+                            }
+                            else {
+                                $("#GrupAsuransi").hide();
+                            }
+
+                            if ($(this).val() == "Umum") {
+                                $('#listAsuransi').select2('val', 'selectedIndex', 0);
+                                $("#listAsuransi").data('placeholder');
+                            }
+                        });
+                    </script>
+
+                    <script>
+                        $("#GrupDeskripsiRujukan").hide();
+                        $("#MenuKonsul").hide();
+                        $("#MenuLuarRs").hide();
+                        $("#MenuAps").hide();
+
+                        $("#MenuTipeRujukan").on("change", function () {
+                            $("#GrupDeskripsiRujukan").show();
+                            if ($(this).val() == "Konsul")
+                                $("#MenuKonsul").show();
+                            else
+                                $("#MenuKonsul").hide();
+
+                            if ($(this).val() == "Luar Rs")
+                                $("#MenuLuarRs").show();
+                            else
+                                $("#MenuLuarRs").hide();
+
+                            if ($(this).val() == "Atas Permintaan Sendiri")
+                                $("#MenuAps").show();
+                            else
+                                $("#MenuAps").hide();
+
+                        });
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#ProvinceList").empty().append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                            $("#CityList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                            $("#DistrictList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kecamatan--" + '</option>');
+                            $("#SubDistrictList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kelurahan--" + '</option>');
+
+                            $("#CountryList").change(function () {
+                                $("#ProvinceList").empty();
+                                $("#CityList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                $("#DistrictList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kecamatan--" + '</option>');
+                                $("#SubDistrictList").empty().append('<option value = "' + -1 + '">' + "--Pilih Kelurahan--" + '</option>');
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadProvince")',
+                                    dataType: 'json',
+                                    data: { id: $("#CountryList").val() },
+                                    success: function (provinces) {
+                                        $("#ProvinceList").append('<option value = "' + -1 + '">' + "--Pilih Provinsi--" + '</option>');
+                                        $.each(provinces, function (i, province) {
+                                            $("#ProvinceList").append('<option value = "' + province.value + '">' + province.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data provinsi' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#ProvinceList").change(function () {
+                                $("#CityList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadCity")',
+                                    dataType: 'json',
+                                    data: { id: $("#ProvinceList").val() },
+                                    success: function (cities) {
+                                        $("#CityList").append('<option value="' + -1 + '">' + "--Pilih Kota--" + '</option>');
+                                        $.each(cities, function (i, city) {
+                                            $("#CityList").append('<option value="' + city.value + '">' + city.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kota' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#CityList").change(function () {
+                                $("#DistrictList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadDistrict")',
+                                    dataType: 'json',
+                                    data: { id: $("#CityList").val() },
+                                    success: function (districts) {
+                                        $("#DistrictList").append('<option value="' + -1 + '">' + "--Pilih Kecamatan--" + '</option>');
+                                        $.each(districts, function (i, district) {
+                                            $("#DistrictList").append('<option value="' + district.value + '">' + district.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kecamatan' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+
+                            $("#DistrictList").change(function () {
+                                $("#SubDistrictList").empty();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("LoadSubDistrict")',
+                                    dataType: 'json',
+                                    data: { id: $("#DistrictList").val() },
+                                    success: function (subdistricts) {
+                                        $("#SubDistrictList").append('<option value="' + -1 + '">' + "--Pilih Kelurahan--" + '</option>');
+                                        $.each(subdistricts, function (i, subdistrict) {
+                                            $("#SubDistrictList").append('<option value="' + subdistrict.value + '">' + subdistrict.text + '</option>');
+                                        });
+                                    },
+                                    error: function (ex) {
+                                        alert('Gagal ambil data kelurahan' + ex);
+                                    }
+                                });
+                                return false;
+                            })
+                        })
+                    </script>
+                }
+            </form>
+        </div>
+        <!--/.col (left) -->
+    </div>
+</section>
+<!-- /.content -->

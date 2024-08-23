@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <section class="content">
+        <nav class="navbar navbar-expand-lg navbar-orange navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-orange" style="color:#ffffff" asp-action="Index" asp-controller="Dashboard" asp-area="HealthManagement">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-orange" style="color:#ffffff" asp-action="Index" asp-controller="Dashboard" asp-area="HealthManagement">
+                                Plasma
+                            </a>
+                        </li>
+                        @*<li class="nav-item dropdown">
+                            <button class="btn btn-orange dropdown-toggle" style="color:#ffffff" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dokter
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="subdokter" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Jadwal Dokter</a>
+                                    <ul aria-labelledby="subdokter" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="Doctor" asp-area="HealthManagement">Jadwal Hari Ini</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Pengaturan Jadwal</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Pembatalan Jadwal</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="subdokter" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Dokter & Pasien</a>
+                                    <ul aria-labelledby="subdokter" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="Doctor" asp-area="HealthManagement">Jadwal Hari Ini</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Pengaturan Jadwal</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Pembatalan Jadwal</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="subdokter" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Transaksi Dokter</a>
+                                    <ul aria-labelledby="subdokter" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="Doctor" asp-area="HealthManagement">Jadwal Hari Ini</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Pengaturan Jadwal</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Pembatalan Jadwal</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>                       
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-orange dropdown-toggle" style="color:#ffffff" data-bs-toggle="dropdown" aria-expanded="false">
+                                Master Data
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="subdokter" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Dokter</a>
+                                    <ul aria-labelledby="subdokter" class="dropdown-menu border-0 shadow">                                        
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="Doctor" asp-area="HealthManagement">Dokter</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorType" asp-area="HealthManagement">Tipe Dokter</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorTitle" asp-area="HealthManagement">Gelar Dokter</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorQueueType" asp-area="HealthManagement">Tipe Antrian Dokter</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorDepartment" asp-area="HealthManagement">Departemen Dokter</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="DoctorDepartmentLocation" asp-area="HealthManagement">Lokasi Departemen Dokter</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="sublain" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Lain-Lain</a>
+                                    <ul aria-labelledby="sublain" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="Index" asp-controller="BloodType" asp-area="HealthManagement">Golongan Darah</a>
+                                        </li>
+                                    </ul>
+                                </li>                                
+                            </ul>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12">
+                <div class="callout callout-info">
+                    <h5 class="fw-bold"><i class="fas fa-heartbeat"></i> Module Manajemen Kesehatan</h5>
+                    Benari Mikron memiliki banyak module di dalamnya, setiap module memiliki fungsi yang berbeda-beda. Silahkan pilih menu sesuai kebutuhan.
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        @RenderBody()
+    </section>
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true)
+    }
+</body>
+</html>
