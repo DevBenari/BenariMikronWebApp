@@ -2,281 +2,345 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<!-- Content Header (Page header) -->
-<div class="content-header">
-    
-</div>
-<!-- /.content-header -->
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row mb-2">
-            <div class="col-12">
-                <div class="callout callout-info">
-                    <h5 class="fw-bold"><i class="fas fa-hospital"></i> Dashboard</h5>
-                    Benari Mikron memiliki banyak module di dalamnya, setiap module memiliki fungsi yang berbeda-beda. Silahkan pilih menu sesuai kebutuhan.
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="iq-card iq-user-profile-block">
+                <div class="iq-card-body">
+                    <div class="user-details-block">
+                        <div class="user-profile text-center">
+                            <img src="~/xray/images/doctor/1.png" alt="profile-img" class="avatar-130 img-fluid">
+                        </div>
+                        <div class="text-center mt-3">
+                            <h4><b>Alisha Nicholl</b></h4>
+                            <p>27 years, California</p>
+                        </div>
+                        <ul class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0">
+                            <li class="text-center">
+                                <h6 class="text-primary">Date Birth</h6>
+                                <h4>07.07.1987</h4>
+                            </li>
+                            <li class="text-center">
+                                <h6 class="text-primary">Blood</h6>
+                                <h4>A(II) Rh+</h4>
+                            </li>
+                            <li class="text-center">
+                                <h6 class="text-primary">Working Hours</h6>
+                                <h4 class="text-warning">09<span>am</span> - 07<span>pm</span></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="iq-card">
+                <div class="iq-card-body">
+                    <div class="patient-steps">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="col-md-6">
+                                <div class="data-block">
+                                    <button type="button" class="btn btn-primary rounded-pill mb-3">Today!</button>
+                                </div>
+                                <div class="data-block mt-3">
+                                    <p class="mb-0">My Goal</p>
+                                    <h5>20 Obligation</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="progress-round patient-progress mx-auto" data-value="80">
+                                    <span class="progress-left">
+                                        <span class="progress-bar border-primary"></span>
+                                    </span>
+                                    <span class="progress-right">
+                                        <span class="progress-bar border-red"></span>
+                                    </span>
+                                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center text-center">
+                                        <div class="h4 mb-0">13<br> <span class="font-size-14">left</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="patient-role list-inline d-flex align-items-center p-0 mt-4 mb-0">
+                            <li class="text-start">
+                                <p class="mb-0">Consultations</p>
+                                <h6 class="text-primary">2/10</h6>
+                                <div class="iq-progress-bar-linear d-inline-block w-100">
+                                    <div class="iq-progress-bar">
+                                        <span class="bg-primary" data-percent="20"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-start">
+                                <p class="mb-0">Operation</p>
+                                <h6 class="text-primary">4/5</h6>
+                                <div class="iq-progress-bar-linear d-inline-block w-100">
+                                    <div class="iq-progress-bar">
+                                        <span class="bg-danger" data-percent="90"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-start">
+                                <p class="mb-0">Analysis</p>
+                                <h6 class="text-primary">1/5</h6>
+                                <div class="iq-progress-bar-linear d-inline-block w-100">
+                                    <div class="iq-progress-bar">
+                                        <span class="bg-info" data-percent="10"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="patient-steps2">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="col-md-6">
+                                <div class="data-block">
+                                    <button type="button" class="btn btn-primary rounded-pill mb-3">Today!</button>
+                                </div>
+                                <div class="data-block mt-3">
+                                    <p class="mb-0">My Documentations</p>
+                                    <h5>20 Doc</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="progress-round patient-progress mx-auto" data-value="60">
+                                    <span class="progress-left">
+                                        <span class="progress-bar border-primary"></span>
+                                    </span>
+                                    <span class="progress-right">
+                                        <span class="progress-bar border-red"></span>
+                                    </span>
+                                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center text-center">
+                                        <div class="h4 mb-0 text-warning">10<br> <span class="font-size-14">left</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="patient-role list-inline d-flex align-items-center p-0 mt-4 mb-0">
+                            <li class="text-start">
+                                <p class="mb-0">Observations</p>
+                                <h6 class="text-primary">7/7</h6>
+                                <div class="iq-progress-bar-linear d-inline-block w-100">
+                                    <div class="iq-progress-bar">
+                                        <span class="bg-primary" data-percent="100"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-start">
+                                <p class="mb-0">Medis</p>
+                                <h6 class="text-primary">3/13</h6>
+                                <div class="iq-progress-bar-linear d-inline-block w-100">
+                                    <div class="iq-progress-bar">
+                                        <span class="bg-danger" data-percent="30"></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="text-start">
+                                <p class="mb-0">Vaccination</p>
+                                <h6 class="text-primary">0/0</h6>
+                                <div class="iq-progress-bar-linear d-inline-block w-100">
+                                    <div class="iq-progress-bar">
+                                        <span class="bg-info" data-percent="100"></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- /.row -->
-
-        <div class="row mb-2">
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="PatientRegistration" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Pendaftaran Pasien</h4>
-                            <p style="color:#ffffff">Pendaftaran Pasien</p>
+        @* <div class="col-lg-8">
+            <div class="iq-card">
+                <div class="iq-card-body pb-0">
+                    <div class="row row-eq-height">
+                        <div class="col-md-3">
+                            <div class="iq-card calender-small">
+                                <div class="iq-card-body">
+                                    <input type="text" class="flatpicker d-none">
+                                </div>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fas fa-wheelchair"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
                     </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="HealtManagement" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Manajemen Kesehatan</h4>
-                            <p style="color:#ffffff">Manajemen Kesehatan</p>
+                </div>
+             </div>
+        </div> *@
+        <div class="col-lg-8">
+            <div class="iq-card">
+                <div class="iq-card-body pb-0">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="iq-card">
+                                <div class="iq-card-body bg-primary rounded-4 pt-2 pb-2 pe-2">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p class="mb-0">Advice! Connect your Apple Watch for better results.</p>
+                                        <div class="rounded-4 iq-card-icon bg-white">
+                                            <img src="~/xray/images/page-img/37.png" class="img-fluid" alt="icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="iq-card">
+                                <div class="iq-header-title">
+                                    <h4 class="card-title text-primary">Popular Training</h4>
+                                </div>
+                                <div class="iq-card-body ps-0 pe-0 pb-0">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="training-block d-flex align-items-center">
+                                                <div class="rounded-circle iq-card-icon iq-bg-primary">
+                                                    <img src="~/xray/images/page-img/34.png" class="img-fluid" alt="icon">
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h5 class="">Power Training</h5>
+                                                    <p class="mb-0">395 kcal / h</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="training-block d-flex align-items-center">
+                                                <div class="rounded-circle iq-card-icon iq-bg-primary">
+                                                    <img src="~/xray/images/page-img/35.png" class="img-fluid" alt="icon">
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h5 class="">Yoga Training</h5>
+                                                    <p class="mb-0">395 kcal / h</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="training-block d-flex align-items-center">
+                                                <div class="rounded-circle iq-card-icon iq-bg-primary">
+                                                    <img src="~/xray/images/page-img/36.png" class="img-fluid" alt="icon">
+                                                </div>
+                                                <div class="ms-3">
+                                                    <h5 class="">Stretching</h5>
+                                                    <p class="mb-0">395 kcal / h</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fas fa-heartbeat"></i>
+                        <div class="col-lg-8">
+                            <div class="iq-card">
+                                <div class="iq-card-header d-flex justify-content-between p-0 bg-white">
+                                    <div class="iq-header-title">
+                                        <h4 class="card-title text-primary">Activity Statistic</h4>
+                                    </div>
+                                </div>
+                                <div class="iq-card-body p-0">
+                                    <div id="patient-chart-1"></div>
+                                </div>
+                            </div>
                         </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
+                        <div class="col-lg-4">
+                            <div class="iq-card mb-0">
+                                <div class="iq-card-header d-flex justify-content-between p-0 bg-white">
+                                    <div class="iq-header-title">
+                                        <h4 class="card-title text-primary">My Training</h4>
+                                    </div>
+                                    <div class="iq-card-header-toolbar d-flex align-items-center">
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle iq-bg-primary btn" id="dropdownMenuButton4" data-bs-toggle="dropdown">
+                                                <i class="ri-add-line m-0 text-primary"></i>
+                                            </span>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton4">
+                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill me-2"></i>View</a>
+                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill me-2"></i>Delete</a>
+                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill me-2"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill me-2"></i>Print</a>
+                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill me-2"></i>Download</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="iq-card-body p-0">
+                                    <table class="table mb-0 table-borderless table-box-shadow">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Training</th>
+                                                <th scope="col">TRX Cardio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Burned</td>
+                                                <td>350 kcal</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Spend</td>
+                                                <td>1hr 45m</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table mb-0 table-borderless mt-4 table-box-shadow">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Training</th>
+                                                <th scope="col">Stretching</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Burned</td>
+                                                <td>180 kcal</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Spend</td>
+                                                <td>30m</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="iq-card">
+                                <div class="iq-card-header d-flex justify-content-between p-0 bg-white min-height-auto mb-1">
+                                    <div class="iq-header-title">
+                                        <h4 class="card-title text-primary">Heart Rate</h4>
+                                    </div>
+                                </div>
+                                <div class="iq-card-body p-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            <h4 class="">75 bpm</h4>
+                                            <p class="mb-0 text-primary">Health Zone</p>
+                                        </div>
+                                        <div class="rounded-circle iq-card-icon iq-bg-primary"><i class="ri-windy-fill"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="iq-card">
+                                <div class="iq-card-header d-flex justify-content-between p-0 bg-white min-height-auto mb-1">
+                                    <div class="iq-header-title">
+                                        <h4 class="card-title text-primary">Water Balance</h4>
+                                    </div>
+                                </div>
+                                <div class="iq-card-body p-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3 text-start">
+                                            <p class="mb-0">Drunk</p>
+                                            <h4 class="">1250 ml/ 2000 ml</h4>
+                                        </div>
+                                        <div class="rounded-circle iq-card-icon iq-bg-primary"><i class="ri-add-fill"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </a>
+                </div>
             </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="Pharmacy" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Farmasi</h4>
-                            <p style="color:#ffffff">Farmasi</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-first-aid"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="MandiriInHealth" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Mandiri In Healt</h4>
-                            <p style="color:#ffffff">Mandiri In Healt</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-walking"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="AccountingAndFinancial" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Akunting & Keuangan</h4>
-                            <p style="color:#ffffff">Akunting & Keuangan</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Administration" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Sumber Daya Manusia</h4>
-                            <p style="color:#ffffff">Sumber Daya Manusia</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="CustomerRelationshipManagement" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Hubungan Pelanggan</h4>
-                            <p style="color:#ffffff">Hubungan Pelanggan</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="Purchasing" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Purchasing</h4>
-                            <p style="color:#ffffff">Purchasing</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-money-bill-wave"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="TaxAndLegal" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Pajak & Legalitas</h4>
-                            <p style="color:#ffffff">Pajak & Legalitas</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-balance-scale-left"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="WarehouseManagement" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Manajemen Gudang</h4>
-                            <p style="color:#ffffff">Manajemen Gudang</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-dolly"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="InformationTechnology" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Support IT</h4>
-                            <p style="color:#ffffff">Support IT</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-secret"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="UserManagement" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Kelola Pengguna</h4>
-                            <p style="color:#ffffff">Kelola Pengguna</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-cog"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-            
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="BenariLinkMedIntegration" asp-action="Index">
-                    <div class="small-box bg-indigo">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Integrasi Benari Link Med</h4>
-                            <p style="color:#ffffff">Integrasi Benari Link Med</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-plus-square"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Dashboard" asp-area="BenariNurseViewIntegration" asp-action="Index">
-                    <div class="small-box bg-purple">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Integrasi Benari Nurse View</h4>
-                            <p style="color:#ffffff">Integrasi Benari Nurse View</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-plus-square"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-
-    </div><!--/. container-fluid -->
-</section>
-<!-- /.content -->
+    </div>
+</div>
+<style>
+    .user-profile img {
+        border-radius: 50%;
+    }
+    .border-red {
+        color: rgba(216, 74, 69, 1);
+    }
+</style>

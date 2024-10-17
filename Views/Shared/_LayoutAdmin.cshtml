@@ -3,1006 +3,517 @@
 @using BenariMikronWebApp.Models;
 @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
 
-<!DOCTYPE html>
-
-<html>
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title</title>
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/admin/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="~/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="~/admin/plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/admin/dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="~/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="~/admin/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="~/admin/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="~/admin/plugins/select2/css/select2.css" rel="stylesheet" />
-    <link href="~/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet" />
-    <link href="~/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    @*Sweet Alert*@
-    @*<link href="~/admin/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
-    <link href="~/admin/plugins/sweetalert2/sweetalert2.css" rel="stylesheet" />
-    <script src="~/admin/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="~/admin/plugins/sweetalert2/sweetalert2.all.js"></script>
-    <script src="~/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="~/admin/plugins/sweetalert2/sweetalert2.js"></script>*@
-    @*<link href="~/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" rel="stylesheet" />
-    <link href="~/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css" rel="stylesheet" />*@
-
-    <link media="screen" rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.css" />
-    <link media="screen" rel="stylesheet" href='https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.css' />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.js"></script>
-
-    @*Fontawesome Jquery*@
-    <script src="https://kit.fontawesome.com/c3423d6308.js" crossorigin="anonymous"></script>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/xray/images/login/logo-quilvian-2.png" />
+    <!-- Bootstrap CSS -->
+    <link id="bootstrap-css" rel="stylesheet" href="~/xray/css/bootstrap.min.css">
+    <!-- Typography CSS -->
+    <link rel="stylesheet" href="~/xray/css/typography.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/xray/css/style.css">
+    <!-- Style-Rtl CSS -->
+    <link rel="stylesheet" href="~/xray/css/style-rtl.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/xray/css/responsive.css">
+    <!-- Full calendar -->
+    <link href='~/xray/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='~/xray/fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <link href='~/xray/fullcalendar/timegrid/main.css' rel='stylesheet' />
+    <link href='~/xray/fullcalendar/list/main.css' rel='stylesheet' />
+    <link rel="~/xray/stylesheet" href="~/xray/css/flatpickr.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <div class="wrapper">
-
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="~/admin/dist/img/logo-admin-bmn.png" alt="BenariMikron" height="60" width="60">
+<body>
+    <!-- loader Start -->
+    <div id="loading">
+        <div id="loading-center">
         </div>
-
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                @*<li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-                </li>*@
-            </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                @if (signInManager.IsSignedIn(User))
-                {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button">
-                            <p>Halo, @(User.FindFirst("UserNamaDepan").Value)</p>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pengaturan
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-action="Profile" asp-controller="Setting">Profil</a>
-                            <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Setting">Ganti Kata Sandi</a>
-                            <a class="dropdown-item" asp-action="Tutorial" asp-controller="Setting">Panduan Aplikasi</a>
-                            @*<a class="dropdown-item" asp-action="Logout" asp-controller="Setting">Keluar</a>*@
-                            <form method="post" asp-action="Logout" asp-controller="Home" class="form-inline">
-                                <button type="submit" class="nav-link btn btn-link">
-                                    <p><i class="fas fa-power-off mr-2"></i> Sign Out</p>
-                                </button>
-                            </form>
-                        </div>
-                    </li>
-                }
-
-                <li class="nav-item">
-                    @*@if (signInManager.IsSignedIn(User))
-                    {
-                    <form method="post" asp-action="Logout" asp-controller="Home" class="form-inline">
-                    <button type="submit" class="nav-link btn btn-link">
-                    <p>SIGN OUT</p>
-                    </button>
-                    </form>
-                    }*@
-
-                    @*<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <div class="user-panel mt-3 pb-2 mb-3 d-flex">
-                    <div class="image">
-                    <img src="~/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                    <a asp-area="admin" asp-controller="login" asp-action="profile" class="d-block">@User..Value</a>
-                    </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a asp-area="admin" asp-controller="login" asp-action="profile" class="dropdown-item">
-                    <i class="ion ion-person-stalker mr-2"></i> Profil
-                    <span class="float-right text-muted text-sm">Change Profile</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a asp-area="admin" asp-controller="login" asp-action="signout" class="dropdown-item">
-                    <i class="ion ion-log-out mr-2"></i> Keluar
-                    <span class="float-right text-muted text-sm">Logout</span>
-                    </a>
-                    </div>*@
-                </li>
-                @*<li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <div class="iq-sidebar">
+            <div class="iq-sidebar-logo d-flex justify-content-between">
+                <a href="index.html">
+                    <img src="~/xray/images/login/logo-quilvian.jpg" class="img-fluid" alt="">
+                    <span>MMC</span>
                 </a>
-                </li>*@
-            </ul>
-        </nav>
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary bg-yellow elevation-4">
-            <!-- Brand Logo -->
-            <a href="#" class="brand-link">
-                <img src="~/admin/dist/img/logo-admin-bmn.png" class="brand-image" style="opacity: .8">
-                <span class="brand-text fw-bold" style="color:#FB7A1E">Benari Mikron</span>
-            </a>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                <img src="~/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <div class="iq-menu-bt-sidebar">
+                    <div class="iq-menu-bt align-self-center">
+                        <div class="wrapper-menu">
+                            <div class="main-circle"><i class="ri-more-fill"></i></div>
+                            <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="info">
-                <a href="#" class="d-block" style="color:#000000">Alexander Pierce</a>
-                </div>
-                </div>*@
-
-                <!-- SidebarSearch Form -->
-                @*<div class="form-inline">
-                <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-                </button>
-                </div>
-                </div>
-                </div>*@
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a asp-action="Index" is-active-route asp-controller="Home" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Dashboard
-                                </p>
-                            </a>
+            </div>
+            <div id="sidebar-scrollbar">
+                <nav class="iq-sidebar-menu">
+                    <ul class="iq-menu">
+                        <li class="active">
+                            <a href="" class="iq-waves-effect"><i class="ri-group-fill"></i><span> Dashboard</span></a>
                         </li>
-                        @*@if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fa fa-chevron-right" style="color:#000000"></i>
-                                    <p style="color:#000000">
-                                        Master Data
-                                        <i class="fas fa-angle-left right"></i>
-                                        <span class="badge badge-danger right">5</span>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="User" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Daftar User</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="User" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Role User</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Role Grup User</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Histori Akses User</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Penjamin" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Daftar Penjamin</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        }*@
-                        @*<li class="nav-item menu-open">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-chevron-right" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Pendaftaran
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-success right">1</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Pendaftaran" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pendaftaran Pasien</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="PasienBaru" is-active-route asp-controller="Pendaftaran" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Daftar Pasien</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Perjanjian" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Perjanjian</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="PasienLuar" is-active-route asp-controller="Pendaftaran" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Plafon</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Antrian Pendaftaran</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan Harian Poliklinik</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Booking Bed</p>
-                                        </a>
-                                    </li>
-                                }
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
-                                {
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Membership</p>
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>*@
-                        <li class="nav-item">
-                            <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="PatientRegistration" class="nav-link">
-                                <i class="nav-icon fas fa-wheelchair" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Pendaftaran Pasien
-                                </p>
-                            </a>                           
-                        </li>
-                        <li class="nav-item">
-                            <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement" class="nav-link">
-                                <i class="nav-icon fas fa-heartbeat" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Manajemen Kesehatan
-                                </p>
-                            </a>                            
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-first-aid" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Farmasi
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Pharmacy" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Transaksi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Antrian</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Konfirm Pasien Pulang</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Plasma Resep Elektronik</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Konfigurasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="PatientRegistration"><i class="ri-user-add-fill"></i><span>Pendaftaran Pasien</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><i class="ri-hospital-fill"></i><span>Management Kesehatan</span></a></li>
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Mandiri In Health</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-git-merge-fill"></i> Mapping Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-star-line"></i>Claim In Health</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-guide-line"></i>Konfigurasi</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-walking" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Mandiri In Health
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Mapping Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Claim In Health</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Konfigurasi</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><i class="ri-ball-pen-fill"></i><span>Administrasi</span></a></li>
+                        <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Departments</span></li>
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>Farmasi</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Pharmacy"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-fill"></i>Transaksi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-calendar-todo-fill"></i>Antrian</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-follow-fill"></i>Konfirm Pasien Pulang</a></li>
+                                <li><a asp-action ="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-qr-code-fill"></i>Plasma Resep Elektronik</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-guide-line"></i>Konfigurasi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="AccountingAndFinancial" class="nav-link">
-                                <i class="nav-icon fas fa-chart-line" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Akunting & Keuangan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Sumber Daya Manusia
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Rekrut Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Absensi Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Benefit Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Payroll</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Performa Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pelatihan Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Agenda Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="AccountingAndFinancial" class="iq-waves-effect"><i class="ri-bank-fill"></i><span>Akunting & Keuangan</span></a></li>
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>SDM</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-add-line"></i> Rekrut Karyawan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-user-fill"></i>Absensi Karyawan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-award-fill"></i>Benefit Karyawan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-money-dollar-circle-fill"></i>Payroll</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-box-line"></i>Performa Karyawan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-star-line"></i>Pelatihan Karyawan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-calendar-todo-fill"></i>Agenda Karyawan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-handshake" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Hubungan Pelanggan
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="CustomerRelationshipManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Mesin Pencari</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Informasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Sms</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-customer-service-2-fill"></i><span>Customer Service</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-search-line"></i> Mesin Pencari</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-information-fill"></i>Informasi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-message-2-line"></i>SMS</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-money-bill-wave" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Purchasing
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Purchasing" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Manajemen Asset</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pengadaan Asset</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Permintaan Asset</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pembuangan Asset</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>Purchasing</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-exchange-fill"></i> Management Aset</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-shopping-cart-2-line"></i>Pengadaan Aset</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-warning-fill"></i>Permintaan Aset</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-delete-bin-line"></i>Pembuangan Aset</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-balance-scale-left" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Pajak & Legalitas
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="TaxAndLegal" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Administrasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Kerjasama</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Legalitas</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pembuatan Dokumen</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pemeriksaan Pajak</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pemasukan Pajak</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-government-fill"></i><span>Pajak & Legalitas</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-ball-pen-fill"></i> Administrasi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-building-line"></i>Kerjasama</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-shield-2-line"></i>Legalitas</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-add-fill"></i>Pembuatan Dokumen</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-search-fill"></i>Pemeriksaan Pajak</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-align-bottom"></i>Pemasukan Pajak</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-dolly" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Manajemen Gudang
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="WarehouseManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Transaksi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Konfigurasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>Warehouse</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-fill"></i> Transaksi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-guide-line"></i>Konfigurasi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon 	fas fa-user-secret" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Support IT
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="InformationTechnology" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Master Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Transaksi Asset</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Support Ticket</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-computer-fill"></i><span>IT Support</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-fill"></i> Transaksi Aset </a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-coupon-fill"></i>Support Ticket</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-cog" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Kelola Pengguna
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pendaftaran Pengguna</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Role Pengguna</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Role Grup Pengguna</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Pengaturan</p>
-                                        </a>
-                                    </li>
-                                }
+                        <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>User</span></li>
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-settings-fill"></i><span>Kelola Pengguna</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-add-line"></i> Registrasi User</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-account-circle-fill"></i> Role User </a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-community-fill"></i>Departement User</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-settings-3-fill"></i>Setting</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Administration" class="nav-link">
-                                <i class="nav-icon fas fa-file-archive" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Administrasi
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-plus-square" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Integrasi BLM
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="BenariLinkMedIntegration" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Penarikan Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-plus-square" style="color:#000000"></i>
-                                <p style="color:#000000">
-                                    Integrasi BNV
-                                    <i class="fa fa-angle-double-left right"></i>
-                                    @*<span class="badge badge-success right">1</span>*@
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("PendaftaranPasien"))
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="BenariNurseViewIntegration" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Dashboard</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Penarikan Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a asp-action="Index" is-active-route asp-controller="UserManagement" asp-area="UserManagement" class="nav-link">
-                                            <i class="far fas fa-caret-right nav-icon" style="color:#000000"></i>
-                                            <p style="color:#000000">Laporan</p>
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
+                        <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Integrasi</span></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="PatientRegistration"><i class="ri-git-branch-fill"></i><span>Integrasi BLM</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="PatientRegistration"><i class="ri-git-branch-fill"></i><span>Integrasi BNV</span></a></li>
                     </ul>
                 </nav>
-                <!-- /.sidebar-menu -->
+                <div class="p-3"></div>
             </div>
-            <!-- /.sidebar -->
-        </aside>
+        </div>
+        <!-- Page Content  -->
+        <div id="content-page" class="content-page">
+            <!-- TOP Nav Bar -->
+            <div class="iq-top-navbar">
+                <div class="iq-navbar-custom">
+                    <div class="iq-sidebar-logo">
+                        <div class="top-logo">
+                            <a href="index.html" class="logo">
+                                <img src="~/xray/images/logo.png" class="img-fluid" alt="">
+                                <span>XRay</span>
+                            </a>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <div class="iq-search-bar">
+                            <form action="#" class="searchbox">
+                                <input type="text" class="text search-input" placeholder="Type here to search...">
+                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                            </form>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" href="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="ri-menu-3-line"></i>
+                        </button>
+                        <div class="iq-menu-bt align-self-center">
+                            <div class="wrapper-menu">
+                                <div class="main-circle"><i class="ri-more-fill"></i></div>
+                                <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto navbar-list">
+                                <li class="nav-item">
+                                    <a class="search-toggle iq-waves-effect language-title" href="#"><img src="~/xray/images/small/flag-01.png" alt="img-flaf" class="img-fluid me-1" style="height: 16px; width: 16px;" /> English <i class="ri-arrow-down-s-line"></i></a>
+                                    <div class="iq-sub-dropdown">
+                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-02.png" alt="img-flaf" class="img-fluid me-2" />French</a>
+                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-03.png" alt="img-flaf" class="img-fluid me-2" />Spanish</a>
+                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-04.png" alt="img-flaf" class="img-fluid me-2" />Italian</a>
+                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-05.png" alt="img-flaf" class="img-fluid me-2" />German</a>
+                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-06.png" alt="img-flaf" class="img-fluid me-2" />Japanese</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0);" class="rtl-switch-toogle">
+                                        <span class="form-check form-switch">
+                                            <input class="form-check-input rtl-switch" type="checkbox" role="switch" id="rtl-switch">
+                                            <span class="rtl-toggle-tooltip ltr-tooltip">Ltr</span>
+                                            <span class="rtl-toggle-tooltip rtl-tooltip">Rtl</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item iq-full-screen">
+                                    <a href="#" class="iq-waves-effect" id="btnFullscreen"><i class="ri-fullscreen-line"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="search-toggle iq-waves-effect">
+                                        <i class="ri-notification-3-fill"></i>
+                                        <span class="bg-danger dots"></span>
+                                    </a>
+                                    <div class="iq-sub-dropdown">
+                                        <div class="iq-card shadow-none m-0">
+                                            <div class="iq-card-body p-0 ">
+                                                <div class="bg-primary p-3">
+                                                    <h5 class="mb-0 text-white d-flex justify-content-between">All Notifications<small class="badge  badge-dark float-end pt-1 ms-2">4</small></h5>
+                                                </div>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/01.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Emma Watson Bini</h6>
+                                                            <small class="float-end font-size-12">Just Now</small>
+                                                            <p class="mb-0">95 MB</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/02.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">New customer is join</h6>
+                                                            <small class="float-end font-size-12">5 days ago</small>
+                                                            <p class="mb-0">Jond Bini</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/03.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Two customer is left</h6>
+                                                            <small class="float-end font-size-12">2 days ago</small>
+                                                            <p class="mb-0">Jond Bini</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/04.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">New Mail from Fenny</h6>
+                                                            <small class="float-end font-size-12">3 days ago</small>
+                                                            <p class="mb-0">Jond Bini</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="search-toggle iq-waves-effect">
+                                        <i class="ri-mail-open-fill"></i>
+                                        <span class="bg-primary count-mail"></span>
+                                    </a>
+                                    <div class="iq-sub-dropdown">
+                                        <div class="iq-card shadow-none m-0">
+                                            <div class="iq-card-body p-0 ">
+                                                <div class="bg-primary p-3">
+                                                    <h5 class="mb-0 text-white">All Messages<small class="badge  badge-light float-end pt-1 ms-2">5</small></h5>
+                                                </div>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/01.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Bini Emma Watson</h6>
+                                                            <small class="float-start font-size-12">13 Jun</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/02.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
+                                                            <small class="float-start font-size-12">20 Apr</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/03.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Why do we use it?</h6>
+                                                            <small class="float-start font-size-12">30 Jun</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/04.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Variations Passages</h6>
+                                                            <small class="float-start font-size-12">12 Sep</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="iq-sub-card">
+                                                    <div class="media align-items-center d-flex">
+                                                        <div class="">
+                                                            <img class="avatar-40 rounded" src="~/xray/images/user/05.jpg" alt="">
+                                                        </div>
+                                                        <div class="media-body ms-3">
+                                                            <h6 class="mb-0 ">Lorem Ipsum generators</h6>
+                                                            <small class="float-start font-size-12">5 Dec</small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="navbar-list">
+                            <li>
+                                <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+                                    <img src="~/xray/images/doctor/1.png" class="img-fluid rounded" alt="user">
+                                    <div class="caption" style="margin-left: 5px;">
+                                        <h6 class="mb-0 line-height">Alisha Nicholl</h6>
+                                        <span class="font-size-12">Available</span>
+                                    </div>
+                                </a>
+                                <div class="iq-sub-dropdown iq-user-dropdown">
+                                    <div class="iq-card shadow-none m-0">
+                                        <div class="iq-card-body p-0 ">
+                                            <div class="bg-primary p-3">
+                                                <h5 class="mb-0 text-white line-height">Hello Bini Jets</h5>
+                                                <span class="text-white font-size-12">Available</span>
+                                            </div>
+                                            <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                                                <div class="media align-items-center d-flex">
+                                                    <div class="rounded iq-card-icon iq-bg-primary">
+                                                        <i class="ri-file-user-line"></i>
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h6 class="mb-0 ">My Profile</h6>
+                                                        <p class="mb-0 font-size-12">View personal profile details.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-hover">
+                                                <div class="media align-items-center d-flex">
+                                                    <div class="rounded iq-card-icon iq-bg-primary">
+                                                        <i class="ri-profile-line"></i>
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h6 class="mb-0 ">Edit Profile</h6>
+                                                        <p class="mb-0 font-size-12">Modify your personal details.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="account-setting.html" class="iq-sub-card iq-bg-primary-hover">
+                                                <div class="media align-items-center d-flex">
+                                                    <div class="rounded iq-card-icon iq-bg-primary">
+                                                        <i class="ri-account-box-line"></i>
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h6 class="mb-0 ">Account settings</h6>
+                                                        <p class="mb-0 font-size-12">Manage your account parameters.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a href="privacy-setting.html" class="iq-sub-card iq-bg-primary-hover">
+                                                <div class="media align-items-center d-flex">
+                                                    <div class="rounded iq-card-icon iq-bg-primary">
+                                                        <i class="ri-lock-line"></i>
+                                                    </div>
+                                                    <div class="media-body ms-3">
+                                                        <h6 class="mb-0 ">Privacy Settings</h6>
+                                                        <p class="mb-0 font-size-12">Control your privacy parameters.</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="d-inline-block w-100 text-center p-3">
+                                                <form method="post" asp-action="Logout" asp-controller="Home" id="logout">
+                                                    <a class="bg-primary iq-sign-btn submit" role="button">Sign out<i class="ri-login-box-line ms-2"></i></a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- TOP Nav Bar END -->
+            @RenderBody()
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <div id="myModalSuccess" class="modal fade text-width:30%;" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Informasi</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+             @if (IsSectionDefined("Scripts")) {
+                @RenderSection("Scripts", required: true)
+            }
+            <!-- Footer -->
+            <footer class="bg-white iq-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
+                                <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
+                            </ul>
                         </div>
-                        <div id="MyModalSuccessAlertBody" class="modal-body alert alert-success">
-                            This Content
-                        </div>
-                        <div class="modal-footer">
-                            &nbsp;
-                            <button type="button" class="btn btn-info bg-indigo" data-dismiss="modal">Kembali</button>
+                        <div class="col-lg-6 text-end">
+                            Copyright 2020 <a href="#">XRay</a> All Rights Reserved.
                         </div>
                     </div>
                 </div>
-            </div>                        
-
-            @RenderBody()
+            </footer>
+            <!-- Footer END -->
         </div>
-        @if (IsSectionDefined("Scripts"))
-        {
-            @RenderSection("Scripts", required: true)
-        }
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2023 <a href="~/admin/dashboard/">Benari Mikron</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
-            </div>
-        </footer>
     </div>
-
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    @*<script src="~/admin/plugins/jquery/jquery.min.js"></script>*@
-    <!-- Select2 -->
-    <script src="~/admin/plugins/select2/js/select2.full.min.js"></script>
-    <script src="~/admin/plugins/select2/js/select2.full.js"></script>
-    <script src="~/admin/plugins/select2/js/select2.min.js"></script>
-    <script src="~/admin/plugins/select2/js/select2.js"></script>
-
-    <!-- jQuery -->
-    @*<script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
-    <!-- jQuery UI 1.11.4 -->
-    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- InputMask -->
-    <script src="~/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="~/admin/plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="~/admin/plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="~/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="~/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="~/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="~/admin/plugins/moment/moment.min.js"></script>
-    <script src="~/admin/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="~/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="~/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/admin/dist/js/adminlte.js"></script>
-    
-    @*UI Normal*@
-    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap4.min.js"></script>    
+    <!-- Wrapper END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/xray/js/jquery.min.js"></script>
+    <script src="~/xray/js/popper.min.js"></script>
+    <script src="~/xray/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="~/xray/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="~/xray/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="~/xray/js/waypoints.min.js"></script>
+    <script src="~/xray/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="~/xray/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="~/xray/js/apexcharts.js"></script>
+    <!-- Swiper Slider JavaScript -->
+    <script src="~/xray/js/swiper-bundle.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="~/xray/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="~/xray/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="~/xray/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="~/xray/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="~/xray/js/lottie.js"></script>
+    <!-- am core JavaScript -->
+    <script src="~/xray/js/core.js"></script>
+    <!-- am charts JavaScript -->
+    <script src="~/xray/js/amcharts.js"></script>
+    <!-- am animated JavaScript -->
+    <script src="~/xray/js/animated.js"></script>
+    <!-- am kelly JavaScript -->
+    <script src="~/xray/js/kelly.js"></script>
+    <!-- Flatpicker Js -->
+    <script src="~/xray/js/flatpickr.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="~/xray/js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="~/xray/js/custom.js"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $("a.submit").click(function(){
+            document.getElementById("logout").submit();
+        });
+    });
+</script>

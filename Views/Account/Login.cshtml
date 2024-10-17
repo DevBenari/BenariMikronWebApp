@@ -4,15 +4,56 @@
     ViewBag.Title = "Login";
 }
 
-<div class="login-wrap p-4 p-md-5">
-    <b><span class="label label-default">Silahkan Masuk</span></b>
+<div class="sign-in-from">
+    <h1 class="mb-0">Sign in</h1>
+    <p>Enter your email address and password to access admin panel.</p>
     @if (TempData["Error"] != null)
     {
-        <div class="col-md-12 alert alert-danger">
-            <span><b>Maaf!</b> - @TempData["Error"]</span>
+        <div class="alert alert-danger" role="alert">
+            <div class="iq-alert-text"><b>Maaf!</b> - @TempData["Error"]</div>
         </div>
     }
-    <form method="post">
+    <form class="mt-4" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="mb-2">Email address</label>
+            <input type="email" asp-for="Email" autocomplete="off" id="email" class="form-control" placeholder="Email" maxlength="45" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-between my-2">
+            <label for="exampleInputPassword1">Password</label>
+            <a href="#" onclick="forgot()" id="forgotPassword">Lupa kata sandi?</a>
+        </div>
+        <div class="password-field">
+            <input type="password" asp-for="Password" id="showPassword" class="form-control" placeholder="Kata Sandi" maxlength="45" />
+            @* <span></span> *@
+            <span asp-validation-for="Password"></span><i class="ri-eye-close-line" id="toggler"></i>
+        </div>
+        
+        @* <div class="d-flex form-check form-check-reverse">
+            <label>
+                <input type="checkbox" id="showPassword">
+                Tampilkan kata sandi
+            </label>
+        </div> *@
+        <div class="d-flex w-100 justify-content-between  align-items-center mt-3 w-100">
+            <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+                <label asp-for="RememberMe">
+                    <input asp-for="RememberMe">
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary float-end">Sign in</button>
+        </div>
+        <div class="sign-info">
+            <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="sign-up.html">Sign up</a></span>
+            <ul class="iq-social-media">
+                <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
+                <li><a href="#"><i class="ri-twitter-line"></i></a></li>
+                <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+            </ul>
+        </div>
+    </form>
+    @* <form method="post">
         <div class="form-outline mb-4">
             <input type="email" asp-for="Email" autocomplete="off" id="email" class="form-control" placeholder="Email" maxlength="45" />
             <span asp-validation-for="Email" class="text-danger"></span>
@@ -37,31 +78,56 @@
     </div>
     <div class="text-center pt-1 mb-1 pb-1">
         <a href="#" onclick="forgot()" id="forgotPassword">Lupa kata sandi?</a>
-    </div>
+    </div> *@
 </div>
 
 @section Scripts {
-    <script>
+    <style>
+        .password-field {
+          position: relative;
+        }
+
+        .password-field #toggler {
+          position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+    @* <script>
         $(function () {
             //Initialize Select2 Elements
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             })
         })
-    </script>
+    </script> *@
     <script type="text/javascript">
-        var show = document.getElementById('showPassword');
-        var textbox = document.getElementById('password');
+        var password = document.getElementById('showPassword');
+        var toggler = document.getElementById('toggler');
+        showHidePassword = () => {
+        if (password.type == 'password') {
+        password.setAttribute('type', 'text');
+        toggler.classList.add('ri-eye-line');
+        } else {
+        toggler.classList.remove('ri-eye-line');
+        password.setAttribute('type', 'password');
+        }
+        };
+        toggler.addEventListener('click', showHidePassword);
+        // var show = document.getElementById('showPassword');
+        // var textbox = document.getElementById('password');
 
-        show.addEventListener("click", function () {
-            var isCheked = show.checked;
-
-            if (isCheked) {
-                textbox.type = "text";
-            } else {
-                textbox.type = "password";
-            }
-        })
+        // show.addEventListener("click", function () {
+        //     var isCheked = show.checked;
+        //     console.log(isCheked);
+        //     if (isCheked) {
+        //         textbox.type = "text";
+        //     } else {
+        //         textbox.type = "password";
+        //     }
+        // })
     </script>
     <script type="text/javascript">
         function forgot() {
@@ -72,4 +138,4 @@
             )
         };
     </script>
-        }
+}
