@@ -1,112 +1,1045 @@
 ﻿@{
-    ViewData["Title"] = "Dashboard Kelola Pengguna";
+    ViewData["Title"] = "Dashboard User";
 }
 
-<!-- Content Header (Page header) -->
-<div class="content-header">
-    @*<div class="container-fluid">
-    <div class="row mb-2">*@
-    @*<div class="col-sm-6">
-    <h1 class="m-0">Dashboard Benari Mikron</h1>
-    </div>*@<!-- /.col -->
-    @*<div class="col-sm-6">
-    <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active">Dashboard</li>*@
-    @*<li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active">Dashboard v2</li>*@
-    @*</ol>
-    </div>*@<!-- /.col -->
-    @*</div><!-- /.row -->*@
-    @*</div><!-- /.container-fluid -->*@
-</div>
-<!-- /.content-header -->
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row mb-2">
-            <div class="col-12">
-                <div class="callout callout-info">
-                    <h5 class="fw-bold"><i class="fas fa-hospital"></i> Dashboard Kelola Pengguna</h5>
-                    Benari Mikron memiliki banyak fitur di dalamnya, setiap fitur memiliki fungsi yang berbeda-beda. Silahkan pilih menu sesuai kebutuhan.
+<div class="container-fluid">
+    <div class="row row-eq-height">
+        <div class="col-lg-4">
+            <div class="iq-card iq-user-profile-block">
+                <div class="iq-card-body">
+                    <div class="user-details-block">
+                        <div class="user-profile text-center">
+                            <img src="~/xray/images/doctor/6.PNG" alt="profile-img" class="avatar-130 img-fluid">
+                        </div>
+                        <div class="text-center mt-3">
+                            <h4><b>Alisha</b></h4>
+                            <p>Dokter Spesialis Anak <br /> <i class="ri-graduation-cap-fill"></i> Alumni Universitas Indonesia </p>
+                        </div>
+                        <ul class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0">
+                            <li class="text-center">
+                                <h6 class="text-primary">Birthday</h6>
+                                <h6>27 June 1991</h6>
+                            </li>
+                            <li class="text-center">
+                                <h6 class="text-primary">Lisensi Medis</h6>
+                                <h6> MD-2023-001234</h6>
+                            </li>
+                            <li class="text-center">
+                                <h6 class="text-primary">Email</h6>
+                                <h6> alisha@gmail.com </h6>
+                            </li>
+                        </ul>
+                        @* <div class="form-group">
+                            <select class="form-select my-2" id="exampleFormControlSelect1">
+                                <option selected="" disabled="">Select Show Data By ..</option>
+                                <option>Today</option>
+                                <option>Upcoming</option>
+                            </select>
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: -5%;">
+                <div class="col-lg-12 ">
+                    <div class="form-group" >
+                        <select class="form-select my-2 rounded-4" id="exampleFormControlSelect1" >
+                            <option selected="" disabled="">Select Show Data By ..</option>
+                            <option>Today</option>
+                            <option>Upcoming</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="iq-card">
+                        <div class="iq-card-body iq-bg-primary rounded-4" id="today-result">
+                            <div class="d-flex align-items-center">
+                                <div class="text-center">
+                                    <h3 class="mb-0"><span class="counter">11</span></h3>
+                                    <h5 class="">Nov</h5>
+                                </div>
+                                <div class="p-2 flex-grow-1">
+                                    <div class="rounded-circle iq-card-icon bg-primary" style="margin-left: 3%;"><i class="ri-sun-foggy-fill"></i></div>
+                                </div>
+                                <div class="text-center p-2" style="margin-left: 3%;">
+                                    <h3 class="mb-0"><span class="counter">08.00</span></h3>
+                                    <h5 class="">start-shift</h5>
+                                </div>
+                                <div class="text-center p-2" style="margin-left: 3%;">
+                                    <h3 class="mb-0"><span class="counter">16.00</span></h3>
+                                    <h5 class="">end-shift</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Laporan Harian<span class="badge badge-danger ms-2 ">2 Pasien</span></h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            @* <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="resep" role="tabpanel" aria-labelledby="resep-tab"> *@
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="table-responsive-md w-100">
+                                                <table class="table table-bordered table-striped text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No.</th>
+                                                            <th>Tanggal Daftar</th>
+                                                            <th>No RM</th>
+                                                            <th>Nama Pasien</th>
+                                                            <th>JK</th>
+                                                            <th>Umur</th>
+                                                            <th>Penjamin</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td contenteditable="true">1</td>
+                                                            <td contenteditable="true">01/11/2024</td>
+                                                            <td contenteditable="true">00-05-78-11</td>
+                                                            <td contenteditable="true">Firman Mahesa</td>
+                                                            <td contenteditable="true">L</td>
+                                                            <td contenteditable="true">23th 7bln 24hr</td>
+                                                            <td contenteditable="true">Umum</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td contenteditable="true">1</td>
+                                                            <td contenteditable="true">01/11/2024</td>
+                                                            <td contenteditable="true">00-22-78-11</td>
+                                                            <td contenteditable="true">Siti Raihanah</td>
+                                                            <td contenteditable="true">P</td>
+                                                            <td contenteditable="true">11th 10bln 1hr</td>
+                                                            <td contenteditable="true">Asuransi</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                               @*  </div>
+                            </div> *@
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- /.row -->
-
-        <div class="row mb-2">
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Administration" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Pendaftaran Pengguna</h4>
-                            <p style="color:#ffffff">Pendaftaran Pengguna</p>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="row">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Pasien</h4>
+                            </div>
+                            <div class="iq-card-header-toolbar d-flex align-items-center">
+                                <ul class="nav nav-pills flex-nowrap" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="rawatjalan-tab" data-bs-toggle="tab" href="#rawatjalan" role="tab" aria-controls="rawatjalan" aria-selected="true">Rawat Jalan <span class="badge badge-primary ms-2 ">5</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="rawatinap-tab" data-bs-toggle="tab" href="#rawatinap" role="tab" aria-controls="rawatinap" aria-selected="false">Rawat Inap</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="igd-tab" data-bs-toggle="tab" href="#igd" role="tab" aria-controls="igd" aria-selected="false">IGD</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="icu-tab" data-bs-toggle="tab" href="#icu" role="tab" aria-controls="icu" aria-selected="false">ICU</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fas fa-user-cog"></i>
+                        <div class="iq-card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="rawatjalan" role="tabpanel" aria-labelledby="rawatjalan-tab">
+                                    <div class="col-lg-12">
+                                        <span class="text-start">Jam Praktek : <b>Today, 09.00 - 11.00</b> </span>
+                                        <div class="iq-card">
+                                            <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="text-center">
+                                                        <h4 class="mb-0"><span>Jaya</span></h4>
+                                                        <h6 class="">Setyawan</h6>
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/06.jpg" alt="profile-pic"></div>
+                                                    </div>
+                                                    <div class="text-center p-2" style="margin-left: 3%;">
+                                                        <h6 class="mb-0">00-67-65-05</h6>
+                                                        <h6 class="mb-0">Laki-Laki</h6>
+                                                        <h6 class="mb-0">28th 07bln 27hr</h6>
+                                                    </div>
+                                                    <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                        <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="iq-card">
+                                            <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="text-center">
+                                                        <h4 class="mb-0"><span>Hera</span></h4>
+                                                        <h6 class="">Lidyawati</h6>
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                    </div>
+                                                    <div class="text-center p-2" style="margin-left: 3%;">
+                                                        <h6 class="mb-0">00-67-65-05</h6>
+                                                        <h6 class="mb-0">Perempuan</h6>
+                                                        <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                    </div>
+                                                    <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                        <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="iq-card">
+                                            <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="text-center">
+                                                        <h4 class="mb-0"><span>Hera</span></h4>
+                                                        <h6 class="">Lidyawati</h6>
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                    </div>
+                                                    <div class="text-center p-2" style="margin-left: 3%;">
+                                                        <h6 class="mb-0">00-67-65-05</h6>
+                                                        <h6 class="mb-0">Perempuan</h6>
+                                                        <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                    </div>
+                                                    <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                        <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="iq-card">
+                                            <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="text-center">
+                                                        <h4 class="mb-0"><span>Hera</span></h4>
+                                                        <h6 class="">Lidyawati</h6>
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                    </div>
+                                                    <div class="text-center p-2" style="margin-left: 3%;">
+                                                        <h6 class="mb-0">00-67-65-05</h6>
+                                                        <h6 class="mb-0">Perempuan</h6>
+                                                        <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                    </div>
+                                                    <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                        <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="iq-card">
+                                            <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="text-center">
+                                                        <h4 class="mb-0"><span>Jaya</span></h4>
+                                                        <h6 class="">Setyawan</h6>
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/06.jpg" alt="profile-pic"></div>
+                                                    </div>
+                                                    <div class="text-center p-2" style="margin-left: 3%;">
+                                                        <h6 class="mb-0">00-67-65-05</h6>
+                                                        <h6 class="mb-0">Laki-Laki</h6>
+                                                        <h6 class="mb-0">28th 07bln 27hr</h6>
+                                                    </div>
+                                                    <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                        <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="rawatinap" role="tabpanel" aria-labelledby="rawatinap-tab">
+                                    <span class="text-start">Jam Praktek : <b>Today, 09.00 - 11.00</b> </span>
+                                    <div class="iq-card">
+                                        <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                            <div class="d-flex align-items-center">
+                                                <div class="text-center">
+                                                    <h4 class="mb-0"><span>Hera</span></h4>
+                                                    <h6 class="">Lidyawati</h6>
+                                                </div>
+                                                <div class="p-2">
+                                                    <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                </div>
+                                                <div class="text-center p-2" style="margin-left: 3%;">
+                                                    <h6 class="mb-0">00-67-65-05</h6>
+                                                    <h6 class="mb-0">Perempuan</h6>
+                                                    <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                </div>
+                                                <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                    <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="iq-card">
+                                        <div class="iq-card-body iq-bg-warning rounded-4" id="today-result">
+                                            <div class="d-flex align-items-center">
+                                                <div class="text-center">
+                                                    <h4 class="mb-0"><span>Hera</span></h4>
+                                                    <h6 class="">Lidyawati</h6>
+                                                </div>
+                                                <div class="p-2">
+                                                    <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                </div>
+                                                <div class="text-center p-2" style="margin-left: 3%;">
+                                                    <h6 class="mb-0">00-67-65-05</h6>
+                                                    <h6 class="mb-0">Perempuan</h6>
+                                                    <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                </div>
+                                                <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                    <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="igd" role="tabpanel" aria-labelledby="igd-tab">
+                                    <span class="text-start">Jam Praktek : <b>Today, 09.00 - 11.00</b> </span>
+                                    <div class="iq-card">
+                                        <div class="iq-card-body iq-bg-danger rounded-4" id="today-result">
+                                            <div class="d-flex align-items-center">
+                                                <div class="text-center">
+                                                    <h4 class="mb-0"><span>Hera</span></h4>
+                                                    <h6 class="">Lidyawati</h6>
+                                                </div>
+                                                <div class="p-2">
+                                                    <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                </div>
+                                                <div class="text-center p-2" style="margin-left: 3%;">
+                                                    <h6 class="mb-0">00-67-65-05</h6>
+                                                    <h6 class="mb-0">Perempuan</h6>
+                                                    <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                </div>
+                                                <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                    <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="icu" role="tabpanel" aria-labelledby="icu-tab">
+                                    <span class="text-start">Jam Praktek : <b>Today, 09.00 - 11.00</b> </span>
+                                    <div class="iq-card">
+                                        <div class="iq-card-body iq-bg-danger rounded-4" id="today-result">
+                                            <div class="d-flex align-items-center">
+                                                <div class="text-center">
+                                                    <h4 class="mb-0"><span>Hera</span></h4>
+                                                    <h6 class="">Lidyawati</h6>
+                                                </div>
+                                                <div class="p-2">
+                                                    <div class="rounded-circle iq-card-icon bg-warning" style="margin-left: 3%;"><img class="profile-pic" src="~/xray/images/user/11.png" alt="profile-pic"></div>
+                                                </div>
+                                                <div class="text-center p-2" style="margin-left: 3%;">
+                                                    <h6 class="mb-0">00-67-65-05</h6>
+                                                    <h6 class="mb-0">Perempuan</h6>
+                                                    <h6 class="mb-0">48th 07bln 27hr</h6>
+                                                </div>
+                                                <div class="text-center ms-auto p-2" style="margin-left: 3%;">
+                                                    <button type="button" class="btn btn-warning rounded-pill mb-3">Proses</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
                     </div>
-                </a>
+                </div>
             </div>
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Administration" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Role Pengguna</h4>
-                            <p style="color:#ffffff">Role Pengguna</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-cog"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Administration" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Role Grup Pengguna</h4>
-                            <p style="color:#ffffff">Role Grup Pengguna</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-cog"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-
-                <a asp-controller="Administration" asp-action="Index">
-                    <div class="small-box bg-orange">
-                        @*change color in adminlte.min.cs*@
-                        <div class="inner">
-                            <h4 class="fw-bold" style="color:#ffffff">Pengaturan</h4>
-                            <p style="color:#ffffff">Pengaturan</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-cog"></i>
-                        </div>
-                        @*<a href="#" class="small-box-footer">Masuk <i class="fas fa-arrow-circle-right"></i></a>*@
-                    </div>
-                </a>
-            </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Jadwal</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <ul class="nav nav-pills flex-nowrap" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Setup</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pembatalan</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Departement</label>
+                                            <select class="form-select my-2 rounded-3" id="exampleFormControlSelect1">
+                                                <option selected="" disabled="">-- Select Departement --</option>
+                                                <option>Poli Anak </option>
+                                                <option>Poli Jiwa </option>
+                                                <option>Poli Penyakit Dalam </option>
+                                                <option>Poli Syaraf </option>
+                                                <option>Poli Telemedicine Gizi </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Jadwal</label>
+                                            <select class="form-select my-2 rounded-3" id="exampleFormControlSelect1">
+                                                <option selected="" disabled="">-- Select Schedule --</option>
+                                                <option>Pagi </option>
+                                                <option>Siang </option>
+                                                <option>Sore </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Hari</label>
+                                            <select class="form-select my-2 rounded-3" id="exampleFormControlSelect1">
+                                                <option selected="" disabled="">-- Select Day --</option>
+                                                <option>Senin </option>
+                                                <option>Selasa </option>
+                                                <option>Rabu </option>
+                                                <option>Kamis </option>
+                                                <option>Jumat </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="periksa">Durasi Periksa</label>
+                                            <input type="text" class="form-control my-2" id="periksa" placeholder="Menit">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="periksa">Ruang</label>
+                                            <input type="text" class="form-control my-2" id="periksa">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="dokter">Dokter</label>
+                                            <input type="text" class="form-control my-2" id="dokter" value="Semua" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <label for="praktek">Jam Praktek</label>
+                                            <div class="d-flex ">
+                                                <div class="col-lg-5">
+                                                    <input type="time" class="form-control my-2" id="praktek">
+                                                </div>
+                                                <div class="col-lg-2 align-content-center flex-wrap text-center">
+                                                    <span> To </span>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <input type="time" class="form-control my-2" id="praktek2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-start">
+                                        <button type="submit" class="btn btn-primary me-2 mt-3">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Nama Dokter</label>
+                                            <select class="form-select my-2 rounded-3" id="exampleFormControlSelect1">
+                                                <option selected="" disabled="">-- Select Dokter --</option>
+                                                <option>Dr. Alisha Nicholl </option>
+                                                <option>Dr. Clarayasa Michael </option>
+                                                <option>Dr. Abraham Sihab </option>
+                                                <option>Dr. Firdaus Alfaransyah </option>
+                                                <option>Dr. Kamila Faudi </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Dokter Pengganti</label>
+                                            <select class="form-select my-2 rounded-3" id="exampleFormControlSelect1">
+                                                <option selected="" disabled="">-- Select Dokter --</option>
+                                                <option>Dr. Alisha Nicholl </option>
+                                                <option>Dr. Clarayasa Michael </option>
+                                                <option>Dr. Abraham Sihab </option>
+                                                <option>Dr. Firdaus Alfaransyah </option>
+                                                <option>Dr. Kamila Faudi </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="praktek">Periode Tanggal</label>
+                                            <div class="d-flex ">
+                                                <div class="col-lg-5">
+                                                    <input type="date" class="form-control my-2" id="praktek">
+                                                </div>
+                                                <div class="col-lg-2 align-content-center flex-wrap text-center">
+                                                    <span> Sampai </span>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <input type="date" class="form-control my-2" id="praktek2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="praktek">Periode Jam</label>
+                                            <div class="d-flex ">
+                                                <div class="col-lg-5">
+                                                    <input type="time" class="form-control my-2" id="praktek">
+                                                </div>
+                                                <div class="col-lg-2 align-content-center flex-wrap text-center">
+                                                    <span> Sampai </span>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <input type="time" class="form-control my-2" id="praktek2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-start">
+                                        <button type="submit" class="btn btn-primary me-2 mt-3">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: -3%;">
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <select class="form-select my-2 rounded-4" id="exampleFormControlSelect1">
+                            <option selected="" disabled="">-- Lokasi Plasma --</option>
+                            <option>Lantai 1 </option>
+                            <option>Lantai 3 </option>
+                            <option>Lantai 5 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <button type="submit" class="btn btn-primary me-2 mt-3">Submit</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Resep</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <ul class="nav nav-pills flex-nowrap" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="resep-tab" data-bs-toggle="tab" href="#resep" role="tab" aria-controls="resep" aria-selected="true">Table Resep</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="inap-tab" data-bs-toggle="tab" href="#inap" role="tab" aria-controls="inap" aria-selected="false">Buat Resep</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="resep" role="tabpanel" aria-labelledby="resep-tab">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive-md w-100">
+                                            <table class="table table-bordered table-striped text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Judul Resep</th>
+                                                        <th>Template Resep</th>
+                                                        <th>Deskripsi</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td contenteditable="true">1</td>
+                                                        <td contenteditable="true">Resep Rawat Jalan</td>
+                                                        <td contenteditable="true">
+                                                            2 Paracetamol <br />
+                                                            2 Amoxcillin
+                                                        </td>
+                                                        <td contenteditable="true">-</td>
+                                                        <td>
+                                                            <span class="table-edit">
+                                                                <button type="button"
+                                                                        class="btn iq-bg-success btn-rounded btn-sm my-0">
+                                                                    <i class="ri-edit-line"></i>
+                                                                </button>
+                                                            </span>
+                                                            <br />
+                                                            <span class="table-remove">
+                                                                <button type="button"
+                                                                        class="btn iq-bg-danger btn-rounded btn-sm my-0">
+                                                                    <i class="ri-delete-bin-line"></i>
+                                                                </button>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td contenteditable="true">2</td>
+                                                        <td contenteditable="true">Resep Rawat Inap</td>
+                                                        <td contenteditable="true">
+                                                            2 Paracetamol <br />
+                                                            2 Amoxcillin
+                                                        </td>
+                                                        <td contenteditable="true">-</td>
+                                                        <td>
+                                                            <span class="table-edit">
+                                                                <button type="button"
+                                                                        class="btn iq-bg-success btn-rounded btn-sm my-0">
+                                                                    <i class="ri-edit-line"></i>
+                                                                </button>
+                                                            </span>
+                                                            <br />
+                                                            <span class="table-remove">
+                                                                <button type="button"
+                                                                        class="btn iq-bg-danger btn-rounded btn-sm my-0">
+                                                                    <i class="ri-delete-bin-line"></i>
+                                                                </button>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="inap" role="tabpanel" aria-labelledby="inap-tab">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="resep-dokter">Dokter</label>
+                                            <input type="text" class="form-control my-2" id="resep-dokter" value="Dr. Alisha Nicholl" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="resep-judul">Judul Resep</label>
+                                            <input type="text" class="form-control my-2" id="resep-judul">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="praktek">Deskripsi</label>
+                                            <textarea class="form-control my-2" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 text-start">
+                                        <button type="submit" class="btn btn-primary me-2 mt-3">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button class="chatbot-toggler">
+                    <span class="material-symbols-rounded">mode_comment</span>
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <div class="chatbot">
+                    <header>
+                        <h2 style="color: white;"><i class="ri-sparkling-line"></i>OpenAI</h2>
+                        <span class="close-btn material-symbols-outlined">close</span>
+                    </header>
+                    <ul class="chatbox">
+                        <li class="chat incoming">
+                            <span class="material-symbols-outlined">smart_toy</span>
+                            <p>Hi there <br>How can I help you today?</p>
+                        </li>
+                    </ul>
+                    <div class="chat-input">
+                        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+                        <span id="send-btn" class="material-symbols-rounded">send</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* Import Google font - Poppins */
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-    </div><!--/. container-fluid -->
-</section>
-<!-- /.content -->
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .chatbot-toggler {
+        position: fixed;
+        bottom: 100px;
+        right: 35px;
+        outline: none;
+        border: none;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #724ae8;
+        transition: all 0.2s ease;
+    }
+
+    body.show-chatbot .chatbot-toggler {
+        transform: rotate(90deg);
+    }
+
+    .chatbot-toggler span {
+        color: #fff;
+        position: absolute;
+    }
+
+        .chatbot-toggler span:last-child,
+        body.show-chatbot .chatbot-toggler span:first-child {
+            opacity: 0;
+        }
+
+    body.show-chatbot .chatbot-toggler span:last-child {
+        opacity: 1;
+    }
+
+    .chatbot {
+        position: fixed;
+        right: 35px;
+        bottom: 160px;
+        width: 420px;
+        background: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.5);
+        transform-origin: bottom right;
+        box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
+        transition: all 0.1s ease;
+    }
+
+    body.show-chatbot .chatbot {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+    }
+
+    .chatbot header {
+        padding: 16px 0;
+        position: relative;
+        text-align: center;
+        color: #fff;
+        background: #724ae8;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+        .chatbot header span {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            display: none;
+            cursor: pointer;
+            transform: translateY(-50%);
+        }
+
+    header h2 {
+        font-size: 1.4rem;
+    }
+
+    .chatbot .chatbox {
+        overflow-y: auto;
+        height: 510px;
+        padding: 30px 20px 100px;
+    }
+
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+        background: #fff;
+        border-radius: 25px;
+    }
+
+    .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 25px;
+    }
+
+    .chatbox .chat {
+        display: flex;
+        list-style: none;
+    }
+
+    .chatbox .outgoing {
+        margin: 20px 0;
+        justify-content: flex-end;
+    }
+
+    .chatbox .incoming span {
+        width: 32px;
+        height: 32px;
+        color: #fff;
+        cursor: default;
+        text-align: center;
+        line-height: 32px;
+        align-self: flex-end;
+        background: #724ae8;
+        border-radius: 4px;
+        margin: 0 10px 7px 0;
+    }
+
+    .chatbox .chat p {
+        white-space: pre-wrap;
+        padding: 12px 16px;
+        border-radius: 10px 10px 0 10px;
+        max-width: 75%;
+        color: #fff;
+        font-size: 0.95rem;
+        background: #724ae8;
+    }
+
+    .chatbox .incoming p {
+        border-radius: 10px 10px 10px 0;
+    }
+
+    .chatbox .chat p.error {
+        color: #721c24;
+        background: #f8d7da;
+    }
+
+    .chatbox .incoming p {
+        color: #000;
+        background: #f2f2f2;
+    }
+
+    .chatbot .chat-input {
+        display: flex;
+        gap: 5px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        padding: 3px 20px;
+        border-top: 1px solid #ddd;
+    }
+
+    .chat-input textarea {
+        height: 55px;
+        width: 100%;
+        border: none;
+        outline: none;
+        resize: none;
+        max-height: 180px;
+        padding: 15px 15px 15px 0;
+        font-size: 0.95rem;
+    }
+
+    .chat-input span {
+        align-self: flex-end;
+        color: #724ae8;
+        cursor: pointer;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        visibility: hidden;
+        font-size: 1.35rem;
+    }
+
+    .chat-input textarea:valid ~ span {
+        visibility: visible;
+    }
+
+    @@media (max-width: 490px) {
+        .chatbot-toggler {
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .chatbot {
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            border-radius: 0;
+            width: 100%;
+        }
+
+            .chatbot .chatbox {
+                height: 90%;
+                padding: 25px 15px 100px;
+            }
+
+            .chatbot .chat-input {
+                padding: 5px 15px;
+            }
+
+            .chatbot header span {
+                display: block;
+            }
+    }
+    .user-profile img {
+        border-radius: 50%;
+    }
+
+    .border-red {
+        color: rgba(216, 74, 69, 1);
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    const chatbotToggler = document.querySelector(".chatbot-toggler");
+    const closeBtn = document.querySelector(".close-btn");
+    const chatbox = document.querySelector(".chatbox");
+    const chatInput = document.querySelector(".chat-input textarea");
+    const sendChatBtn = document.querySelector(".chat-input span");
+
+    let userMessage = null; // Variable to store user's message
+    const inputInitHeight = chatInput.scrollHeight;
+
+    // API configuration
+    const API_KEY = "PASTE-YOUR-API-KEY"; // Your API key here
+    const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
+
+    const createChatLi = (message, className) => {
+        // Create a chat <li> element with passed message and className
+        const chatLi = document.createElement("li");
+        chatLi.classList.add("chat", `${className}`);
+        let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+        chatLi.innerHTML = chatContent;
+        chatLi.querySelector("p").textContent = message;
+        return chatLi; // return chat <li> element
+    }
+
+    const generateResponse = async (chatElement) => {
+        const messageElement = chatElement.querySelector("p");
+
+        // Define the properties and message for the API request
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                contents: [{
+                    role: "user",
+                    parts: [{ text: userMessage }]
+                }]
+            }),
+        }
+
+        // Send POST request to API, get response and set the reponse as paragraph text
+        try {
+            const response = await fetch(API_URL, requestOptions);
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error.message);
+
+            // Get the API response text and update the message element
+            messageElement.textContent = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
+        } catch (error) {
+            // Handle error
+            messageElement.classList.add("error");
+            messageElement.textContent = error.message;
+        } finally {
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+        }
+    }
+
+    const handleChat = () => {
+        userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+        if (!userMessage) return;
+
+        // Clear the input textarea and set its height to default
+        chatInput.value = "";
+        chatInput.style.height = `${inputInitHeight}px`;
+
+        // Append the user's message to the chatbox
+        chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+
+        setTimeout(() => {
+            // Display "Thinking..." message while waiting for the response
+            const incomingChatLi = createChatLi("Thinking...", "incoming");
+            chatbox.appendChild(incomingChatLi);
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            generateResponse(incomingChatLi);
+        }, 600);
+    }
+
+    chatInput.addEventListener("input", () => {
+        // Adjust the height of the input textarea based on its content
+        chatInput.style.height = `${inputInitHeight}px`;
+        chatInput.style.height = `${chatInput.scrollHeight}px`;
+    });
+
+    chatInput.addEventListener("keydown", (e) => {
+        // If Enter key is pressed without Shift key and the window
+        // width is greater than 800px, handle the chat
+        if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+            e.preventDefault();
+            handleChat();
+        }
+    });
+
+    sendChatBtn.addEventListener("click", handleChat);
+    closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+    chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+    flatpickr("#inline-calendar", {
+        inline: true,         // Mengatur Flatpickr dalam mode inline
+        enableTime: false,    // Menonaktifkan pilihan waktu, hanya tanggal
+        dateFormat: "Y-m-d",  // Format tampilan tanggal
+        minDate: "today",     // Pilihan tanggal minimal mulai dari hari ini
+        maxDate: new Date().fp_incr(365) // Maksimal 1 tahun ke depan
+    });
+</script>

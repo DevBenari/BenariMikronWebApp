@@ -2,7 +2,6 @@
 using BenariMikronWebApp.Areas.UserManagement.Data;
 using BenariMikronWebApp.Areas.UserManagement.ViewModels;
 using BenariMikronWebApp.Areas.UserManagement.Repositories;
-using BenariMikronWebApp.Areas.UserManagement.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

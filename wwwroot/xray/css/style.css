@@ -550,12 +550,19 @@ a:hover {
 /*---------------------------------------------------------------------
                                Sign In
 -----------------------------------------------------------------------*/
+/*.logo {
+    flex-grow: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
 .sign-in-page {
   height: 100%;
 }
 
 .sign-in-detail {
-  padding: 100px;
+  padding: 80px;
   height: 100vh;
   border-radius: 40px;
 }
@@ -625,24 +632,24 @@ a:hover {
   overflow: hidden;
 }
 
-.sign-in-page .sign-in-page-bg::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 270px;
-  z-index: -1;
-  border-radius: 40px;
-  background: rgba(8, 155, 171, 1);
-  background: -moz-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8, 155, 171, 1)), color-stop(100%, rgba(13, 181, 200, 1)));
-  background: -webkit-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: -o-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: -ms-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: linear-gradient(to right, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#089bab', endColorstr='#0db5c8', GradientType=1);
-}
+    .sign-in-page .sign-in-page-bg::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 270px;
+        right: 0;
+        z-index: -1;
+        border-radius: 40px;
+        background: rgba(8, 56, 64, 1);
+        background: -moz-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8, 56, 64, 1)), color-stop(100%, rgba(8, 56, 64, 1)));
+        background: -webkit-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+        background: -o-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+        background: -ms-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+        background: linear-gradient(to right, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1)) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#083840', endColorstr='#083840', GradientType=1);
+    }
 
 /*---------------------------------------------------------------------
                                Dash Hover
@@ -1528,7 +1535,7 @@ body.sidebar-main .iq-menu-bt-sidebar .iq-menu-bt {
 }
 
 .iq-sub-dropdown .iq-card-icon {
-  width: 45px;
+  width: 4px;
   height: 45px;
   line-height: 45px;
   font-size: 22px;
@@ -1538,14 +1545,14 @@ body.sidebar-main .iq-menu-bt-sidebar .iq-menu-bt {
                               Content Page
 -----------------------------------------------------------------------*/
 .wrapper {
-  background: rgba(8, 155, 171, 1);
-  background: -moz-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8, 155, 171, 1)), color-stop(100%, rgba(13, 181, 200, 1)));
-  background: -webkit-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: -o-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: -ms-linear-gradient(left, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  background: linear-gradient(to right, rgba(8, 155, 171, 1) 0%, rgba(13, 181, 200, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#089bab', endColorstr='#0db5c8', GradientType=1);
+    background: rgba(8, 56, 64, 1);
+    background: -moz-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8, 56, 64, 1)), color-stop(100%, rgba(8, 56, 64, 1)));
+    background: -webkit-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+    background: -o-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+    background: -ms-linear-gradient(left, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+    background: linear-gradient(to right, rgba(8, 56, 64, 1) 0%, rgba(8, 56, 64, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#083840', endColorstr='#083840', GradientType=1);
 }
 
 .content-page {
@@ -1993,13 +2000,18 @@ table.table-box-shadow th {
 }
 
 .iq-card-icon {
-  height: 60px;
-  width: 60px;
-  display: inline-block;
-  line-height: 60px;
-  text-align: center;
-  font-size: 22px;
-  border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    line-height: 60px;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 50%;
+}
+
+.iq-card-icon-header {
+    
+    border-radius: 50%;
 }
 
 /*---------------------------------------------------------------------
@@ -2696,7 +2708,7 @@ table.table-box-shadow th {
 }
 
 .progress-round.patient-progress::after {
-  border: 5px solid #ceebee;
+  border: 5px solid white;
 }
 
 .patient-steps2 .progress-round.patient-progress::after {
@@ -3545,7 +3557,7 @@ button.close-popup {
   position: relative;
   display: block;
   min-height: 1.5rem;
-  padding-left: 1.5rem;
+  /*padding-left: 1.5rem;*/
 }
 
 .custom-radio .custom-control-label::before {

@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="~/xray/images/login/logo-quilvian-2.png" />
+    <link rel="shortcut icon" href="~/xray/images/login/icon-logo.png" />
     <!-- Bootstrap CSS -->
     <link id="bootstrap-css" rel="stylesheet" href="~/xray/css/bootstrap.min.css">
     <!-- Typography CSS -->
@@ -35,7 +35,7 @@
         border-radius: 10%;
     }
 </style>
-<body>
+<body style="background-color: #d8e8e9">
     <!-- loader Start -->
     <div id="loading">
         <div id="loading-center">
@@ -46,61 +46,60 @@
     <section class="sign-in-page">
         <div class="container sign-in-page-bg mt-5 mb-md-5 mb-0 p-0">
             <div class="row no-gutters">
+                <div class="col-md-6 position-relative">
+                    @* <div class="sign-in-from">
+                    <h1 class="mb-0">Sign in</h1>
+                    <p>Enter your email address and password to access admin panel.</p>
+                    <form class="mt-4">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1" class="mb-2">Email address</label>
+                    <input type="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Enter email">
+                    </div>
+                    <div class="d-flex justify-content-between my-2">
+                    <label for="exampleInputPassword1">Password</label>
+                    <a href="pages-recoverpw.html" class="float-end">Forgot password?</a>
+                    </div>
+                    <input type="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
+                    <div class="d-flex w-100 justify-content-between  align-items-center mt-3 w-100">
+                    <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Remember Me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-end">Sign in</button>
+                    </div>
+                    <div class="sign-info">
+                    <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="sign-up.html">Sign up</a></span>
+                    <ul class="iq-social-media">
+                    <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
+                    <li><a href="#"><i class="ri-twitter-line"></i></a></li>
+                    <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+                    </ul>
+                    </div>
+                    </form>
+                    </div> *@
+                    @RenderBody()
+                </div>
                 <div class="col-md-6 text-center">
                     <div class="sign-in-detail text-white">
                         @* <a class="sign-in-logo mb-5"><img src="~/login/images/logo-login-mikron.png" class="img-fluid" alt="logo"></a> *@
                         <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
-                            <div class="item">
-                                <img src="~/xray/images/login/logo-quilvian-2.png" class="img-fluid mb-4 img-login" alt="logo">
-                                <h4 class="mb-1 text-white">Manage your orders</h4>
-                                <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                            <div class="item logo" style="margin-top: 15%;">
+                                <img src="~/xray/images/login/logoq-login.png" class="img-fluid mb-4 img-login" alt="logo">
                             </div>
                             @* <div class="item">
-                                <img src="~/xray/images/login/2.png" class="img-fluid mb-4" alt="logo">
-                                <h4 class="mb-1 text-white">Manage your orders</h4>
-                                <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                            <img src="~/xray/images/login/2.png" class="img-fluid mb-4" alt="logo">
+                            <h4 class="mb-1 text-white">Manage your orders</h4>
+                            <p>It is a long established fact that a reader will be distracted by the readable content.</p>
                             </div>
                             <div class="item">
-                                <img src="~/xray/images/login/3.png" class="img-fluid mb-4" alt="logo">
-                                <h4 class="mb-1 text-white">Manage your orders</h4>
-                                <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                            <img src="~/xray/images/login/3.png" class="img-fluid mb-4" alt="logo">
+                            <h4 class="mb-1 text-white">Manage your orders</h4>
+                            <p>It is a long established fact that a reader will be distracted by the readable content.</p>
                             </div> *@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 position-relative">
-                    @* <div class="sign-in-from">
-                        <h1 class="mb-0">Sign in</h1>
-                        <p>Enter your email address and password to access admin panel.</p>
-                        <form class="mt-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="mb-2">Email address</label>
-                                <input type="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Enter email">
-                            </div>
-                            <div class="d-flex justify-content-between my-2">
-                                <label for="exampleInputPassword1">Password</label>
-                                <a href="pages-recoverpw.html" class="float-end">Forgot password?</a>
-                            </div>
-                            <input type="password" class="form-control mb-0" id="exampleInputPassword1" placeholder="Password">
-                            <div class="d-flex w-100 justify-content-between  align-items-center mt-3 w-100">
-                                <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember Me</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary float-end">Sign in</button>
-                            </div>
-                            <div class="sign-info">
-                                <span class="dark-color d-inline-block line-height-2">Don't have an account? <a href="sign-up.html">Sign up</a></span>
-                                <ul class="iq-social-media">
-                                    <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
-                                    <li><a href="#"><i class="ri-twitter-line"></i></a></li>
-                                    <li><a href="#"><i class="ri-instagram-line"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div> *@
-                    @RenderBody()
-                </div>
+                
                 @if (IsSectionDefined("Scripts"))
                 {
                     @RenderSection("Scripts", required: true)

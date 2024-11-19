@@ -23,11 +23,13 @@
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="~/xray/css/responsive.css">
     <!-- Full calendar -->
-    <link href='~/xray/fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='~/xray/fullcalendar/daygrid/main.css' rel='stylesheet' />
-    <link href='~/xray/fullcalendar/timegrid/main.css' rel='stylesheet' />
-    <link href='~/xray/fullcalendar/list/main.css' rel='stylesheet' />
-    <link rel="~/xray/stylesheet" href="~/xray/css/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <!-- Chatbox -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+
 </head>
 <body>
     <!-- loader Start -->
@@ -42,8 +44,8 @@
         <div class="iq-sidebar">
             <div class="iq-sidebar-logo d-flex justify-content-between">
                 <a href="index.html">
-                    <img src="~/xray/images/login/logo-quilvian.jpg" class="img-fluid" alt="">
-                    <span>MMC</span>
+                    <img src="~/xray/images/icon-dashboard.png" class="img-fluid" alt="">
+                    @* <span>Quilvian</span> *@
                 </a>
                 <div class="iq-menu-bt-sidebar">
                     <div class="iq-menu-bt align-self-center">
@@ -58,117 +60,108 @@
                 <nav class="iq-sidebar-menu">
                     <ul class="iq-menu">
                         <li class="active">
-                            <a href="" class="iq-waves-effect"><i class="ri-group-fill"></i><span> Dashboard</span></a>
+                            <a asp-action="Index" is-active-route asp-controller="Home" class="iq-waves-effect"><i class="ri-speed-up-line"></i><span> Dashboard</span></a>
                         </li>
-                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="PatientRegistration"><i class="ri-user-add-fill"></i><span>Pendaftaran Pasien</span></a></li>
-                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><i class="ri-hospital-fill"></i><span>Management Kesehatan</span></a></li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-3-fill"></i><span>Mandiri In Health</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-file-list-line"></i><span>Admisi</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-git-merge-fill"></i> Mapping Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-star-line"></i>Claim In Health</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-guide-line"></i>Konfigurasi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Pharmacy">Pendaftaran Pasien</a></li>
                             </ul>
                         </li>
-                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><i class="ri-ball-pen-fill"></i><span>Administrasi</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Insurance" asp-area="Administration"><span><i class="ri-shield-check-line"></i>Asuransi</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-money-dollar-box-line"></i>Kasir</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="UserManagement"><span><i class="ri-stethoscope-fill"></i>Dokter</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-dossier-line"></i>Rawat Jalan</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-hotel-bed-fill"></i>Rawat Inap</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-medicine-bottle-line"></i>Farmasi</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-pulse-line"></i>IGD</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-heart-pulse-fill"></i>ICU</span></a></li>
+                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HealthManagement"><span><i class="ri-team-line"></i>CRM</span></a></li>
+
                         <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Departments</span></li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>Farmasi</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-home-heart-fill"></i><span>Pelayanan Medik</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Pharmacy"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-fill"></i>Transaksi</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-calendar-todo-fill"></i>Antrian</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="Pharmacy">Instalasi Rawat Intensif</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Instalasi Kamar Bedah</a></li>
+                                @* <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-calendar-todo-fill"></i>Antrian</a></li>
                                 <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-follow-fill"></i>Konfirm Pasien Pulang</a></li>
                                 <li><a asp-action ="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-qr-code-fill"></i>Plasma Resep Elektronik</a></li>
                                 <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-guide-line"></i>Konfigurasi</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></l i>*@
                             </ul>
                         </li>
                         
-                        <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="AccountingAndFinancial" class="iq-waves-effect"><i class="ri-bank-fill"></i><span>Akunting & Keuangan</span></a></li>
+                        @* <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="AccountingAndFinancial" class="iq-waves-effect"><i class="ri-bank-fill"></i><span>Akunting & Keuangan</span></a></li> *@
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>SDM</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-heart-pulse-line"></i><span>Penunjang Medik</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-add-line"></i> Rekrut Karyawan</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-user-fill"></i>Absensi Karyawan</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-award-fill"></i>Benefit Karyawan</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-money-dollar-circle-fill"></i>Payroll</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-box-line"></i>Performa Karyawan</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-star-line"></i>Pelatihan Karyawan</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-calendar-todo-fill"></i>Agenda Karyawan</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Instalasi Farmasi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Instalasi Laboratorium</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Unit Radiologi</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Unit Gizi Medik</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Unit Gizi Medik</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Unit Rehabilitasi Medik</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-customer-service-2-fill"></i><span>Customer Service</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-nurse-line"></i><span>Keperawatan</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-search-line"></i> Mesin Pencari</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-information-fill"></i>Informasi</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-message-2-line"></i>SMS</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"> Instalasi Rawat Jalan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"> Instalasi Rawat Inap</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>Purchasing</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-bar-chart-2-line"></i><span>Sales</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-exchange-fill"></i> Management Aset</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-shopping-cart-2-line"></i>Pengadaan Aset</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-warning-fill"></i>Permintaan Aset</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-delete-bin-line"></i>Pembuangan Aset</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Unit Assurance Relation</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"> Unit Sales</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-government-fill"></i><span>Pajak & Legalitas</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-voice-line"></i><span>Marketing <br /> Komunikasi</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-ball-pen-fill"></i> Administrasi</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-building-line"></i>Kerjasama</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-shield-2-line"></i>Legalitas</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-add-fill"></i>Pembuatan Dokumen</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-search-fill"></i>Pemeriksaan Pajak</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-align-bottom"></i>Pemasukan Pajak</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Unit Marketing</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"> Unit Komunikasi & Proses</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-building-2-fill"></i><span>Warehouse</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-cash-line"></i><span>Keuangan</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-fill"></i> Transaksi</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-guide-line"></i>Konfigurasi</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Unit Account Recepable</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"> Unit Pembelian</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-computer-fill"></i><span>IT Support</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-secure-payment-fill"></i><span>Akunting</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-database-line"></i> Master Data</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-bar-chart-fill"></i> Transaksi Aset </a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-coupon-fill"></i>Support Ticket</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-file-chart-fill"></i>Laporan</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Unit Pembayaran & Kas</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"> Unit Reporting & Pajak</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-lock-unlock-line"></i><span>Umum</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">-</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">-</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-admin-fill"></i><span>Sumber <br /> Daya Manusia</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                            <ul class="iq-submenu">
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Unit Kepegawaian</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth">Unit Pendidikan & Pelatihan</a></li>
                             </ul>
                         </li>
                         <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>User</span></li>
                         <li>
                             <a href="javascript:void(0);" class="iq-waves-effect"><i class="ri-user-settings-fill"></i><span>Kelola Pengguna</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                             <ul class="iq-submenu">
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="MandiriInHealth"><i class="ri-dashboard-line"></i>Dashboard</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-user-add-line"></i> Registrasi User</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-account-circle-fill"></i> Role User </a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-community-fill"></i>Departement User</a></li>
-                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment"><i class="ri-settings-3-fill"></i>Setting</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="UserManagement">Dashboard</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Registrasi User</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Role User </a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Departement User</a></li>
+                                <li><a asp-action="Index" is-active-route asp-controller="Dashboard" asp-area="HumanResourceDevelopment">Setting</a></li>
                             </ul>
                         </li>
                         <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Integrasi</span></li>
@@ -210,25 +203,6 @@
                         </div>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto navbar-list">
-                                <li class="nav-item">
-                                    <a class="search-toggle iq-waves-effect language-title" href="#"><img src="~/xray/images/small/flag-01.png" alt="img-flaf" class="img-fluid me-1" style="height: 16px; width: 16px;" /> English <i class="ri-arrow-down-s-line"></i></a>
-                                    <div class="iq-sub-dropdown">
-                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-02.png" alt="img-flaf" class="img-fluid me-2" />French</a>
-                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-03.png" alt="img-flaf" class="img-fluid me-2" />Spanish</a>
-                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-04.png" alt="img-flaf" class="img-fluid me-2" />Italian</a>
-                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-05.png" alt="img-flaf" class="img-fluid me-2" />German</a>
-                                        <a class="iq-sub-card" href="#"><img src="~/xray/images/small/flag-06.png" alt="img-flaf" class="img-fluid me-2" />Japanese</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0);" class="rtl-switch-toogle">
-                                        <span class="form-check form-switch">
-                                            <input class="form-check-input rtl-switch" type="checkbox" role="switch" id="rtl-switch">
-                                            <span class="rtl-toggle-tooltip ltr-tooltip">Ltr</span>
-                                            <span class="rtl-toggle-tooltip rtl-tooltip">Rtl</span>
-                                        </span>
-                                    </a>
-                                </li>
                                 <li class="nav-item iq-full-screen">
                                     <a href="#" class="iq-waves-effect" id="btnFullscreen"><i class="ri-fullscreen-line"></i></a>
                                 </li>
@@ -370,7 +344,7 @@
                         <ul class="navbar-list">
                             <li>
                                 <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                                    <img src="~/xray/images/doctor/1.png" class="img-fluid rounded" alt="user">
+                                    <img src="~/xray/images/doctor/6.png" class="img-fluid rounded" alt="user">
                                     <div class="caption" style="margin-left: 5px;">
                                         <h6 class="mb-0 line-height">Alisha Nicholl</h6>
                                         <span class="font-size-12">Available</span>
@@ -502,8 +476,6 @@
     <script src="~/xray/js/animated.js"></script>
     <!-- am kelly JavaScript -->
     <script src="~/xray/js/kelly.js"></script>
-    <!-- Flatpicker Js -->
-    <script src="~/xray/js/flatpickr.js"></script>
     <!-- Chart Custom JavaScript -->
     <script src="~/xray/js/chart-custom.js"></script>
     <!-- Custom JavaScript -->

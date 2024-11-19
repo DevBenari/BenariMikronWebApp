@@ -1,128 +1,833 @@
 ﻿@{
-    ViewData["Title"] = "Master Data Asuransi";
-    Layout = "~/Views/Shared/_TopNavbarAdministration.cshtml";
+    ViewData["Title"] = "Dashboard User";
 }
 
-@using BenariMikronWebApp.Areas.Identity.Data;
-@using Microsoft.AspNetCore.Identity;
-@using BenariMikronWebApp.Areas.Administration.Models;
-
-@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
-@model IEnumerable<Insurance>
-
-<!-- Main content -->
-<section class="content">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <div class="card card-orange">
-                <div class="card-header">
-                    <h3 class="card-title" style="color:#ffffff">@ViewBag.Title</h3>
+        <div class="col-lg-6">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title">Form Pengajuan Klaim</h4>
+                    </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">                    
-                    <div class="row">                        
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                @if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator") || signInManager.IsSignedIn(User) && User.IsInRole("TambahPasienBaru"))
-                                {
-                                    <a class="btn bg-orange" asp-action="CreateInsurance" asp-controller="Insurance" asp-area="Administration">
-                                        <div style="color:#ffffff">Tambah</div>
+                <div class="iq-card-body">
+                    <div class="row">
+                        @* <div class="col-md-4">
+                            <ul id="top-tabbar-vertical" class="p-0">
+                                <li class="active" id="personal">
+                                    <a href="javascript:void();">
+                                        <i class="ri-user-fill text-primary"></i><span>Pasien</span>
                                     </a>
-                                }
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="input-group date" id="dateRange" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Tanggal Awal Pencarian..."/>
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </li>
+                                <li id="contact">
+                                    <a href="javascript:void();">
+                                        <i class="ri-shield-check-fill text-danger"></i><span>Asuransi</span>
+                                    </a>
+                                </li>
+                                <li id="official">
+                                    <a href="javascript:void();">
+                                        <i class="ri-file-paper-line text-success"></i><span>Administrasi</span>
+                                    </a>
+                                </li>
+                                <li id="payment">
+                                    <a href="">
+                                        <i class="ri-stethoscope-fill text-warning"></i><span>Medis</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> *@
+                        <div class="col-md-12">
+                            <form id="form-wizard3" class="text-center">
+                                <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="form-card text-start">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="mb-4">Informasi Pasien:</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class=" row">
+                                                    <div class="col-lg-8">
+                                                        <div class="form-group">
+                                                            <label for="nama_lengkap" class="mb-2">Nama Lengkap: *</label>
+                                                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" required="required" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label class="my-2">Gender: *</label>
+                                                            <div class="form-check d-flex justify-content-between ml-2">
+                                                                <div class="custom-control custom-radio custom-control-inline me-5">
+                                                                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio1"> Male</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio custom-control-inline me-5">
+                                                                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                                    <label class="custom-control-label" for="customRadio2"> Female</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @* <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="nomer_identitas" class="my-2">Nomor Polis: *</label>
+                                                            <input type="text" class="form-control" id="nomer_identitas" name="nomer_identitas" placeholder="Nomor Identitas" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="no_rekam_medis" class="my-2">Nomor Rekam Medis: *</label>
+                                                            <input type="email" class="form-control" id="no_rekam_medis" name="no_rekam_medis" placeholder="Nomor Rekam Medis" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> *@
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="birthday" class="mb-2">Tanggal Lahir: *</label>
+                                                            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Nama Lengkap" required="Tanggal Lahir" />
+                                                        </div>
+                                                        @* <div class="form-group">
+                                                            <label for="tanggal_lahir" class="my-2">Tanggal Lahir: *</label>
+                                                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir" />
+                                                        </div> *@
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="nama_lengkap" class="mb-2">Nomor Polis: *</label>
+                                                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama Lengkap" required="required" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="alamat" class="my-2">Alamat</label>
+                                                    <textarea class="form-control" id="alamat" name="alamat"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="no_hp" class="my-2">nomor Handphone: *</label>
+                                                            <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Handphone" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="hubungan_polois" class="my-2">Hubungan dengan Polis: *</label>
+                                                            <select class="form-control" id="hubungan_polis">
+                                                                <option selected="" disabled="">--Pilih--</option>
+                                                                <option>Pribadi</option>
+                                                                <option>Keluarga</option>
+                                                                <option>Perusahaan</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Tanggal Akhir Pencarian..." />
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fa fa-search"></i>
-                                        </button>
+                                    <button id="submit" type="button" name="next" class="btn btn-primary next action-button float-end mt-3" value="Next">Next</button>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card text-start">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="mb-4">Informasi Pemegang Polis:</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <div class="form-group">
+                                                            <label for="nama_pemegang">Nama Pemegang Polis: </label>
+                                                            <input type="text" class="form-control" id="nama_pemegang" name="nama_pemegang" placeholder="Nama Pemegang Solois" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="nomor_polis">Nomor Polis Asuransi: *</label>
+                                                            <input type="text" class="form-control" id="nomor_polis" name="nomor_polis" placeholder="Nomor Polis Asuransi" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="nama_asuransi">Nama Perusahaan Asuransi: *</label>
+                                                    <input type="text" class="form-control" id="nama_asuransi" name="nama_asuransi" placeholder="Nama Perusahaan Asuransi" />
+                                                </div>
+                                            </div>
+                                            @* <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="jenis_asuransi" class="my-2">Jenis Asuransi: *</label>
+                                                            <select class="form-control" id="jenis_asuransi">
+                                                                <option selected="" disabled="">--Pilih--</option>
+                                                                <option>Asuransi Kesehatan</option>
+                                                                <option>Asuransi Jiwa</option>
+                                                                <option>Asuransi Perusahaan</option>
+                                                                <option>Asuransi Kecelakaan Diri</option>
+                                                                <option>Asuransi Perjalanan</option>
+                                                                <option>Asuransi Pendidikan</option>
+                                                                <option>Asuransi Kesehatan Digital </option>
+                                                                <option>Asuransi khusus</option>
+                                                                <option>Asuransi Perusahaan</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="masa_berlaku" class="my-2">Masa Berlaku Polis: *</label>
+                                                            <input type="date" class="form-control" id="masa_berlaku" name="masa_berlaku" placeholder="Masa Berlaku" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> *@
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <button type="button" name="next" class="btn btn-primary next action-button float-end" value="Next">Next</button>
+                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-end me-3" value="Previous">Previous</button>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card text-start">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="mb-4">Perawatan Medis:</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="tgl_masuk">Tanggal Masuk: *</label>
+                                                            <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" placeholder="Tanggal Masuk" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="tgl_keluar">Tanggal Keluar: *</label>
+                                                            <input type="date" class="form-control" id="tgl_keluar" name="tgl_keluar" placeholder="Tanggal Keluar" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="nama_rs" class="my-2">Nama Rumah Sakit: *</label>
+                                                            <input type="text" class="form-control" id="nama_rs" name="nama_rs" placeholder="Nama Rumah Sakit" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="nama_dokter" class="my-2">Nama Dokter yang Menangani: *</label>
+                                                            <input type="text" class="form-control" id="nama_dokter" name="nama_dokter" placeholder="Nama Dokter" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="diagnosa" class="my-2">Alasan Perawatan/ Diagnosa Medis: *</label>
+                                                    <textarea class="form-control" id="diagnosa" name="diagnosa"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="jenis_perawatan" class="my-2">Jenis Perawatan: *</label>
+                                                            <select class="form-control" id="jenis_perawatan">
+                                                                <option selected="" disabled="">--Pilih--</option>
+                                                                <option>Rawat Inap</option>
+                                                                <option>Rawat Jalan</option>
+                                                                <option>Tindakan Medis</option>
+                                                                <option>Konsultasi</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="rincian_priksa" class="my-2">Rincian Pemeriksaan</label>
+                                                            <input type="file" class="form-control" id="rincian_priksa" name="rincian_priksa" placeholder="Rincian Pemeriksaan" />
+                                                        </div>
+                                                    </div>
+                                                   @*  <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <label for="rincian_priksa" class="my-2">Rincian Pemeriksaan</label>
+                                                                    <input type="file" class="form-control" id="rincian_priksa" name="rincian_priksa" placeholder="Rincian Pemeriksaan" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> *@
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" name="next" class="btn btn-primary next action-button float-end" value="Next">Next</button>
+                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-end me-3" value="Previous">Previous</button>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card text-start">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="mb-4">Rincian Pemeriksaan:</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="rincian_biaya" class="my-2">Rincian Biaya Rawat Inap: *</label>
+                                                            <input type="file" class="form-control" id="rincian_biaya" name="rincian_biaya" placeholder="Rincian Biaya Rawat Inap" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="biaya_dokter" class="my-2">Biaya Jasa Dokter: *</label>
+                                                            <input type="file" class="form-control" id="biaya_dokter" name="biaya_dokter" placeholder="Rincian Biaya Dokter" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="biaya_obat" class="my-2">Biaya Obat-Obatan: *</label>
+                                                            <input type="file" class="form-control" id="biaya_obat" name="biaya_obat" placeholder="Rincian Biaya Obat" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="biaya_pemeriksaan" class="my-2">Biaya Pemeriksaan: *</label>
+                                                            <input type="file" class="form-control" id="biaya_pemeriksaan" name="biaya_pemeriksaan" placeholder="Rincian Biaya Pemeriksaan" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="total_biaya" class="my-2">Total Biaya Perawatan: *</label>
+                                                    <input type="text" class="form-control" id="total_biaya" name="total_biaya" placeholder="Total Biaya Pmeeriksaan" />
+                                                </div>
+                                            </div>
+                                            @* <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="tagihan" class="my-2">Tagihan/ Bukti Pembayaran: *</label>
+                                                    <input type="file" class="form-control" id="tagihan" name="tagihan" placeholder="Tagihan/ Bukti Pembayaran" />
+                                                </div>
+                                            </div> *@
+                                        </div>
+                                    </div>
+                                    <button type="button" name="next" class="btn btn-primary next action-button float-end" value="Next">Next</button>
+                                   @*  <a class="btn btn-primary action-button float-end" href="form-wizard-vertical.html">Submit</a> *@
+                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-end me-3" value="Previous">Previous</button>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card text-start">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="mb-4">Pernyataan & Tanda Tangan:</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox" style="margin-left: 3%;">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" Checked="">
+                                                        <label class="custom-control-label" for="customCheck2">Menyatakan Informasi yang diberikan adalah benar </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="ttd_pasien" class="my-2">Pasien: *</label>
+                                                            <input type="text" class="form-control" id="ttd_pasien" name="ttd_pasien" placeholder="Nama Pasien" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p>Silakan tanda tangan di bawah:</p>
+                                                            <canvas class="signatureCanvas w-100" height="200"></canvas><br>
+                                                            <div class="buttons">
+                                                                <button type="button" class="btn btn-warning mb-3" onclick="clearCanvas()">Hapus</button>
+                                                                <button type="button" class="btn btn-primary mb-3" onclick="saveSignature()">Simpan</button>
+                                                            </div>
+                                                            <input type="hidden" id="signatureData" name="signature">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="ttd_dokter" class="my-2">Dokter: *</label>
+                                                            <input type="text" class="form-control" id="ttd_dokter" name="ttd_dokter" placeholder="Nama Dokter" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p>Silakan tanda tangan di bawah:</p>
+                                                            <canvas class="signatureCanvas w-100" height="200"></canvas><br>
+                                                            <div class="buttons">
+                                                                <button type="button" class="btn btn-warning mb-3" onclick="clearCanvas()">Hapus</button>
+                                                                <button type="button" class="btn btn-primary mb-3" onclick="saveSignature()">Simpan</button>
+                                                            </div>
+                                                            <input type="hidden" id="signatureData" name="signature">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="ttd_petugas" class="my-2">Petugas Input Data: *</label>
+                                                            <input type="text" class="form-control" id="ttd_petugas" name="ttd_petugas" placeholder="Nama Petugas" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <p>Silakan tanda tangan di bawah:</p>
+                                                            <canvas class="signatureCanvas w-100" height="200"></canvas><br>
+                                                            <div class="buttons">
+                                                                <button type="button" class="btn btn-warning mb-3" onclick="clearCanvas()">Hapus</button>
+                                                                <button type="button" class="btn btn-primary mb-3" onclick="saveSignature()">Simpan</button>
+                                                            </div>
+                                                            <input type="hidden" id="signatureData" name="signature">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <p>Upload Cap Rumah Sakit:</p>
+                                                    <img id="capPreview" class="cap-image" alt="Cap Rumah Sakit" style="display: none;">
+                                                    <input type="file" id="uploadCap" accept="image/*" onchange="previewCap()" />
+                                                </div>
+                                            </div>
+                                            @* <div class="col-md-12">
+                                            <div class="form-group">
+                                            <label for="tagihan" class="my-2">Tagihan/ Bukti Pembayaran: *</label>
+                                            <input type="file" class="form-control" id="tagihan" name="tagihan" placeholder="Tagihan/ Bukti Pembayaran" />
+                                            </div>
+                                            </div> *@
+                                        </div>
+                                    </div>
+                                   
+                                     <a class="btn btn-primary action-button float-end" href="form-wizard-vertical.html">Submit</a>
+                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-end me-3" value="Previous">Previous</button>
+                                </fieldset>
+                            </form>
                         </div>
-                        <div class="form-group col-md-5">
-                            <div class="form-group">
-                                <select class="form-control select2" style="width: 100%;" id="daterange-btn">
-                                    <option value="" hidden disabled selected>Pencarian Berdasarkan Waktu</option>
-                                    <option value="0">Semua Waktu</option>
-                                    <option value="30">30 Hari (1 Bulan)</option>
-                                    <option value="60">60 Hari (2 Bulan)</option>
-                                    <option value="90">90 Hari (3 Bulan)</option>
-                                    <option value="120">120 Hari (4 Bulan)</option>
-                                </select>
-                            </div>
-                        </div>                        
-                    </div>
-
-                    <div class="card-body table-responsive p-0">
-                        <table id="tblPendaftaranPasienBaru" class="table table-hover table-head-fixed text-nowrap">
-                            <thead>
-                                <tr style="text-align:center">
-                                    <th>No</th>
-                                    <th>Kode Penjamin</th>
-                                    <th>Mulai Kerjasama</th>
-                                    <th>Akhir Kerjasama</th>                                    
-                                    <th>Tipe Perusahaan</th>
-                                    <th>Nama Perusahaan</th>
-                                    <th>Alamat</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody style="text-align:center;">
-                                @foreach (var asuransi in Model)
-                                {
-                                    <tr>
-                                        <td></td>
-                                        <td>@asuransi.KodeAsuransi</td>
-                                        <td>@asuransi.MulaiKerjasama</td>
-                                        <td>@asuransi.AkhirKerjasama</td>                                        
-                                        <td>@asuransi.TipePerusahaan</td>
-                                        <td>@asuransi.NamaPerusahaan</td>
-                                        <td>@asuransi.Alamat</td>
-                                        <td>@asuransi.Status</td>
-                                        @*<td>
-                                            <a asp-action="DetailPrincipal" asp-controller="Penjamin" asp-route-id="@penjamin.Id" class="btn bg-orange"><i class="ion-eye" style="color:white"></i></a>
-                                            <a asp-action="EditPrincipal" asp-controller="Penjamin" asp-route-id="@penjamin.Id" class="btn bg-orange"><i class="ion-edit"></i></a>
-                                            <a asp-action="DeletePrincipal" asp-controller="Penjamin" asp-route-id="@penjamin.Id" class="btn bg-orange"><i class="ion-trash-b"></i></a>
-                                        </td>*@
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
                     </div>
                 </div>
-                <!-- /.card-body -->
-                @if (TempData["SuccessMessage"] != null)
-                {
-                    <script type="text/javascript">
-                        window.onload = function () {
-                            swal("Berhasil", '@TempData["SuccessMessage"]', "success");
-                        };
-                    </script>
-                }
             </div>
-            <!-- /.card -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">3 Asuransi dengan Kinerja Terbaik </h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body" style="margin-top: -3%;">
+                            <div id="rowChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Klaim History</h4>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive-md w-100">
+                            <div class="iq-search-bar d-flex justify-content-end">
+                                <form action="#" class="searchbox">
+                                    <input type="text" class="text search-input" placeholder="Type here to search...">
+                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                </form>
+                            </div>
+                            <table class="table table-bordered table-striped text-center mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama Pasien</th>
+                                        <th>Provider Asuransi</th>
+                                        <th>Klaim ID</th>
+                                        <th>Tanggal Klaim</th>
+                                        <th>Tanggal Selesai Klaim</th>
+                                        <th>Jenis Kebijakan</th>
+                                        <th>Klaim Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Rosa Maharani</td>
+                                        <td>Prudential</td>
+                                        <td>P001</td>
+                                        <td>12/11/2024</td>
+                                        <td>18/11/2024</td>
+                                        <td>Kesehatan</td>
+                                        <td class="text-success">Diterima</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Andika Galih</td>
+                                        <td>Prudential</td>
+                                        <td>P002</td>
+                                        <td>12/07/2024</td>
+                                        <td>12/08/2024</td>
+                                        <td>Kesehatan</td>
+                                        <td class="text-danger">Ditolak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Galih Utama</td>
+                                        <td>AXA</td>
+                                        <td>A001</td>
+                                        <td>01/02/2024</td>
+                                        <td>09/02/2024</td>
+                                        <td>Kesehatan</td>
+                                        <td class="text-warning">Sedang Diproses</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Syeha Amanda</td>
+                                        <td>AXA</td>
+                                        <td>A002</td>
+                                        <td>01/02/2024</td>
+                                        <td>09/02/2024</td>
+                                        <td>Kesehatan</td>
+                                        <td class="text-warning">Sedang Diproses</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Manda Abigail</td>
+                                        <td>BNI Life Insurance</td>
+                                        <td>B001</td>
+                                        <td>01/12/2023</td>
+                                        <td>09/12/2023</td>
+                                        <td>Kecelakaan</td>
+                                        <td class="text-success">Diterima</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Group Type Provider</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <div id="custom-angle-circle"></div>
+                            @* <div class="text-end text-primary">Lihat Detail<i class="ri-arrow-right-line"></i></div> *@
+                            @* <div class="alert alert-secondary mb-1 " role="alert">
+                                <div class="d-flex justify-content-between w-100">
+                                    <div class="text-start ">
+                                        <h8 class="mb-0">22</h8>
+                                        <br />
+                                        <h8 class="">Total Asuransi</h8>
+                                    </div>
+                                    <div class="text-end">
+                                        <h8 class="mb-0">10</h8>
+                                        <br />
+                                        <h8 class="">jenis Asuransi</h8>
+                                    </div>
+                                </div>
+                            </div> *@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Klaim History</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <div id="chart"></div>
+                            <div class="text-end text-primary">Lihat Detail<i class="ri-arrow-right-line"></i></div>
+                            <div class="alert alert-secondary mb-1 " role="alert">
+                                <div class="d-flex justify-content-between w-100">
+                                    <div class="text-start ">
+                                        <h8 class="mb-0">22</h8>
+                                        <br />
+                                        <h8 class="">Total Asuransi</h8>
+                                    </div>
+                                    <div class="text-end">
+                                        <h8 class="mb-0">10</h8>
+                                        <br />
+                                        <h8 class="">Jenis Asuransi</h8>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- /.row -->
-</section>
-<!-- /.content -->
-@section Scripts{
-    <script src="~/js/serverpendaftaran.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<style>
+    canvas {
+        border: 1px solid #000;
+        cursor: crosshair;
+    }
+    .cap-image {
+        display: block;
+        margin-bottom: 10px;
+        width: 120px; /* Atur ukuran cap */
+        height: 120px;
+    }
+</style>
+<script>
+    var options = {
+        series: [44, 55, 41],
+        labels: ['On-Process', 'Klaim Disetujui', 'Klaim Ditolak'],
+        colors: ['#fc9e5b', '#089bab', '#d84a45'],
+        chart: {
+            type: 'donut',
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
 
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
 
-}
+    var options = {
+        series: [44, 55, 13, 43, 22, 11, 98, 76, 44, 20],
+        chart: {
+            width: 400,
+            type: 'pie',
+        },
+        labels: ['Klaim Non-Tunai', 'Klaim Sebagian', 'Klaim Penyakit Kritis', 'Klaim Tunjangan Harian', 'Klaim Bersalin', 'Klaim Pra & Pasca Rawat Inap', 
+        'Klaim Rawat Jalan', 'Klaim Gigi dan Penglihatan', 'Klaim Perawatan di Rumah', 'Klaim Kelebihan', 'Klaim Penggatian'],
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+
+    var chart = new ApexCharts(document.querySelector("#custom-angle-circle"), options);
+    chart.render();
+
+    // var options = {
+    //     series: [76, 67, 61],
+    //     chart: {
+    //         height: 300,
+    //         type: 'radialBar',
+    //     },
+    //     plotOptions: {
+    //         radialBar: {
+    //             offsetY: 0,
+    //             startAngle: 0,
+    //             endAngle: 270,
+    //             hollow: {
+    //                 margin: 5,
+    //                 size: '30%',
+    //                 background: 'transparent',
+    //                 image: undefined,
+    //             },
+    //             dataLabels: {
+    //                 name: {
+    //                     show: false,
+    //                 },
+    //                 value: {
+    //                     show: false,
+    //                 }
+    //             },
+    //             barLabels: {
+    //                 enabled: true,
+    //                 useSeriesColors: true,
+    //                 offsetX: -8,
+    //                 fontSize: '16px',
+    //                 formatter: function (seriesName, opts) {
+    //                     return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
+    //                 },
+    //             },
+    //         },
+    //     },
+    //     colors: ['#fc9e5b', '#089bab', '#d84a45'],
+    //     labels: ['Individu', 'Keluarga', 'Perusahaan'],
+    //     responsive: [
+    //         {
+    //             breakpoint: 300,
+    //             options: {
+    //                 legend: {
+    //                     show: false,
+    //                 },
+    //             },
+    //         },
+    //     ],
+    // };
+
+    // Render chart using Pure JavaScript
+    // var chart = new ApexCharts(document.querySelector("#custom-angle-circle"), options);
+    // chart.render();
+
+    var options = {
+        chart: {
+            type: 'bar',
+            height: 200,
+            toolbar: {
+                show: false // Hides the menu on the top right
+            }
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true // Creates a horizontal bar chart
+            }
+        },
+        colors: ['#089bab'],
+        dataLabels: {
+            enabled: true, // Shows data labels inside the bars
+            formatter: function (val) {
+                return val + "%"; // Appends % to the data label
+            }
+        },
+        series: [{
+            name: 'Performance',
+            data: [70, 85, 60] // Example data values in percentages
+        }],
+        xaxis: {
+            categories: ['Klaim Non-Tunai', 'Prudential', 'BNI Life'] // Labels for each bar
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#rowChart"), options);
+    chart.render();
+
+</script>
+<script>
+    // Inisialisasi kanvas tanda tangan
+    const canvases = document.querySelectorAll(".signatureCanvas");
+    const dataFields = document.querySelectorAll(".signatureData");
+
+    // Fungsi untuk memulai menggambar di kanvas tertentu
+    canvases.forEach((canvas, index) => {
+        const ctx = canvas.getContext("2d");
+        let drawing = false;
+
+        canvas.addEventListener("mousedown", () => drawing = true);
+        canvas.addEventListener("mouseup", () => {
+            drawing = false;
+            ctx.beginPath();
+        });
+        canvas.addEventListener("mousemove", (event) => draw(event, canvas, ctx, drawing));
+    });
+
+    // Fungsi menggambar
+    function draw(event, canvas, ctx, drawing) {
+        if (!drawing) return;
+
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "black";
+
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(event.offsetX, event.offsetY);
+    }
+
+    // Fungsi untuk menghapus kanvas
+    function clearCanvas(index) {
+        const ctx = canvases[index].getContext("2d");
+        ctx.clearRect(0, 0, canvases[index].width, canvases[index].height);
+    }
+
+    // Fungsi untuk menyimpan tanda tangan
+    function saveSignature(index) {
+        const dataURL = canvases[index].toDataURL("image/png");
+        console.log(`Tanda tangan form ${index + 1} telah disimpan!`);
+        console.log("Data URL:", dataURL); // Bisa dikirim ke server
+        alert(`Tanda tangan form ${index + 1} telah disimpan!`);
+    }
+
+    // Fungsi untuk preview gambar cap
+    function previewCap() {
+        const fileInput = document.getElementById("uploadCap");
+        const capPreview = document.getElementById("capPreview");
+
+        const file = fileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                capPreview.src = e.target.result; // Set gambar ke hasil upload
+                capPreview.style.display = "block"; // Tampilkan gambar
+            };
+
+            reader.readAsDataURL(file); // Membaca file sebagai data URL
+        }
+    }
+
+    // Fungsi submit form
+    document.getElementById("signatureForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const capPreview = document.getElementById("capPreview");
+        if (!capPreview.src || capPreview.style.display === "none") {
+            alert("Silakan upload cap rumah sakit terlebih dahulu.");
+            return;
+        }
+
+        alert("Form berhasil disubmit!");
+        // Data gambar cap dapat diambil dari capPreview.src dan dikirim ke server
+    });
+</script>

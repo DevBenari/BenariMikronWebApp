@@ -6282,19 +6282,19 @@ if (jQuery("#home-chart-03").length) {
 
         chart.data = [
             {
-                country: "USA",
+                shift: "Pagi",
                 value: 401
             },
             {
-                country: "India",
+                shift: "Siang",
                 value: 300
             },
             {
-                country: "Australia",
+                shift: "Malam",
                 value: 200
             },
             {
-                country: "Brazil",
+                shift: "On-Call",
                 value: 100
             }
         ];
@@ -6306,7 +6306,7 @@ if (jQuery("#home-chart-03").length) {
 
         var series = chart.series.push(new am4charts.PieSeries());
         series.dataFields.value = "value";
-        series.dataFields.category = "country";
+        series.dataFields.category = "shift";
         series.colors.list = [am4core.color("#089bab"), am4core.color("#2ca5b2"), am4core.color("#faa264"),
         am4core.color("#fcb07a")];
 
